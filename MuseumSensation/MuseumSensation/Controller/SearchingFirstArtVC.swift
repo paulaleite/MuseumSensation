@@ -9,7 +9,10 @@
 import UIKit
 
 class SearchingFirstArtVC: UIViewController {
-
+    @IBAction func nextPageButton(_ sender: Any) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
