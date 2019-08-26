@@ -1,5 +1,5 @@
 //
-//  SearchingFirstArtVC.swift
+//  StartRecordingVC.swift
 //  MuseumSensation
 //
 //  Created by Paula Leite on 23/08/19.
@@ -8,11 +8,8 @@
 
 import UIKit
 
-class SearchingFirstArtVC: UIViewController {
-    @IBAction func nextPageButton(_ sender: Any) {
-        
-    }
-    
+class StartRecordingVC: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
