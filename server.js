@@ -14,43 +14,29 @@ app.use(express.static('public'))
 const highWaterMark = 1024
 
 app.get('/audio/:name', async (req, res) => {
-    const filePath = `./public/audio/${req.params.name}`
-    const stat = await getStat(filePath)
-    // file info
-    console.log(stat)
-    // set head info about the file
-    let type
-    let extendFile = filePath.split('.')[1]
-    if (extendFile == 'mp3')
-        type = 'audio/mp3'
-    else if (extendFile == 'ogg')
-        type = 'audio/ogg'
+    try {
+        const filePath = `./public/audio/${req.params.name}`
+        const stat = await getStat(filePath)
+        // file info
 
 
-    res.writeHead(200, {
-        'Content-Type': type,
-        'Content-Length': stat.size
-    })
-    //min the trafic
-    const stream = fs.createReadStream(filePath, {
-        highWaterMark
-    })
-    // end
-    stream.on('end', () => console.log('end'))
-    // stream
-    stream.pipe(res)
-})
+        res.writeHead(200, {
+            'Content-Type': 'audio/mp3',
+            'Content-Length': stat.size
+        })
+        //min the trafic
+        const stream = fs.createReadStream(filePath, {
+            highWaterMark
+        })
+        // end
+        stream.on('end', () => console.log('end'))
+        // stream
+        stream.pipe(res)
+    } catch (error) {
+        console.log('Deu erro ao abrir o arquivo.')
+        res.json(false)
+    }
 
-app.get('/video/:name', async (req, res) => {
-    const filePath = `./public/video/${req.params.name}`
-    const stat = await getStat(filePath)
-    res.writeHead(200, {
-        'Content-Type': 'video/mp4',
-        'Content-Length': stat.size
-    })
-    const stream = fs.createReadStream(filePath)
-    stream.on('end', () => console.log('end'))
-    stream.pipe(res)
 })
 
 app.listen(process.env.PORT || 3000, () => console.log('Listening na port 3000'))
