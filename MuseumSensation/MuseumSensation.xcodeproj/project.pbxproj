@@ -27,6 +27,7 @@
 		1E0FCA8B231084CA00993AD3 /* RecordingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E0FCA89231084CA00993AD3 /* RecordingVC.xib */; };
 		1E0FCA8E231084FA00993AD3 /* ReviewAudioVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0FCA8C231084FA00993AD3 /* ReviewAudioVC.swift */; };
 		1E0FCA8F231084FA00993AD3 /* ReviewAudioVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E0FCA8D231084FA00993AD3 /* ReviewAudioVC.xib */; };
+		7D04005E231596DD00D05726 /* AudioSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04005D231596DD00D05726 /* AudioSingleton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		1E0FCA89231084CA00993AD3 /* RecordingVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordingVC.xib; sourceTree = "<group>"; };
 		1E0FCA8C231084FA00993AD3 /* ReviewAudioVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAudioVC.swift; sourceTree = "<group>"; };
 		1E0FCA8D231084FA00993AD3 /* ReviewAudioVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewAudioVC.xib; sourceTree = "<group>"; };
+		7D04005D231596DD00D05726 /* AudioSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSingleton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 		1E0FCA762310830400993AD3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7D04005D231596DD00D05726 /* AudioSingleton.swift */,
 				1E0FCA77231083C000993AD3 /* SearchingFirstArtVC.swift */,
 				1E0FCA7C2310840700993AD3 /* MainArtVC.swift */,
 				1E0FCA802310846400993AD3 /* AudioPlayerVC.swift */,
@@ -333,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D04005E231596DD00D05726 /* AudioSingleton.swift in Sources */,
 				1E0FCA8E231084FA00993AD3 /* ReviewAudioVC.swift in Sources */,
 				1E0FCA822310846400993AD3 /* AudioPlayerVC.swift in Sources */,
 				1E0FCA79231083C000993AD3 /* SearchingFirstArtVC.swift in Sources */,
