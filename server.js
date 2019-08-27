@@ -2,6 +2,7 @@ const express = require('express')
 const fs = require('fs')
 const getStat = require('util').promisify(fs.stat)
 
+require('./models/Index')
 
 const app = express()
 
