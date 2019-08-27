@@ -10,16 +10,13 @@ import UIKit
 
 class SearchingFirstArtVC: UIViewController {
     @IBAction func nextPageButton(_ sender: Any) {
-        
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
-
+    
     /*
     // MARK: - Navigation
 

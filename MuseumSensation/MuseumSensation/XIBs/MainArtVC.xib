@@ -19,6 +19,7 @@
                 <outlet property="microphone" destination="Aw9-N7-Geu" id="u6J-yG-hhf"/>
                 <outlet property="playButton" destination="CLf-Qp-xJk" id="gNx-1Z-Kad"/>
                 <outlet property="secondArt" destination="NbP-sc-3yK" id="Efi-3J-dit"/>
+                <outlet property="secondArtImage" destination="diK-Mi-KHZ" id="8Ie-l7-alt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

@@ -16,93 +16,41 @@ class MainArtVC: UIViewController {
     @IBOutlet weak var artNameLabel: UILabel!
     @IBOutlet weak var gradientLayerTop: UIView!
     @IBOutlet weak var gradientLayerBottom: UIView!
-    
-/*
-==================================================================
-                       GLOBAL VARIABLES
-==================================================================
-*/
-    let iphoneNotch: CGFloat = 30
-    let distanceToBorders: CGFloat = 28
+    @IBOutlet weak var secondArtImage: UIImageView!
     let roundedBorder: CGFloat = 6
-    let zeroPoint: CGFloat = 0
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // image size equal main view size
-        mainArt.frame = view.frame
+        // center and scales backgroun image
+        Manager.backgroundImage(image: mainArt, view: view)
         // set play button position
-        centerIconBottom(icon: playButton)
+        Manager.centerIconBottom(icon: playButton, view: view)
         // frame edited
         editFrame(frame: secondArt)
+        Manager.backgroundImage(image: secondArtImage, view: secondArt)
         // microphone
         setIconBottomRight(icon: microphone)
         // art name
-        centerTitleTop(title: artNameLabel)
+        Manager.centerTitleTop(title: artNameLabel, view: view)
         // icons background
-        gradientTopToBottom(viewToGradient: gradientLayerTop, topToBottom: true)
-        gradientTopToBottom(viewToGradient: gradientLayerBottom, topToBottom: false)
-        
+        Manager.gradientTopToBottom(viewToGradient: gradientLayerTop, topToBottom: true)
+        Manager.gradientTopToBottom(viewToGradient: gradientLayerBottom, topToBottom: false)
+        // gradiented
+        Manager.topViewGradiented(viewGradiented: gradientLayerTop, view: view)
+        Manager.botViewGradiented(viewGradiented: gradientLayerBottom, view: view)
+
     }
-    
     // function: set any icon on bottom right
     // parameters: the icon to be setted
     // return: without return, just position
     func setIconBottomRight(icon: UIImageView) {
-        icon.center.x = view.frame.width -  microphone.frame.width/2 - distanceToBorders
+        icon.center.x = view.frame.width -  microphone.frame.width/2 - Manager.distanceToBorders
         icon.center.y = playButton.center.y
     }
-    
     // function: edit the frame and set it a position
     // parameters: the frame
     // return: without return, just position and borders
     func editFrame(frame: UIView) {
         frame.layer.cornerRadius = roundedBorder
-        frame.center.x = zeroPoint + frame.frame.width/2 + distanceToBorders
+        frame.center.x = frame.frame.width/2 + Manager.distanceToBorders
     }
-    
-    /*
-     ==================================================================
-                           GLOBAL FUNCTIONS
-     ==================================================================
-     */
-    
-    // function: turn some view gradient with an invisible bottom
-    // parameters: viewToGradient - any view to turn gradient
-    //             topToBottom - an bool, if true, the gradient start on top
-    // return: without return, just views change
-    func gradientTopToBottom(viewToGradient: UIView, topToBottom: Bool){
-        let gradient = CAGradientLayer()
-        if topToBottom == true {
-            gradient.startPoint = CGPoint(x: 0.5, y: 1)
-            gradient.endPoint = CGPoint(x: 0.5, y: 0.0)
-        } else {
-            gradient.startPoint = CGPoint(x: 0.5, y: 0.0)
-            gradient.endPoint = CGPoint(x: 0.5, y: 1)
-        }
-        let whiteColor = UIColor.white
-        gradient.colors = [whiteColor.withAlphaComponent(0.0).cgColor, whiteColor.withAlphaComponent(1.0).cgColor]
-        gradient.locations = [NSNumber(value: 0.0),NSNumber(value: 1),NSNumber(value: 1.0)]
-        gradient.frame = viewToGradient.bounds
-        viewToGradient.layer.mask = gradient
-        
-    }
-    
-    // function: set some icon in the bottom center
-    // parameters: the icon
-    // return: without return, just position the icon
-    func centerIconBottom(icon: UIImageView) {
-        icon.center.x = view.center.x
-        icon.center.y = view.frame.height - icon.frame.height/2 - distanceToBorders
-    }
-    
-    // function: set the title on the top center
-    // parameters: the title label
-    // return: withou return, just position the title
-    func centerTitleTop(title: UILabel) {
-        title.center.x = view.center.x
-        title.center.y =  title.frame.height/2 + distanceToBorders + iphoneNotch
-    }
-    
-    
 }
