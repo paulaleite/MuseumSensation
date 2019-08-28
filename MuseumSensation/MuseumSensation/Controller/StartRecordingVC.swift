@@ -9,22 +9,38 @@
 import UIKit
 
 class StartRecordingVC: UIViewController {
-
+    @IBOutlet weak var artNameLabel: UILabel!
+    @IBOutlet weak var gradientLayerTop: UIView!
+    @IBOutlet weak var gradientLayerBottom: UIView!
+    @IBOutlet weak var mainArt: UIImageView!
+    @IBOutlet weak var startRecording: UIImageView!
+    @IBOutlet weak var backButtonOutlet: UIButton!
+    @IBAction func backButton(_ sender: Any) {
+        fadeNavigation(target: RecordingVC())
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        // center and scales backgroun image
+        Manager.backgroundImage(image: mainArt, view: view)
+        // art name
+        Manager.centerTitleTop(title: artNameLabel, view: view)
+        // icons background
+        Manager.gradientTopToBottom(viewToGradient: gradientLayerTop, topToBottom: true)
+        Manager.gradientTopToBottom(viewToGradient: gradientLayerBottom, topToBottom: false)
+        // gradiented
+        Manager.topViewGradiented(viewGradiented: gradientLayerTop, view: view)
+        Manager.botViewGradiented(viewGradiented: gradientLayerBottom, view: view)
+        Manager.centerIconBottom(icon: startRecording, view: view)
+        // button bottom
+        Manager.centerIconBottom(icon: backButtonOutlet, view: view)
     }
+}
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension UIViewController {
+    func fadeNavigation(target: UIViewController) {
+        let goVC = target
+        goVC.modalPresentationStyle = .custom
+        goVC.modalTransitionStyle = .crossDissolve
+        self.present(goVC, animated: true, completion: nil)
     }
-    */
-
 }

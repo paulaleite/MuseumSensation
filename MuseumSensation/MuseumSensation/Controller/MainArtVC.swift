@@ -14,42 +14,43 @@ class MainArtVC: UIViewController {
     @IBOutlet weak var secondArt: UIView!
     @IBOutlet weak var microphone: UIImageView!
     @IBOutlet weak var artNameLabel: UILabel!
-    @IBOutlet weak var gradientLayer: UIView!
-    
-    let iphoneNotch: CGFloat = 30
-    let distanceToBorders: CGFloat = 28
+    @IBOutlet weak var gradientLayerTop: UIView!
+    @IBOutlet weak var gradientLayerBottom: UIView!
+    @IBOutlet weak var secondArtImage: UIImageView!
     let roundedBorder: CGFloat = 6
-    let zeroPoint: CGFloat = 0
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // image size equal main view size
-        mainArt.frame = view.frame
-        
+        // center and scales backgroun image
+        Manager.backgroundImage(image: mainArt, view: view)
         // set play button position
-        playButton.center.x = view.center.x
-        playButton.center.y = view.frame.height - playButton.frame.height/2 - distanceToBorders
-        
+        Manager.centerIconBottom(icon: playButton, view: view)
         // frame edited
-        secondArt.layer.cornerRadius = roundedBorder
-        secondArt.center.x = zeroPoint + secondArt.frame.width/2 + distanceToBorders
-        
+        editFrame(frame: secondArt)
+        Manager.backgroundImage(image: secondArtImage, view: secondArt)
         // microphone
-        microphone.center.x = view.frame.width -  microphone.frame.width/2 - distanceToBorders
-        microphone.center.y = playButton.center.y
-        
+        setIconBottomRight(icon: microphone)
         // art name
-        artNameLabel.center.x = view.center.x
-        artNameLabel.center.y =  artNameLabel.frame.height/2 + distanceToBorders + iphoneNotch
-        
-        let gradient = CAGradientLayer()
-        gradient.startPoint = CGPoint(x: 0.5, y: 0.0)
-        gradient.endPoint = CGPoint(x: 0.5, y: 0.6)
-        let whiteColor = UIColor.white
-        gradient.colors = [whiteColor.withAlphaComponent(0.0).cgColor, whiteColor.withAlphaComponent(1.0).cgColor, whiteColor.withAlphaComponent(1.0).cgColor]
-        gradient.locations = [NSNumber(value: 0.0),NSNumber(value: 0.2),NSNumber(value: 1.0)]
-        gradient.frame = gradientLayer.bounds
-        gradientLayer.layer.mask = gradient
-        
+        Manager.centerTitleTop(title: artNameLabel, view: view)
+        // icons background
+        Manager.gradientTopToBottom(viewToGradient: gradientLayerTop, topToBottom: true)
+        Manager.gradientTopToBottom(viewToGradient: gradientLayerBottom, topToBottom: false)
+        // gradiented
+        Manager.topViewGradiented(viewGradiented: gradientLayerTop, view: view)
+        Manager.botViewGradiented(viewGradiented: gradientLayerBottom, view: view)
+
+    }
+    // function: set any icon on bottom right
+    // parameters: the icon to be setted
+    // return: without return, just position
+    func setIconBottomRight(icon: UIImageView) {
+        icon.center.x = view.frame.width -  microphone.frame.width/2 - Manager.distanceToBorders
+        icon.center.y = playButton.center.y
+    }
+    // function: edit the frame and set it a position
+    // parameters: the frame
+    // return: without return, just position and borders
+    func editFrame(frame: UIView) {
+        frame.layer.cornerRadius = roundedBorder
+        frame.center.x = frame.frame.width/2 + Manager.distanceToBorders
     }
 }

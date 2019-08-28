@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C9E26EB23159EB8005355A8 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9E26EA23159EB8005355A8 /* Manager.swift */; };
 		1E0FCA44231082C400993AD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0FCA43231082C400993AD3 /* AppDelegate.swift */; };
 		1E0FCA46231082C400993AD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0FCA45231082C400993AD3 /* ViewController.swift */; };
 		1E0FCA49231082C400993AD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E0FCA47231082C400993AD3 /* Main.storyboard */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C9E26EA23159EB8005355A8 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		1E0FCA40231082C400993AD3 /* MuseumSensation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuseumSensation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E0FCA43231082C400993AD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E0FCA45231082C400993AD3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -126,7 +128,6 @@
 			isa = PBXGroup;
 			children = (
 				1E0FCA7B231083DB00993AD3 /* XIBs */,
-				1E0FCA74231082F400993AD3 /* Model */,
 				1E0FCA75231082FD00993AD3 /* View */,
 				1E0FCA762310830400993AD3 /* Controller */,
 				1E0FCA43231082C400993AD3 /* AppDelegate.swift */,
@@ -158,13 +159,6 @@
 			path = MuseumSensationUITests;
 			sourceTree = "<group>";
 		};
-		1E0FCA74231082F400993AD3 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		1E0FCA75231082FD00993AD3 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +176,7 @@
 				1E0FCA842310849700993AD3 /* StartRecordingVC.swift */,
 				1E0FCA88231084CA00993AD3 /* RecordingVC.swift */,
 				1E0FCA8C231084FA00993AD3 /* ReviewAudioVC.swift */,
+				0C9E26EA23159EB8005355A8 /* Manager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -209,6 +204,7 @@
 				1E0FCA3C231082C400993AD3 /* Sources */,
 				1E0FCA3D231082C400993AD3 /* Frameworks */,
 				1E0FCA3E231082C400993AD3 /* Resources */,
+				0C9E26EC2315BC81005355A8 /* Run Script - SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -331,6 +327,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0C9E26EC2315BC81005355A8 /* Run Script - SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script - SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1E0FCA3C231082C400993AD3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -346,6 +363,7 @@
 				1E0FCA7E2310840700993AD3 /* MainArtVC.swift in Sources */,
 				1E0FCA4C231082C400993AD3 /* MuseumSensation.xcdatamodeld in Sources */,
 				1E0FCA44231082C400993AD3 /* AppDelegate.swift in Sources */,
+				0C9E26EB23159EB8005355A8 /* Manager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
