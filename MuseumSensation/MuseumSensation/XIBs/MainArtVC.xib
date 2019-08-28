@@ -13,6 +13,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainArtVC" customModule="MuseumSensation" customModuleProvider="target">
             <connections>
                 <outlet property="artNameLabel" destination="HS3-yu-WiO" id="fGc-LB-BKH"/>
+                <outlet property="goToAudioPlayerVC" destination="Hej-0d-0vh" id="rQ4-Re-3Z1"/>
+                <outlet property="goToStartRecordingVC" destination="wUo-6u-Q12" id="4UX-mS-XeD"/>
                 <outlet property="gradientLayerBottom" destination="2rl-ki-vE4" id="30T-uB-Aay"/>
                 <outlet property="gradientLayerTop" destination="5oj-HP-SFe" id="aEQ-m5-KkC"/>
                 <outlet property="mainArt" destination="Jkf-Tx-tGq" id="g6I-WQ-jas"/>
@@ -69,6 +71,20 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hej-0d-0vh">
+                    <rect key="frame" x="181" y="814" width="53" height="48"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="goToAudioPlayerVCButton:" destination="-1" eventType="touchUpInside" id="wyT-og-EgT"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUo-6u-Q12">
+                    <rect key="frame" x="358" y="814" width="48" height="48"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="goToStartRecordingVCButton:" destination="-1" eventType="touchUpInside" id="iCi-YM-RMg"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

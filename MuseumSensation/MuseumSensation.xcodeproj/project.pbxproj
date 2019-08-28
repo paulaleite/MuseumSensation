@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C9E26EB23159EB8005355A8 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9E26EA23159EB8005355A8 /* Manager.swift */; };
+		0C9E27272316E73A005355A8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9E27262316E73A005355A8 /* Extensions.swift */; };
 		1E0FCA44231082C400993AD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0FCA43231082C400993AD3 /* AppDelegate.swift */; };
 		1E0FCA46231082C400993AD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0FCA45231082C400993AD3 /* ViewController.swift */; };
 		1E0FCA49231082C400993AD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E0FCA47231082C400993AD3 /* Main.storyboard */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		0C9E26EA23159EB8005355A8 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		0C9E27262316E73A005355A8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1E0FCA40231082C400993AD3 /* MuseumSensation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuseumSensation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E0FCA43231082C400993AD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E0FCA45231082C400993AD3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				1E0FCA88231084CA00993AD3 /* RecordingVC.swift */,
 				1E0FCA8C231084FA00993AD3 /* ReviewAudioVC.swift */,
 				0C9E26EA23159EB8005355A8 /* Manager.swift */,
+				0C9E27262316E73A005355A8 /* Extensions.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				1E0FCA7E2310840700993AD3 /* MainArtVC.swift in Sources */,
 				1E0FCA4C231082C400993AD3 /* MuseumSensation.xcdatamodeld in Sources */,
 				1E0FCA44231082C400993AD3 /* AppDelegate.swift in Sources */,
+				0C9E27272316E73A005355A8 /* Extensions.swift in Sources */,
 				0C9E26EB23159EB8005355A8 /* Manager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
