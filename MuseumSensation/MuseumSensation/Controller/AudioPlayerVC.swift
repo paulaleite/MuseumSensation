@@ -88,8 +88,17 @@ class AudioPlayerVC: UIViewController {
         progressBar.center.x = view.center.x
         progressBar.center.y = view.frame.height - icon.frame.height - progressBar.frame.height/2 - Manager.distanceToBorders*2
         progressBar.layer.cornerRadius = 10
-        
     }
+    /**
+     *Edit and position the audio label progress*
+     - Parameters:
+        - currentTime: The audio current time
+        - totalTime: The audio total time
+        - progressBar: The speaker to be edited
+        - icon: The central icon
+        - view: The main view
+     - returns: Nothing
+     */
     func audioTime(currentTime: UILabel, totalTime: UILabel, progressBar: UIView, icon: UIImageView, view: UIView) {
         currentTime.center.x = Manager.distanceToBorders + currentTime.frame.width/2
         currentTime.center.y = view.frame.height - icon.frame.height - progressBar.frame.height - Manager.distanceToBorders*2 - currentTime.frame.height/2
