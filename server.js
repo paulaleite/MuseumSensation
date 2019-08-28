@@ -122,6 +122,7 @@ app.delete('/deleteAudio', async (req, res) => {
 app.post('/createObra', async (req, res) => {
     try {
         await Obra.create(req.body)
+        res.json(true)
     } catch (err) {
         console.log('Error: ', err)
         res.json(false)
@@ -144,7 +145,7 @@ app.get('/obra/:id', async (req, res)  => {
 // Retorna as Obras
 app.get('/obras', async (req, res) => {
     let obras = await Obra.find({})
-    res.json(obras);
+    res.json(obras)
 })
 
 // Faz um update da obra quando algo for alterado
