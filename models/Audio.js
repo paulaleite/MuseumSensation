@@ -5,10 +5,10 @@ const Audio = new Schema({
   nome: {
     type: String
   },
-  estado: {
+  isAproved: {
     type: Boolean
   },
-  curador: {
+  isCurador: {
       type: Boolean
   }
 })

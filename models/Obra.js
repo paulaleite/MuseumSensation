@@ -7,7 +7,7 @@ const Obra = new Schema({
         type: String
     },
     autor: {
-        type: Boolean
+        type: String
     },
     descricao: {
         type: String
