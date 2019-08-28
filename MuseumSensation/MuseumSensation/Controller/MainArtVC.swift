@@ -38,7 +38,8 @@ class MainArtVC: UIViewController {
         Manager.gradientTopToBottom(viewToGradient: gradientLayerBottom, topToBottom: false)
         Manager.topViewGradiented(viewGradiented: gradientLayerTop, view: view)
         Manager.botViewGradiented(viewGradiented: gradientLayerBottom, view: view)
-        Manager.centerIconBottom(icon: goToAudioPlayerVC, view: view)
+        Manager.buttonOnView(button: goToAudioPlayerVC, image: playButton)
+        Manager.buttonOnView(button: goToStartRecordingVC, image: microphone)
         setIconBottomRight(icon: goToStartRecordingVC)
     }
     /**

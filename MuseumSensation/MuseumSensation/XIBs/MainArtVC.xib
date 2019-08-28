@@ -79,7 +79,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUo-6u-Q12">
-                    <rect key="frame" x="362" y="814" width="32" height="48"/>
+                    <rect key="frame" x="358" y="814" width="48" height="48"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <connections>
                         <action selector="goToStartRecordingVCButton:" destination="-1" eventType="touchUpInside" id="iCi-YM-RMg"/>

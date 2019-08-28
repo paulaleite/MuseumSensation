@@ -79,17 +79,6 @@ struct Manager {
         icon.center.y = view.frame.height - icon.frame.height/2 - distanceToBorders
     }
     /**
-     *Set some icon in the bottom center*
-     - Parameters:
-        - icon: The icon to position
-        - view: The main view
-     - returns: Nothing
-     */
-    static func centerIconBottom(icon: UIButton, view: UIView) {
-        icon.center.x = view.center.x
-        icon.center.y = view.frame.height - icon.frame.height/2 - distanceToBorders
-    }
-    /**
      *Set the title on the top center*
      - Parameters:
         - title: A ttitle to position on top
@@ -99,5 +88,26 @@ struct Manager {
     static func centerTitleTop(title: UILabel, view: UIView) {
         title.center.x = view.center.x
         title.center.y =  title.frame.height/2 + distanceToBorders + iphoneNotch
+    }
+    /**
+     *Set the title on the top center*
+     - Parameters:
+        - icon: A ttitle to position on top
+        - title: The main view
+     - returns: Nothing
+     */
+    static func topLeftPosition(icon: UIImageView, title: UILabel) {
+        icon.center.y = title.center.y
+        icon.center.x = icon.frame.width/2 + distanceToBorders
+    }
+    /**
+     *Center button on view*
+     - Parameters:
+        - button: Button to put on view
+        - view: The base view
+     - returns: Nothing
+     */
+    static func buttonOnView(button: UIButton, image: UIImageView) {
+        button.center = image.center
     }
 }

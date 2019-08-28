@@ -9,21 +9,30 @@
 import UIKit
 
 class RecordingVC: UIViewController {
-
+    @IBOutlet weak var artNameLabel: UILabel!
+    @IBOutlet weak var gradientLayerTop: UIView!
+    @IBOutlet weak var gradientLayerBottom: UIView!
+    @IBOutlet weak var mainArt: UIImageView!
+    @IBOutlet weak var stopRecording: UIImageView!
+    @IBOutlet weak var stopRecordingButtonOutlet: UIButton!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBAction func stopRecordingButton(_ sender: Any) {
+        fadeNavigation(target: ReviewAudioVC())
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        Manager.backgroundImage(image: mainArt, view: view)
+        Manager.centerTitleTop(title: artNameLabel, view: view)
+        Manager.gradientTopToBottom(viewToGradient: gradientLayerTop, topToBottom: true)
+        Manager.gradientTopToBottom(viewToGradient: gradientLayerBottom, topToBottom: false)
+        Manager.topViewGradiented(viewGradiented: gradientLayerTop, view: view)
+        Manager.botViewGradiented(viewGradiented: gradientLayerBottom, view: view)
+        Manager.centerIconBottom(icon: stopRecording, view: view)
+        Manager.buttonOnView(button: stopRecordingButtonOutlet, image: stopRecording)
+        timeLabelPosition(timeLabel: timeLabel, icon: stopRecording)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func timeLabelPosition(timeLabel: UILabel, icon: UIImageView) {
+        timeLabel.center.y = icon.center.y
+        timeLabel.center.x = timeLabel.frame.width/2 + Manager.distanceToBorders
     }
-    */
-
 }
