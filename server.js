@@ -43,20 +43,68 @@ app.get('/audio/:nome', async (req, res) => {
 
 })
 
+// Retorna os audios de uma obra
+app.get('/audios/:id', async (req, res) => {
+    let obra_id = req.params.id
+    let obra = Obra.findById({_id: obra_id})
 
-app.get('/audios', async (req, res) => {
-    let audios = await Audio.find({})
-    res.json(audios);
+    if (obra) {
+        res.json(obra.audios)
+    } else {
+        res.json({result: false});
+    }
+
 })
 
+// Cria um audio dentro de uma obra
 app.post('/createAudio', async (req, res) => {
+    let obra_id = req.body.id
+    let obra = Obra.findById({_id: obra_id})
 
+    try {
+        if(obra) {
+            let newAudio = new Audio(req.body.audio)
+            await newAudio.save()
+            if (obra.audios) {
+                obra.audios.addToSet(newAudio.id)
+            } else {
+                obra.audios = newAudio.id
+            }
+            await obra.save()
+            res.json({result: true})
+        }
+    } catch (err) {
+        console.log('Error: ', err)
+        res.json(false)
+    }
 })
 
+// Fornece um update quando 
 app.put('/updateAudio', async (req, res) => {
+    let obra_id = req.body.id
+    let obra = Obra.findById({_id: obra_id})
+
+    try {
+        if(obra) {
+            let audio_id = req.body.audioId
+            let audio = Audio.findById({_id: audio_id})
+            if(audio) {
+                audio.isAproved = req.body.isAproved
+                audio.isCurador = req.body.isCurador
+                await audio.save()
+                await obra.save()
+                res.json({return: true})
+            }
+            
+        }
+    } catch (err) {
+        console.log('Error: ', err)
+        res.json(false)
+    }
 
 })
 
+// Deleta um audio com um id especifico
 app.delete('/deleteAudio', async (req, res) => {
     try {
         let idAudio = req.body._id
@@ -70,10 +118,19 @@ app.delete('/deleteAudio', async (req, res) => {
     }
 })
 
+// Cria uma Obra nova
 app.post('/createObra', async (req, res) => {
-
+    try {
+        await Obra.create(req.body)
+        res.json(true)
+    } catch (err) {
+        console.log('Error: ', err)
+        res.json(false)
+    }
+    
 })
 
+// Retorna uma Obra
 app.get('/obra/:id', async (req, res)  => {
     try {
         let obra = await Obra.findById(req.body._id)
@@ -85,15 +142,23 @@ app.get('/obra/:id', async (req, res)  => {
     }
 })
 
+// Retorna as Obras
 app.get('/obras', async (req, res) => {
     let obras = await Obra.find({})
-    res.json(obras);
+    res.json(obras)
 })
 
+// Faz um update da obra quando algo for alterado
 app.put('/updateObra', async (req, res) => {
-
+    try {
+        await Obra.findByIdAndUpdate(req.body)
+    } catch (err) {
+        console.log('Error: ', err)
+        res.json(false)
+    }
 })
 
+// Deleta um Obra
 app.delete('/deleteObra', async (req, res) => {
     try {
         let idObra = req.body._id

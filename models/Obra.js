@@ -7,7 +7,7 @@ const Obra = new Schema({
         type: String
     },
     autor: {
-        type: Boolean
+        type: String
     },
     descricao: {
         type: String
@@ -17,11 +17,12 @@ const Obra = new Schema({
     },
     imagem: {
         type: String
-    }, audio: { // Aqui sera feito o relacionamento
+    }, 
+    audios: [{ // Aqui sera feito o relacionamento
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Audio',
         autopopulate: true // Para passar todos os audios
-    }
+    }]
 }, {
     timestamps: true
 })
