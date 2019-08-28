@@ -43,14 +43,35 @@ app.get('/audio/:nome', async (req, res) => {
 
 })
 
+//retorna  audios de uma obra
+app.get('/audios/:id', async (req, res) => {
+    let obra_id = req.params.id
+    let obra = Obra.findById({_id: obra_id})
 
-app.get('/audios', async (req, res) => {
-    let audios = await Audio.find({})
-    res.json(audios);
+    if (obra) {
+        res.json(obra.audios)
+    } else {
+        res.json({result: false});
+    }
+
 })
 
 app.post('/createAudio', async (req, res) => {
+    let obra_id = req.body.id
+    let obra = Obra.findById({_id: obra_id})
 
+    if(obra){
+        let newAudio = new Audio(req.body.audio)
+        await newAudio.save()
+        if (obra.audios) {
+            obra.audios.addToSet(newAudio.id)
+        } else {
+            obra.audios = newAudio.id
+        }
+        await obra.save()
+        res.json({result : true})
+    }
+    res.json ({result: false})
 })
 
 app.put('/updateAudio', async (req, res) => {
