@@ -18,7 +18,7 @@ class StartRecordingVC: UIViewController {
     @IBOutlet weak var back: UIImageView!
     @IBOutlet weak var backButtonOutlet: UIButton!
     @IBAction func backButton(_ sender: Any) {
-        fadeNavigation(target: MainArtVC())
+        self.dismiss(animated: true, completion: nil)
     }
     @IBAction func startRecordingButton(_ sender: Any) {
         fadeNavigation(target: RecordingVC())
