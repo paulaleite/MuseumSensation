@@ -35,12 +35,3 @@ class StartRecordingVC: UIViewController {
         Manager.centerIconBottom(icon: backButtonOutlet, view: view)
     }
 }
-
-extension UIViewController {
-    func fadeNavigation(target: UIViewController) {
-        let goVC = target
-        goVC.modalPresentationStyle = .custom
-        goVC.modalTransitionStyle = .crossDissolve
-        self.present(goVC, animated: true, completion: nil)
-    }
-}

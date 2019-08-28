@@ -17,38 +17,56 @@ class MainArtVC: UIViewController {
     @IBOutlet weak var gradientLayerTop: UIView!
     @IBOutlet weak var gradientLayerBottom: UIView!
     @IBOutlet weak var secondArtImage: UIImageView!
+    @IBOutlet weak var goToAudioPlayerVC: UIButton!
+    @IBOutlet weak var goToStartRecordingVC: UIButton!
+    @IBAction func goToAudioPlayerVCButton(_ sender: Any) {
+        fadeNavigation(target: AudioPlayerVC())
+    }
+    @IBAction func goToStartRecordingVCButton(_ sender: Any) {
+        fadeNavigation(target: StartRecordingVC())
+    }
     let roundedBorder: CGFloat = 6
     override func viewDidLoad() {
         super.viewDidLoad()
-        // center and scales backgroun image
         Manager.backgroundImage(image: mainArt, view: view)
-        // set play button position
         Manager.centerIconBottom(icon: playButton, view: view)
-        // frame edited
         editFrame(frame: secondArt)
         Manager.backgroundImage(image: secondArtImage, view: secondArt)
-        // microphone
         setIconBottomRight(icon: microphone)
-        // art name
         Manager.centerTitleTop(title: artNameLabel, view: view)
-        // icons background
         Manager.gradientTopToBottom(viewToGradient: gradientLayerTop, topToBottom: true)
         Manager.gradientTopToBottom(viewToGradient: gradientLayerBottom, topToBottom: false)
-        // gradiented
         Manager.topViewGradiented(viewGradiented: gradientLayerTop, view: view)
         Manager.botViewGradiented(viewGradiented: gradientLayerBottom, view: view)
-
+        Manager.centerIconBottom(icon: goToAudioPlayerVC, view: view)
+        setIconBottomRight(icon: goToStartRecordingVC)
     }
-    // function: set any icon on bottom right
-    // parameters: the icon to be setted
-    // return: without return, just position
+    /**
+     *Set any icon on bottom right*
+     - Parameters:
+        - icon: The icon to be setted
+     - returns: Nothing
+     */
     func setIconBottomRight(icon: UIImageView) {
         icon.center.x = view.frame.width -  microphone.frame.width/2 - Manager.distanceToBorders
         icon.center.y = playButton.center.y
     }
-    // function: edit the frame and set it a position
-    // parameters: the frame
-    // return: without return, just position and borders
+    /**
+     *Set any icon on bottom right*
+     - Parameters:
+        - icon: The icon to be setted
+        - returns: Nothing
+     */
+    func setIconBottomRight(icon: UIButton) {
+        icon.center.x = view.frame.width -  microphone.frame.width/2 - Manager.distanceToBorders
+        icon.center.y = playButton.center.y
+    }
+    /**
+     *Edit the frame and set it a position*
+     - Parameters:
+        - frame: The frame
+     - returns: Nothing
+     */
     func editFrame(frame: UIView) {
         frame.layer.cornerRadius = roundedBorder
         frame.center.x = frame.frame.width/2 + Manager.distanceToBorders
