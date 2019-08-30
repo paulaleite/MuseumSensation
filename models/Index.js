@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
-require('./Obra')
 require('./Audio')
+require('./Obra')
 
 const options = {
   autoIndex: false, // Don't build indexes

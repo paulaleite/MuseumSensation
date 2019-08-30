@@ -3,7 +3,8 @@ const Schema = mongoose.Schema
 
 const Audio = new Schema({
   nome: {
-    type: String
+    type: String,
+    require: true
   },
   isAproved: {
     type: Boolean
