@@ -23,34 +23,32 @@ final class AudioSingleton: NSObject {
                                   AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue,
                                   AVEncoderBitRateKey: 320000,
                                   AVNumberOfChannelsKey: 2 ,
-                                  AVSampleRateKey: 44100.2] as [String : Any]
+                                  AVSampleRateKey: 44100.2] as [String: Any]
     
     override init() {
         super.init()
     }
-    
     
     private func getDocumentDirectory() -> URL {
         let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return path[0]
         
     }
-    
-    
+
     public func setFile(name: String) {
         self.fileName = name + ".m4a"
-        
         
     }
     
     public func getFileName() -> String {
-        guard let fileName = fileName else {return String()}
+        guard let fileName = fileName else {
+            return String() }
         return fileName
         
     }
     
     public func haveFileName() -> Bool {
-        if (fileName != nil){
+        if fileName != nil {
             return true
         }
         return false
@@ -70,9 +68,9 @@ final class AudioSingleton: NSObject {
         
     }
     
-    
     public func setupRecorder() {
-        guard let fileName = fileName else{return}
+        guard let fileName = fileName else {
+            return}
         let audioFileName = getDocumentDirectory().appendingPathComponent(fileName)
         let session = AVAudioSession.sharedInstance()
         
@@ -81,7 +79,8 @@ final class AudioSingleton: NSObject {
             try session.setActive(true)
             
             audioRecorder = try AVAudioRecorder(url: audioFileName, settings: recordSettings)
-            guard let audioRecorder = audioRecorder else {return}
+            guard let audioRecorder = audioRecorder else {
+                return}
             audioRecorder.delegate = self
             audioRecorder.prepareToRecord()
             
@@ -90,18 +89,18 @@ final class AudioSingleton: NSObject {
         }
     }
     
-    
-    public func setupPlayer(){
-        guard let fileName = fileName else{return}
+    public func setupPlayer() {
+        guard let fileName = fileName else {
+            return}
         let audioFileName = getDocumentDirectory().appendingPathComponent(fileName)
         
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: audioFileName)
-            guard let audioPlayer = audioPlayer else{return}
+            guard let audioPlayer = audioPlayer else {
+                return}
             audioPlayer.delegate = self
             audioPlayer.prepareToPlay()
             audioPlayer.volume = 1.0
-            
             
         } catch {
             print(error)
@@ -109,50 +108,42 @@ final class AudioSingleton: NSObject {
         
     }
     
-    
-    
-    
     public func record() {
-        guard let audioRecorder = audioRecorder else {return}
+        guard let audioRecorder = audioRecorder else {
+            return}
         audioRecorder.record(forDuration: 3600)
         
     }
     public func stopRecord() {
-        guard let audioRecorder = audioRecorder else {return}
+        guard let audioRecorder = audioRecorder else {
+            return}
         audioRecorder.stop()
         
     }
     
     public func play() {
-        guard let audioPlayer = audioPlayer else {return}
+        guard let audioPlayer = audioPlayer else {
+            return}
         audioPlayer.play()
     }
     
     public func stopPlaying() {
-        guard let audioPlayer = audioPlayer else {return}
+        guard let audioPlayer = audioPlayer else {
+            return}
         audioPlayer.stop()
     }
     
-    
-    
-    
-    
-    
-    
-    
     public func checkMicrophonePermission() -> Bool {
-        switch AVAudioSession.sharedInstance().recordPermission{
+        switch AVAudioSession.sharedInstance().recordPermission {
         case .granted:
             isMicAccessGranted = true
-            break
         case .denied:
             isMicAccessGranted = false
-            break
         case .undetermined:
             AVAudioSession.sharedInstance().requestRecordPermission { (allowed) in
                 if allowed {
                     self.isMicAccessGranted = true
-                }else{
+                } else {
                     self.isMicAccessGranted = false
                 }
             }
@@ -166,17 +157,12 @@ final class AudioSingleton: NSObject {
     //Have to add into info.plist
     // The information property listprivacy -Microphone Usage Description and and description $(PRODUCT_NAME) needs to use microphone tho record audio
     
-    
-    
+}
+
+extension AudioSingleton: AVAudioPlayerDelegate {
     
 }
 
-
-extension AudioSingleton : AVAudioPlayerDelegate {
-    
-}
-
-
-extension AudioSingleton : AVAudioRecorderDelegate {
+extension AudioSingleton: AVAudioRecorderDelegate {
     
 }
