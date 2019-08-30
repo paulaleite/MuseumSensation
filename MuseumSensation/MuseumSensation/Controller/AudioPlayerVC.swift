@@ -9,6 +9,7 @@
 import UIKit
 
 class AudioPlayerVC: UIViewController {
+    var isPlaying: Bool = true
     @IBOutlet weak var artNameLabel: UILabel!
     @IBOutlet weak var gradientLayerTop: UIView!
     @IBOutlet weak var gradientLayerBottom: UIView!
@@ -24,7 +25,14 @@ class AudioPlayerVC: UIViewController {
     @IBOutlet weak var totalTime: UILabel!
     @IBOutlet weak var pauseButtonOutlet: UIButton!
     @IBAction func pauseButton(_ sender: Any) {
-//        pause.image = 
+        switch isPlaying {
+        case true:
+            pause.image = UIImage.init(named: "play")
+            isPlaying = false
+        case false:
+            pause.image = UIImage.init(named: "pause")
+            isPlaying = true
+        }
     }
     @IBAction func backButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
