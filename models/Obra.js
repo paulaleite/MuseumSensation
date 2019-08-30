@@ -4,10 +4,12 @@ const autopopulate = require('mongoose-autopopulate');
 
 const Obra = new Schema({
     titulo: {
-        type: String
+        type: String,
+        required: true
     },
     autor: {
-        type: String
+        type: String,
+        required: true
     },
     descricao: {
         type: String
