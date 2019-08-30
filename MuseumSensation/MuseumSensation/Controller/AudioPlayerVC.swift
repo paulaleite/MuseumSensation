@@ -22,6 +22,10 @@ class AudioPlayerVC: UIViewController {
     @IBOutlet weak var progressBar: UIView!
     @IBOutlet weak var currentTime: UILabel!
     @IBOutlet weak var totalTime: UILabel!
+    @IBOutlet weak var pauseButtonOutlet: UIButton!
+    @IBAction func pauseButton(_ sender: Any) {
+//        pause.image = 
+    }
     @IBAction func backButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -41,6 +45,7 @@ class AudioPlayerVC: UIViewController {
         speakerPosition(speaker: speaker, counter: audioCounter)
         progressBarEdited(progressBar: progressBar, icon: pause, view: view)
         audioTime(currentTime: currentTime, totalTime: totalTime, progressBar: progressBar, icon: pause, view: view)
+        Manager.buttonOnView(button: pauseButtonOutlet, image: pause)
     }
     /**
      *Postion the next button*

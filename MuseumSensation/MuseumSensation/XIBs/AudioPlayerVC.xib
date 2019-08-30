@@ -22,6 +22,7 @@
                 <outlet property="mainArt" destination="I7b-zb-k3X" id="9zg-PF-vXU"/>
                 <outlet property="nextOutlet" destination="sFc-0Q-s9z" id="fgv-yb-IaO"/>
                 <outlet property="pause" destination="SBn-km-TB5" id="Xch-VU-m22"/>
+                <outlet property="pauseButtonOutlet" destination="Pim-Yf-lmC" id="bVW-ZM-1Ae"/>
                 <outlet property="progressBar" destination="yUt-JG-TEI" id="lyc-5c-Aig"/>
                 <outlet property="speaker" destination="c3v-0u-wng" id="fDO-HU-uVd"/>
                 <outlet property="totalTime" destination="oPK-zV-zEE" id="YHV-1q-rJe"/>
@@ -104,9 +105,18 @@
                     <color key="textColor" red="0.98823529409999999" green="0.98823529409999999" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pim-Yf-lmC">
+                    <rect key="frame" x="179" y="639" width="57" height="56"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="pauseButton:" destination="-1" eventType="touchUpInside" id="4FL-Fm-FHZ"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="153.34821428571428"/>
         </view>
     </objects>
     <resources>

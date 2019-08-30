@@ -5,7 +5,10 @@ opt_in_rules:
   - conditional_returns_on_newline
   - force_unwrapping
   - implicit_return
-
+  
+disabled_rules:
+- trailing_whitespace
+- weak_delegate
 
 # special configuration for rules 
 colon:
@@ -34,7 +37,7 @@ large_tuple:
   error: 3
 
 line_length:
-  warning: 120
+  warning: 180
   error: 200
   ignores_urls: false
   ignores_function_declarations: false
