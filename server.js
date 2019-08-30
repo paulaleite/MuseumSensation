@@ -112,24 +112,12 @@ app.post('/createAudio', async (req, res) => {
     }
 })
 
-// Fornece um update quando 
-app.post('/updateAudio', async (req, res) => {
-    let obra_id = req.body.id
-    let obra = Obra.findById({_id: obra_id})
+// Fornece um update quando -> Funcionando
+app.post('/updateAudio/:idAudio', async (req, res) => {
 
     try {
-        if(obra) {
-            let audio_id = req.body.audioId
-            let audio = Audio.findById({_id: audio_id})
-            if(audio) {
-                audio.isAproved = req.body.isAproved
-                audio.isCurador = req.body.isCurador
-                await audio.save()
-                await obra.save()
-                res.json({return: true})
-            }
-            
-        }
+        await Audio.findByIdAndUpdate(req.params.id, req.body)
+        res.json(true)
     } catch (err) {
         console.log('Error: ', err)
         res.json(false)
