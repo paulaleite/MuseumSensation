@@ -184,9 +184,9 @@ app.get('/obras', async (req, res) => {
     res.json(obras)
 })
 
-// Faz um update da obra quando algo for alterado
+// Faz um update da obra quando algo for alterado -> Funcionando
 app.post('/updateObra/:id', async (req, res) => {
-    //let obra = await Obra.findById(req.params.id)
+    
     try {
         await Obra.findByIdAndUpdate(req.params.id, req.body)
         res.json(true)
