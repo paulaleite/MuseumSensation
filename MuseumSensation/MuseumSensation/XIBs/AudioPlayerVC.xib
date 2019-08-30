@@ -108,7 +108,6 @@
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pim-Yf-lmC">
                     <rect key="frame" x="179" y="639" width="57" height="56"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
                     <connections>
                         <action selector="pauseButton:" destination="-1" eventType="touchUpInside" id="4FL-Fm-FHZ"/>
                     </connections>
