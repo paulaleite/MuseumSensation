@@ -15,10 +15,13 @@
                 <outlet property="artNameLabel" destination="6RF-gE-4Fb" id="o2b-cc-pZg"/>
                 <outlet property="bigPlay" destination="ntp-qB-tTG" id="BCb-cO-IkI"/>
                 <outlet property="garbage" destination="R6Z-xZ-VaV" id="jDl-NP-B6X"/>
+                <outlet property="garbageButtonOutlet" destination="UdD-0R-DD9" id="uwb-t0-hDV"/>
                 <outlet property="gradientLayerBottom" destination="DA0-rn-9vS" id="3Jb-q9-3cr"/>
                 <outlet property="gradientLayerTop" destination="2b8-sE-vNI" id="H2R-LA-6g8"/>
                 <outlet property="mainArt" destination="3QC-U8-n23" id="NCS-Qt-mlD"/>
+                <outlet property="playButtonOutlet" destination="L3n-aT-7k4" id="2ee-zd-Dzv"/>
                 <outlet property="send" destination="SOv-4K-IGI" id="jZ2-wM-Dzr"/>
+                <outlet property="sendButtonOutlet" destination="LlA-9o-Ofq" id="32Q-kE-1tL"/>
                 <outlet property="totalTime" destination="8Qt-QA-owW" id="FoH-85-Far"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -69,9 +72,31 @@
                     <rect key="frame" x="282" y="497" width="42" height="52"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LlA-9o-Ofq">
+                    <rect key="frame" x="246" y="630" width="48" height="52"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="sendButton:" destination="-1" eventType="touchUpInside" id="3m9-i9-JyP"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L3n-aT-7k4">
+                    <rect key="frame" x="162" y="408" width="90" height="80"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="playButton:" destination="-1" eventType="touchUpInside" id="L1e-Sb-meZ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdD-0R-DD9">
+                    <rect key="frame" x="275" y="497" width="57" height="52"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="garbageButton:" destination="-1" eventType="touchUpInside" id="HrI-w6-nH7"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="153.34821428571428"/>
         </view>
     </objects>
     <resources>

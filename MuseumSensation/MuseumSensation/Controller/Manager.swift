@@ -110,4 +110,14 @@ struct Manager {
     static func buttonOnView(button: UIButton, image: UIImageView) {
         button.center = image.center
     }
+    /**
+     *Center the play button on view*
+     - Parameters:
+     - iconImage: An image to center
+     - view: The main view
+     - returns: Nothing
+     */
+    static func centerIcon(iconImage: UIImageView, view: UIView) {
+        iconImage.center = view.center
+    }
 }
