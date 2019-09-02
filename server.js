@@ -1,7 +1,7 @@
 const express = require('express')
 const fs = require('fs')
 const getStat = require('util').promisify(fs.stat)
-require('./models/index')
+require('./models/Index')
 const mongoose = require('mongoose')
 const Audio = mongoose.model('Audio')
 const Obra = mongoose.model('Obra')
