@@ -154,7 +154,6 @@ app.post('/createObra', async (req, res) => {
     
 })
 
-
 // Retorna uma Obra -> Funcionando
 app.get('/obra/:id', async (req, res)  => {
     try {
@@ -166,6 +165,7 @@ app.get('/obra/:id', async (req, res)  => {
         res.json(false)
     }
 })
+
 
 // Retorna as Obras -> Funcionando
 app.get('/obras', async (req, res) => {
