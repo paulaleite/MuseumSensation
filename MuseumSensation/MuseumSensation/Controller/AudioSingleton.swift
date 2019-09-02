@@ -194,6 +194,17 @@ final class AudioSingleton: NSObject {
     //Have to add into info.plist
     // The information property listprivacy -Microphone Usage Description and and description $(PRODUCT_NAME) needs to use microphone tho record audio
     
+    /**
+     *return the current audio duration*
+        - returns: TimeInterval
+     */
+    public func getAudioDuration() -> TimeInterval {
+
+        guard let audioPlayer = audioPlayer else {
+            return 0
+        }
+        return audioPlayer.duration
+    }
 }
 
 extension AudioSingleton: AVAudioPlayerDelegate {
