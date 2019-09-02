@@ -126,7 +126,6 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
                 if let firstBeacon = closestBeacon.minor as? Int {
                     self.mainArt.backgroundColor = self.colors[firstBeacon]
                     UserDefaults.standard.set(firstBeacon, forKey: "closestArt")
-                    print(knownBeacons)
                     
                 }
             }
