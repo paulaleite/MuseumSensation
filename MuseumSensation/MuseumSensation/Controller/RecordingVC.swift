@@ -16,6 +16,10 @@ class RecordingVC: UIViewController {
     @IBOutlet weak var stopRecording: UIImageView!
     @IBOutlet weak var stopRecordingButtonOutlet: UIButton!
     @IBOutlet weak var timeLabel: UILabel!
+    //array for the collors of the background
+    let colors = [46811: UIColor.purple,
+                  33895: UIColor.green,
+                  18337: UIColor.blue]
     
     var minutes: Int = 0
     var seconds: Int = 0
@@ -40,7 +44,12 @@ class RecordingVC: UIViewController {
         AudioSingleton.shared.setFile(name: "test")
         AudioSingleton.shared.setupRecorder()
         AudioSingleton.shared.record()
+        minutes = 0
+        seconds = 0
         timer()
+        //updates the backgroud with the main art
+        mainArt.backgroundColor = colors[UserDefaults.standard.integer(forKey: "closestArt")]
+
     }
     /**
      *To position the time label*

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class MainArtVC: UIViewController {
+class MainArtVC: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var mainArt: UIImageView!
     @IBOutlet weak var playButton: UIImageView!
     @IBOutlet weak var secondArt: UIView!
@@ -19,6 +20,21 @@ class MainArtVC: UIViewController {
     @IBOutlet weak var secondArtImage: UIImageView!
     @IBOutlet weak var goToAudioPlayerVC: UIButton!
     @IBOutlet weak var goToStartRecordingVC: UIButton!
+    //Inicializa locatio manager
+    let locationManager = CLLocationManager()
+    
+    //cor relativa dos beacons
+    let colors = [46811: UIColor.purple,
+                  33895: UIColor.green,
+                  18337: UIColor.blue]
+    //cor dos beacons fisicos
+    let colorsName = [46811: "roxo",
+                      33895: "verde",
+                      18337: "azul"]
+    //ultima vez que o becon foi atualizado e ouve mudança na arte principal
+    var lastMessure = [CLBeacon]()
+    //last update in the secondary art
+    var lastMessure2 = [CLBeacon]()
     @IBAction func goToAudioPlayerVCButton(_ sender: Any) {
         fadeNavigation(target: AudioPlayerVC())
     }
@@ -41,11 +57,25 @@ class MainArtVC: UIViewController {
         Manager.buttonOnView(button: goToAudioPlayerVC, image: playButton)
         Manager.buttonOnView(button: goToStartRecordingVC, image: microphone)
         setIconBottomRight(icon: goToStartRecordingVC)
+        //set the locationManager delegate to self
+        locationManager.delegate = self
+        //ask for permission to use the beacons
+        if CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedWhenInUse {
+            locationManager.requestWhenInUseAuthorization()
+        }
+        //star the beacon serch
+        //inicializa a procura pelos becons da marca estimote
+        let nsuuid = NSUUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")
+        if let clregion = nsuuid as UUID? {
+            let region = CLBeaconRegion(proximityUUID: clregion, identifier: "Estimotes")
+            locationManager.startRangingBeacons(in: region)
+        }
+        
     }
     /**
      *Set any icon on bottom right*
      - Parameters:
-        - icon: The icon to be setted
+     - icon: The icon to be setted
      - returns: Nothing
      */
     func setIconBottomRight(icon: UIImageView) {
@@ -55,8 +85,8 @@ class MainArtVC: UIViewController {
     /**
      *Set any icon on bottom right*
      - Parameters:
-        - icon: The icon to be setted
-        - returns: Nothing
+     - icon: The icon to be setted
+     - returns: Nothing
      */
     func setIconBottomRight(icon: UIButton) {
         icon.center.x = view.frame.width -  microphone.frame.width/2 - Manager.distanceToBorders
@@ -65,11 +95,54 @@ class MainArtVC: UIViewController {
     /**
      *Edit the frame and set it a position*
      - Parameters:
-        - frame: The frame
+     - frame: The frame
      - returns: Nothing
      */
     func editFrame(frame: UIView) {
         frame.layer.cornerRadius = roundedBorder
         frame.center.x = frame.frame.width/2 + Manager.distanceToBorders
     }
+    //beacon tracking function
+    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+        //get an array of beacon that are close
+        var knownBeacons = beacons.filter { ($0.proximity == CLProximity.immediate) && ($0.accuracy > 0) }
+        //order them by proxymity
+        knownBeacons.sort { (beaconA, beaconB) -> Bool in
+            beaconA.accuracy < beaconB.accuracy
+        }
+        //get an array for all beacon that are far
+        var beaconOrder = beacons
+        //order them by range
+        beaconOrder.sort { (beaconA, beaconB) -> Bool in
+            beaconA.accuracy < beaconB.accuracy
+        }
+        //see if the closest beacon changed
+        if knownBeacons != lastMessure {
+            //see if you have a close beacon
+            if knownBeacons.count > 0 {
+                //do the desired functions for the closest beacon
+                lastMessure = knownBeacons
+                let closestBeacon = knownBeacons[0] as CLBeacon
+                if let firstBeacon = closestBeacon.minor as? Int {
+                    self.mainArt.backgroundColor = self.colors[firstBeacon]
+                    UserDefaults.standard.set(firstBeacon, forKey: "closestArt")
+                    
+                }
+            }
+            
+        }
+        
+        //does the same function as before but for the seccondary art, as extra it dosent allow for the main and seccond art to be  the same
+        if beaconOrder.count >= 2 && knownBeacons.count > 0 {
+            if beaconOrder[1] != lastMessure[0] && beaconOrder != lastMessure2 {
+                lastMessure2 = beaconOrder
+                let secondClosest = beaconOrder[1] as CLBeacon
+                if let secondClosestSafe = secondClosest.minor as? Int {
+                    self.secondArtImage.backgroundColor = self.colors[secondClosestSafe]
+                    self.secondArt.backgroundColor = self.colors[secondClosestSafe]
+                }
+            }
+        }
+    }
+    
 }
