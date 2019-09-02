@@ -28,9 +28,11 @@ class AudioPlayerVC: UIViewController {
         switch isPlaying {
         case true:
             pause.image = UIImage.init(named: "play")
+            AudioSingleton.shared.stopPlaying()
             isPlaying = false
         case false:
             pause.image = UIImage.init(named: "pause")
+            AudioSingleton.shared.play()
             isPlaying = true
         }
     }
@@ -54,6 +56,7 @@ class AudioPlayerVC: UIViewController {
         progressBarEdited(progressBar: progressBar, icon: pause, view: view)
         audioTime(currentTime: currentTime, totalTime: totalTime, progressBar: progressBar, icon: pause, view: view)
         Manager.buttonOnView(button: pauseButtonOutlet, image: pause)
+        AudioSingleton.shared.setupPlayer()//deve ser trocado por funcao que retorna audio do servidor
     }
     /**
      *Postion the next button*

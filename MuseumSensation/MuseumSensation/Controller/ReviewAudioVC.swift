@@ -21,12 +21,16 @@ class ReviewAudioVC: UIViewController {
     @IBOutlet weak var sendButtonOutlet: UIButton!
     @IBOutlet weak var playButtonOutlet: UIButton!
     @IBAction func garbageButton(_ sender: Any) {
+        if AudioSingleton.shared.haveFileName() {
+            AudioSingleton.shared.deleteAudioFile(name: AudioSingleton.shared.getFileName())
+        }
         fadeNavigation(target: StartRecordingVC())
     }
     @IBAction func sendButton(_ sender: Any) {
         fadeNavigation(target: MainArtVC())
     }
     @IBAction func playButton(_ sender: Any) {
+        AudioSingleton.shared.play()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +47,10 @@ class ReviewAudioVC: UIViewController {
         Manager.buttonOnView(button: garbageButtonOutlet, image: garbage)
         Manager.buttonOnView(button: sendButtonOutlet, image: send)
         Manager.buttonOnView(button: playButtonOutlet, image: bigPlay)
+        
+        AudioSingleton.shared.setupPlayer()
+        audioDuration()
+        
     }
     /**
      *Set the garbage icon on view*
@@ -77,4 +85,15 @@ class ReviewAudioVC: UIViewController {
         totalTime.center.x = view.center.x
         totalTime.center.y = view.frame.height - Manager.distanceToBorders - send.frame.height - totalTime.frame.height/2
     }
+    /**
+     *Setup the audio duration*
+     - returns: Nothing
+     */
+    func audioDuration() {
+        totalTime.text = UserDefaults.standard.string(forKey: "recordTime")
+    }
+    func audioIsPlaying() {
+        
+    }
+        
 }
