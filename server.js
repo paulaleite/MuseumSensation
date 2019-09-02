@@ -38,7 +38,7 @@ app.get('/api', (req, res)=>{
 })
 
 // Pega o audio pelo nome -> Funcionando
-app.get('/audio/:nome', async (req, res) => {
+app.get('/audioStream/:nome', async (req, res) => {
     try {
         const filePath = `./public/audio/${req.params.nome}`
         const stat = await getStat(filePath)
