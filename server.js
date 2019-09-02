@@ -166,7 +166,6 @@ app.get('/obra/:id', async (req, res)  => {
     }
 })
 
-
 // Retorna as Obras -> Funcionando
 app.get('/obras', async (req, res) => {
     let obras = await Obra.find({})
