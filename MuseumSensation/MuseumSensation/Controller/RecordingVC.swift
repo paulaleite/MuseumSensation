@@ -37,6 +37,10 @@ class RecordingVC: UIViewController {
         Manager.buttonOnView(button: stopRecordingButtonOutlet, image: stopRecording)
         timeLabelPosition(timeLabel: timeLabel, icon: stopRecording)
         // Audio
+        AudioSingleton.shared.stopPlaying()
+        if AudioSingleton.shared.haveFileName() {
+            AudioSingleton.shared.deleteAudioFile(name: AudioSingleton.shared.getFileName())
+        }
         AudioSingleton.shared.setFile(name: "test")
         AudioSingleton.shared.setupRecorder()
         AudioSingleton.shared.record()
@@ -44,7 +48,7 @@ class RecordingVC: UIViewController {
         seconds = 0
         timer()
         //updates the backgroud with the main art
-        mainArt.backgroundColor = Manager.colors[UserDefaults.standard.integer(forKey: "closestArt")]
+        updateBackground()
 
     }
     /**
@@ -85,5 +89,12 @@ class RecordingVC: UIViewController {
         }
         timeLabel.text = String(minutes) + points + String(seconds)
         UserDefaults.standard.set(String(minutes) + points + String(seconds), forKey: "recordTime")
+    }
+    func updateBackground() {
+        self.mainArt.imageFromServerURL(urlString: Manager.getImage(beacon: UserDefaults.standard.integer(forKey: "closestArt"))) { (res, err) in
+            if err == nil {
+                print(res)
+            }
+        }
     }
 }

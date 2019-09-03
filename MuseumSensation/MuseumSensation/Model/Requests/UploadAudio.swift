@@ -23,7 +23,7 @@ func myAudioUploadRequest(_ url: String, _ nameOfAudioForToSave: String) {
         let boundary = generateBoundaryString()
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
-        guard let url = Bundle.main.url(forResource: "audio", withExtension: "mp3") else {
+        guard let url = Bundle.main.url(forResource: "audio", withExtension: "m4a") else {
             return
         }
         

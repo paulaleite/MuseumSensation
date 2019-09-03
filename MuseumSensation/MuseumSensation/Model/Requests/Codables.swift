@@ -131,11 +131,11 @@ class InterAudio: NSObject {
                 do {
                     print(data!)
                     if let file = data {
-                        let json = try JSONSerialization.jsonObject(with: file, options: []) as? [String:Any] ?? [String:Any]()
+                        let json = try JSONSerialization.jsonObject(with: file, options: []) as? [String: Any] ?? [String: Any] ()
                         print(json)
                         for (key, value) in json {
-                            if (key == "result"){
-                                if(value as? Int == 0){
+                            if key == "result" {
+                                if value as? Int == 0 {
                                     completion(nil, nil)
                                 } else {
                                     completion(json, nil)

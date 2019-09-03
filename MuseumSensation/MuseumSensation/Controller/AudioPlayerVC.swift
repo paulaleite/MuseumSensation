@@ -37,6 +37,10 @@ class AudioPlayerVC: UIViewController {
         }
     }
     @IBAction func backButton(_ sender: Any) {
+        AudioSingleton.shared.stopPlaying()
+        if AudioSingleton.shared.haveFileName() {
+            AudioSingleton.shared.deleteAudioFile(name: AudioSingleton.shared.getFileName())
+        }
         self.dismiss(animated: true, completion: nil)
     }
     override func viewDidLoad() {
@@ -57,11 +61,11 @@ class AudioPlayerVC: UIViewController {
         audioTime(currentTime: currentTime, totalTime: totalTime, progressBar: progressBar, icon: pause, view: view)
         Manager.buttonOnView(button: pauseButtonOutlet, image: pause)
         
-        let arr = ["music",""]
+        let arr = ["music2",""]
         AudioSingleton.shared.setupPlayerStream(name: arr[0])
+        AudioSingleton.shared.play()
         
-        mainArt.backgroundColor = Manager.colors[UserDefaults.standard.integer(forKey: "closestArt")]
-        
+        updateBackground()
     }
     /**
      *Postion the next button*
@@ -125,5 +129,12 @@ class AudioPlayerVC: UIViewController {
         currentTime.center.y = view.frame.height - icon.frame.height - progressBar.frame.height - Manager.distanceToBorders*2 - currentTime.frame.height/2
         totalTime.center.x = view.frame.width - Manager.distanceToBorders - totalTime.frame.width/2
         totalTime.center.y = view.frame.height - icon.frame.height - progressBar.frame.height - Manager.distanceToBorders*2 - currentTime.frame.height/2
+    }
+    func updateBackground() {
+        self.mainArt.imageFromServerURL(urlString: Manager.getImage(beacon: UserDefaults.standard.integer(forKey: "closestArt"))) { (res, err) in
+            if err == nil {
+                print(res)
+            }
+        }
     }
 }

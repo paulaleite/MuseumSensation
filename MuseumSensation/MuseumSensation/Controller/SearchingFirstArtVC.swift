@@ -11,9 +11,11 @@ import UIKit
 class SearchingFirstArtVC: UIViewController {
     @IBOutlet weak var appleLogo: UIImageView!
     @IBOutlet weak var nextPageButtonOutlet: UIButton!
+    
     @IBAction func nextPageButton(_ sender: Any) {
         fadeNavigation(target: MainArtVC())
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         Manager.centerIcon(iconImage: appleLogo, view: view)
