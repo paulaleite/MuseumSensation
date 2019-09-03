@@ -124,6 +124,7 @@ struct Manager {
     static let colorsName = [46811: "roxo",
                              33895: "verde",
                              18337: "azul"]
+    
     static let colors = [46811: UIColor.purple,
                   33895: UIColor.green,
                   18337: UIColor.blue]
