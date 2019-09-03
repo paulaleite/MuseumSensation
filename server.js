@@ -38,7 +38,7 @@ app.get('/api', (req, res)=>{
 })
 
 // Pega o audio pelo nome -> Funcionando
-app.get('/audio/:nome', async (req, res) => {
+app.get('/audioStream/:nome', async (req, res) => {
     try {
         const filePath = `./public/audio/${req.params.nome}`
         const stat = await getStat(filePath)
@@ -58,7 +58,7 @@ app.get('/audio/:nome', async (req, res) => {
         stream.pipe(res)
     } catch (error) {
         console.log('Deu erro ao abrir o arquivo.')
-        res.json(false)
+        res.json({ result: false })
     }
 
 })
@@ -104,11 +104,11 @@ app.post('/createAudio', async (req, res) => {
                 obra.audios = newAudio.id
             }
             await obra.save()
-            res.json({result: true})
+            res.json({ result: true })
         }
     } catch (err) {
         console.log('Error: ', err)
-        res.json(false)
+        res.json({ result: false })
     }
 })
 
@@ -117,10 +117,10 @@ app.post('/updateAudio/:idAudio', async (req, res) => {
 
     try {
         await Audio.findByIdAndUpdate(req.params.id, req.body)
-        res.json(true)
+        res.json({ result: true })
     } catch (err) {
         console.log('Error: ', err)
-        res.json(false)
+        res.json({ result: false })
     }
 
 })
@@ -132,11 +132,11 @@ app.delete('/deleteAudio/:id', async (req, res) => {
         let idAudio = req.params.id
         await Audio.findByIdAndRemove(idAudio)
 
-        res.json(true)
+        res.json({ result: true })
 
     } catch (err) {
         console.log('Error: ', err)
-        res.json(false)
+        res.json({ result: false })
     }
 })
 
@@ -146,10 +146,10 @@ app.post('/createObra', async (req, res) => {
         let newObra = new Obra(req.body)
         await newObra.save()
         // await Obra.create(req.body)
-        res.json(true)
+        res.json({ result: true })
     } catch (err) {
         console.log('Error: ', err)
-        res.json(false)
+        res.json({ result: false })
     }
     
 })
@@ -162,7 +162,7 @@ app.get('/obra/:id', async (req, res)  => {
 
     } catch (err) {
         console.log('Error: ', err)
-        res.json(false)
+        res.json({ result: false })
     }
 })
 
@@ -177,10 +177,10 @@ app.post('/updateObra/:id', async (req, res) => {
     
     try {
         await Obra.findByIdAndUpdate(req.params.id, req.body)
-        res.json(true)
+        res.json({ result: true })
     } catch (err) {
         console.log('Error: ', err)
-        res.json(false)
+        res.json({ result: false })
     }
 })
 
@@ -190,11 +190,11 @@ app.delete('/deleteObra/:id', async (req, res) => {
         let idObra = req.params.id
         await Obra.findByIdAndRemove(idObra)
 
-        res.json(true)
+        res.json({ result: true })
 
     } catch (err) {
         console.log('Error: ', err)
-        res.json(false)
+        res.json({ result: false })
     }
 })
 
