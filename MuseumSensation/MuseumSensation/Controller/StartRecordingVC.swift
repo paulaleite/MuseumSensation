@@ -17,10 +17,6 @@ class StartRecordingVC: UIViewController {
     @IBOutlet weak var startRecordingButton: UIButton!
     @IBOutlet weak var back: UIImageView!
     @IBOutlet weak var backButtonOutlet: UIButton!
-    //array for the collors of the background
-    let colors = [46811: UIColor.purple,
-                  33895: UIColor.green,
-                  18337: UIColor.blue]
     @IBAction func backButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -41,7 +37,7 @@ class StartRecordingVC: UIViewController {
         Manager.buttonOnView(button: startRecordingButton, image: startRecording)
         //updates the backgroud with the main art
 
-        mainArt.backgroundColor = colors[UserDefaults.standard.integer(forKey: "closestArt")]
+        mainArt.backgroundColor = Manager.colors[UserDefaults.standard.integer(forKey: "closestArt")]
 
     }
 }

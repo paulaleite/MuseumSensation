@@ -22,15 +22,6 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var goToStartRecordingVC: UIButton!
     //Inicializa locatio manager
     let locationManager = CLLocationManager()
-    
-    //cor relativa dos beacons
-    let colors = [46811: UIColor.purple,
-                  33895: UIColor.green,
-                  18337: UIColor.blue]
-    //cor dos beacons fisicos
-    let colorsName = [46811: "roxo",
-                      33895: "verde",
-                      18337: "azul"]
     //ultima vez que o becon foi atualizado e ouve mudança na arte principal
     var lastMessure = [CLBeacon]()
     //last update in the secondary art
@@ -124,7 +115,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
                 lastMessure = knownBeacons
                 let closestBeacon = knownBeacons[0] as CLBeacon
                 if let firstBeacon = closestBeacon.minor as? Int {
-                    self.mainArt.backgroundColor = self.colors[firstBeacon]
+                    self.mainArt.backgroundColor = Manager.colors[firstBeacon]
                     UserDefaults.standard.set(firstBeacon, forKey: "closestArt")
                     
                 }
@@ -138,8 +129,8 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
                 lastMessure2 = beaconOrder
                 let secondClosest = beaconOrder[1] as CLBeacon
                 if let secondClosestSafe = secondClosest.minor as? Int {
-                    self.secondArtImage.backgroundColor = self.colors[secondClosestSafe]
-                    self.secondArt.backgroundColor = self.colors[secondClosestSafe]
+                    self.secondArtImage.backgroundColor = Manager.colors[secondClosestSafe]
+                    self.secondArt.backgroundColor = Manager.colors[secondClosestSafe]
                 }
             }
         }
