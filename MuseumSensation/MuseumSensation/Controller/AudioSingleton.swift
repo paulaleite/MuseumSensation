@@ -41,7 +41,7 @@ final class AudioSingleton: NSObject {
      - returns: Nothing
      */
     public func setFile(name: String) {
-        self.fileName = name + ".m4a"
+        self.fileName = name + ".mp3"
     }
     /**
      *Get a file name*
@@ -273,7 +273,6 @@ final class AudioSingleton: NSObject {
                 }
             }).resume()
         }
-        //        }
 
         
     }

@@ -57,11 +57,9 @@ class AudioPlayerVC: UIViewController {
         audioTime(currentTime: currentTime, totalTime: totalTime, progressBar: progressBar, icon: pause, view: view)
         Manager.buttonOnView(button: pauseButtonOutlet, image: pause)
         
-//        AudioSingleton.shared.makeURL(name: "music")
         let arr = ["music",""]
         AudioSingleton.shared.setupPlayerStream(name: arr[0])
-//        AudioSingleton.shared.setupPlayer()//deve ser trocado por funcao que retorna audio do servidor
-        //updates the backgroud with the main art
+        
         mainArt.backgroundColor = Manager.colors[UserDefaults.standard.integer(forKey: "closestArt")]
         
     }
