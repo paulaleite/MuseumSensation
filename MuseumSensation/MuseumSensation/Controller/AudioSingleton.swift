@@ -34,6 +34,8 @@ final class AudioSingleton: NSObject {
         let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return path[0]
     }
+    
+    
     /**
      *Setup a file name*
      - returns: Nothing
@@ -63,7 +65,7 @@ final class AudioSingleton: NSObject {
     /**
      *Delet a audio*
      - Parameters:
-        - name: The name of tha audio that will be deleted
+     - name: The name of tha audio that will be deleted
      - returns: Nothing
      */
     public func deleteAudioFile(name: String) {
@@ -196,14 +198,84 @@ final class AudioSingleton: NSObject {
     
     /**
      *return the current audio duration*
-        - returns: TimeInterval
+     - returns: TimeInterval
      */
     public func getAudioDuration() -> TimeInterval {
-
+        
         guard let audioPlayer = audioPlayer else {
             return 0
         }
         return audioPlayer.duration
+    }
+    
+    public func makeURL(name: String) -> URL {
+        if let url = URL(string: "https://br-museum-sensation.herokuapp.com/audioStream/\(name).mp3") {
+            return url
+        } else {
+            return URL.init(fileURLWithPath: "https://br-museum-sensation.herokuapp.com/audioStream/music.mp3")
+        }
+        
+    }
+    
+    /**
+     *Setup player*
+     - returns: Nothing
+     */
+    public func setupPlayerStream(name: String) {
+        let audioUrl = makeURL(name: name)
+
+        let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        
+        // lets create your destination file url
+        let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
+        print(destinationUrl)
+        
+        // to check if it exists before downloading it
+        if FileManager.default.fileExists(atPath: destinationUrl.path) {
+            print("The file already exists at path")
+            do {
+                self.audioPlayer = try AVAudioPlayer(contentsOf: destinationUrl)
+                guard let audioPlayer = self.audioPlayer else {
+                    return }
+                audioPlayer.delegate = self
+                audioPlayer.prepareToPlay()
+                audioPlayer.volume = 1.0
+                audioPlayer.play()
+                
+            } catch {
+                print(error)
+            }
+            // if the file doesn't exist
+        } else {
+            
+            // you can use NSURLSession.sharedSession to download the data asynchronously
+            URLSession.shared.downloadTask(with: audioUrl, completionHandler: { (location, response, error) -> Void in
+                guard let location = location, error == nil else { return }
+                do {
+                    // after downloading your file you need to move it to your destination url
+                    try FileManager.default.moveItem(at: location, to: destinationUrl)
+                    print("File moved to documents folder")
+                    do {
+                        self.audioPlayer = try AVAudioPlayer(contentsOf: destinationUrl)
+                        guard let audioPlayer = self.audioPlayer else {
+                            return }
+                        audioPlayer.delegate = self
+                        audioPlayer.prepareToPlay()
+                        audioPlayer.volume = 1.0
+                        audioPlayer.play()
+                        
+                    } catch {
+                        print(error)
+                    }
+                    
+                } catch let error as NSError {
+                    print(error.localizedDescription)
+                }
+            }).resume()
+        }
+        //        }
+
+        
     }
 }
 

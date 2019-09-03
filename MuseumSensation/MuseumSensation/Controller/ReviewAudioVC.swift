@@ -20,10 +20,6 @@ class ReviewAudioVC: UIViewController {
     @IBOutlet weak var garbageButtonOutlet: UIButton!
     @IBOutlet weak var sendButtonOutlet: UIButton!
     @IBOutlet weak var playButtonOutlet: UIButton!
-    //array for the collors of the background
-    let colors = [46811: UIColor.purple,
-                  33895: UIColor.green,
-                  18337: UIColor.blue]
     @IBAction func garbageButton(_ sender: Any) {
         if AudioSingleton.shared.haveFileName() {
             AudioSingleton.shared.deleteAudioFile(name: AudioSingleton.shared.getFileName())
@@ -55,7 +51,7 @@ class ReviewAudioVC: UIViewController {
         AudioSingleton.shared.setupPlayer()
         audioDuration()
         //updates the backgroud with the main art
-        mainArt.backgroundColor = colors[UserDefaults.standard.integer(forKey: "closestArt")]
+        mainArt.backgroundColor = Manager.colors[UserDefaults.standard.integer(forKey: "closestArt")]
     }
     /**
      *Set the garbage icon on view*

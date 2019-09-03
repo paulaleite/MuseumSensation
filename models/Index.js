@@ -16,14 +16,10 @@ const options = {
   useNewUrlParser: true
 };
 
-
-
-// urlDataBase = "mongodb+srv://admin:adminSensation@museumsensationdatabase-dxgcs.mongodb.net/test?retryWrites=true&w=majority" // Set your Data Base URL here
 urlDataBase = "mongodb://admin:admin123@ds253567.mlab.com:53567/museum-sensation" // Set your Data Base URL here
 
 //Production
 mongoose.connect(urlDataBase, options)
-
 
 const db = mongoose.connection
 db.on('error', () => {

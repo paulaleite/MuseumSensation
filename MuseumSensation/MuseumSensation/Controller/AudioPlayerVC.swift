@@ -24,10 +24,6 @@ class AudioPlayerVC: UIViewController {
     @IBOutlet weak var currentTime: UILabel!
     @IBOutlet weak var totalTime: UILabel!
     @IBOutlet weak var pauseButtonOutlet: UIButton!
-    //array for the collors of the background
-    let colors = [46811: UIColor.purple,
-                  33895: UIColor.green,
-                  18337: UIColor.blue]
     @IBAction func pauseButton(_ sender: Any) {
         switch isPlaying {
         case true:
@@ -60,9 +56,14 @@ class AudioPlayerVC: UIViewController {
         progressBarEdited(progressBar: progressBar, icon: pause, view: view)
         audioTime(currentTime: currentTime, totalTime: totalTime, progressBar: progressBar, icon: pause, view: view)
         Manager.buttonOnView(button: pauseButtonOutlet, image: pause)
-        AudioSingleton.shared.setupPlayer()//deve ser trocado por funcao que retorna audio do servidor
+        
+//        AudioSingleton.shared.makeURL(name: "music")
+        let arr = ["music",""]
+        AudioSingleton.shared.setupPlayerStream(name: arr[0])
+//        AudioSingleton.shared.setupPlayer()//deve ser trocado por funcao que retorna audio do servidor
         //updates the backgroud with the main art
-        mainArt.backgroundColor = colors[UserDefaults.standard.integer(forKey: "closestArt")]
+        mainArt.backgroundColor = Manager.colors[UserDefaults.standard.integer(forKey: "closestArt")]
+        
     }
     /**
      *Postion the next button*
