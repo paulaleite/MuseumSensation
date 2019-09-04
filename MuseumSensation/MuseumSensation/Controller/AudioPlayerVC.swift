@@ -24,6 +24,7 @@ class AudioPlayerVC: UIViewController {
     @IBOutlet weak var currentTime: UILabel!
     @IBOutlet weak var totalTime: UILabel!
     @IBOutlet weak var pauseButtonOutlet: UIButton!
+    
     @IBAction func pauseButton(_ sender: Any) {
         switch isPlaying {
         case true:
@@ -36,6 +37,7 @@ class AudioPlayerVC: UIViewController {
             isPlaying = true
         }
     }
+    
     @IBAction func backButton(_ sender: Any) {
         AudioSingleton.shared.stopPlaying()
         if AudioSingleton.shared.haveFileName() {
@@ -43,6 +45,7 @@ class AudioPlayerVC: UIViewController {
         }
         self.dismiss(animated: true, completion: nil)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         Manager.backgroundImage(image: mainArt, view: view)
@@ -61,12 +64,13 @@ class AudioPlayerVC: UIViewController {
         audioTime(currentTime: currentTime, totalTime: totalTime, progressBar: progressBar, icon: pause, view: view)
         Manager.buttonOnView(button: pauseButtonOutlet, image: pause)
         
-        let arr = ["music2",""]
+        let arr = ["music2"]
         AudioSingleton.shared.setupPlayerStream(name: arr[0])
         AudioSingleton.shared.play()
         
         updateBackground()
     }
+    
     /**
      *Postion the next button*
      - Parameters:
@@ -78,6 +82,7 @@ class AudioPlayerVC: UIViewController {
         button.center.y = center.center.y
         button.center.x = center.center.x + center.frame.width/2 + button.frame.width/2 + Manager.distanceToBorders
     }
+    
     /**
      *Postion the audio counter*
      - Parameters:
@@ -89,6 +94,7 @@ class AudioPlayerVC: UIViewController {
         counter.center.y = center.center.y
         counter.center.x = center.center.x - center.frame.width/2 - counter.frame.width/2 - Manager.distanceToBorders
     }
+    
     /**
      *Postion the speaker*
      - Parameters:
@@ -100,6 +106,7 @@ class AudioPlayerVC: UIViewController {
         speaker.center.y = counter.center.y + counter.frame.height/2
         speaker.center.x = counter.center.x + counter.frame.width/2
     }
+    
     /**
      *Edit and format the progress bar*
      - Parameters:
@@ -114,6 +121,7 @@ class AudioPlayerVC: UIViewController {
         progressBar.center.y = view.frame.height - icon.frame.height - progressBar.frame.height/2 - Manager.distanceToBorders*2
         progressBar.layer.cornerRadius = 10
     }
+    
     /**
      *Edit and position the audio label progress*
      - Parameters:
@@ -130,10 +138,18 @@ class AudioPlayerVC: UIViewController {
         totalTime.center.x = view.frame.width - Manager.distanceToBorders - totalTime.frame.width/2
         totalTime.center.y = view.frame.height - icon.frame.height - progressBar.frame.height - Manager.distanceToBorders*2 - currentTime.frame.height/2
     }
+    
+    /**
+     *Updates the background in regard to which beacon is closest*
+     - returns: Nothing
+     */
     func updateBackground() {
         self.mainArt.imageFromServerURL(urlString: Manager.getImage(beacon: UserDefaults.standard.integer(forKey: "closestArt"))) { (res, err) in
             if err == nil {
-                print(res)
+                guard let res = res else {
+                    return
+                }
+                print("\(res)")
             }
         }
     }

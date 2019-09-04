@@ -28,8 +28,8 @@ struct Manager {
     /**
      *Center and scales bqckground image*
      - Parameters:
-     - image: A background image to scale and center
-     - view: The backgroundview
+        - image: A background image to scale and center
+        - view: The backgroundview
      - returns: Nothing
      */
     static func backgroundImage(image: UIImageView, view: UIView) {
@@ -40,8 +40,8 @@ struct Manager {
     /**
      *To position view in the top*
      - Parameters:
-     - viewGradiented: The view to position
-     - view: The main view
+        - viewGradiented: The view to position
+        - view: The main view
      - returns: Nothing
      */
     static func topViewGradiented(viewGradiented: UIView, view: UIView) {
@@ -52,8 +52,8 @@ struct Manager {
     /**
      *To position view in the bot*
      - Parameters:
-     - viewGradiented: The view to position
-     - view: The main view
+        - viewGradiented: The view to position
+        - view: The main view
      - returns: Nothing
      */
     static func botViewGradiented(viewGradiented: UIView, view: UIView) {
@@ -64,8 +64,8 @@ struct Manager {
     /**
      *Turn some view gradient with an invisible bottom*
      - Parameters:
-     - viewGradiented: Any view to turn gradient
-     - topToBottom: If true, the gradient starts on top
+        - viewGradiented: Any view to turn gradient
+        - topToBottom: If true, the gradient starts on top
      - returns: Nothing
      */
     static func gradientTopToBottom(viewToGradient: UIView, topToBottom: Bool) {
@@ -87,8 +87,8 @@ struct Manager {
     /**
      *Set some icon in the bottom center*
      - Parameters:
-     - icon: The icon to position
-     - view: The main view
+        - icon: The icon to position
+        - view: The main view
      - returns: Nothing
      */
     static func centerIconBottom(icon: UIImageView, view: UIView) {
@@ -99,8 +99,8 @@ struct Manager {
     /**
      *Set the title on the top center*
      - Parameters:
-     - title: A ttitle to position on top
-     - view: The main view
+        - title: A ttitle to position on top
+        - view: The main view
      - returns: Nothing
      */
     static func centerTitleTop(title: UILabel, view: UIView) {
@@ -111,8 +111,8 @@ struct Manager {
     /**
      *Set the title on the top center*
      - Parameters:
-     - icon: A ttitle to position on top
-     - title: The main view
+        - icon: A ttitle to position on top
+        - title: The main view
      - returns: Nothing
      */
     static func topLeftPosition(icon: UIImageView, title: UILabel) {
@@ -123,8 +123,8 @@ struct Manager {
     /**
      *Center button on view*
      - Parameters:
-     - button: Button to put on view
-     - view: The base view
+        - button: Button to put on view
+        - view: The base view
      - returns: Nothing
      */
     static func buttonOnView(button: UIButton, image: UIImageView) {
@@ -134,24 +134,46 @@ struct Manager {
     /**
      *Center the play button on view*
      - Parameters:
-     - iconImage: An image to center
-     - view: The main view
+        - iconImage: An image to center
+        - view: The main view
      - returns: Nothing
      */
     static func centerIcon(iconImage: UIImageView, view: UIView) {
         iconImage.center = view.center
     }
+    
+    /**
+     *Center the play button on view*
+     - Parameters:
+        - iconImage: An image to center
+        - view: The main view
+     - returns: Nothing
+     */
     static func getImage(beacon: Int) -> (String) {
         let artName: String? = Manager.art[beacon]
         guard let artNameSafe = artName else {
             return ""
         }
-        
         guard let url = Manager.artImages[artNameSafe] else {
             return ""
         }
-        
         return url
-        
+    }
+    
+    /**
+     *Updates the background of the image from the server*
+     - parameters:
+        - mainArt: it's the uiiimageview that is used in that screen
+     - returns: Nothing
+     */
+    static func updateBackground(mainArt: UIImageView) {
+        mainArt.imageFromServerURL(urlString: Manager.getImage(beacon: UserDefaults.standard.integer(forKey: "closestArt"))) { (res, err) in
+            if err == nil {
+                guard let res = res else {
+                    return
+                }
+                print(res)
+            }
+        }
     }
 }

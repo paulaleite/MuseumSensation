@@ -218,12 +218,16 @@ final class AudioSingleton: NSObject {
     
     /**
      *Setup player*
+     - parameters:
+        - name: its the name of the audio that will be streamed
      - returns: Nothing
      */
     public func setupPlayerStream(name: String) {
         let audioUrl = makeURL(name: name)
 
-        let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        guard let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return
+        }
 
         // lets create your destination file url
         let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
@@ -248,7 +252,7 @@ final class AudioSingleton: NSObject {
         } else {
 
             // you can use NSURLSession.sharedSession to download the data asynchronously
-            URLSession.shared.downloadTask(with: audioUrl, completionHandler: { (location, response, error) -> Void in
+            URLSession.shared.downloadTask(with: audioUrl, completionHandler: { (location, _, error) -> Void in
                 guard let location = location, error == nil else {
                     return }
                 do {

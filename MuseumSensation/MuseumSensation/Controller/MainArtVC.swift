@@ -150,19 +150,29 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
     
     /**
      *Updates the background with the image from the server*
-     - Parameters: None
      - returns: Nothing
      */
     func updateBackground() {
         self.mainArt.imageFromServerURL(urlString: Manager.getImage(beacon: UserDefaults.standard.integer(forKey: "closestArt"))) { (res, err) in
             if err == nil {
+                guard let res = res else {
+                    return
+                }
                 print(res)
             }
         }
     }
+    
+    /**
+     *Updates the background of the secound art from the server*
+     - returns: Nothing
+     */
     func updateSecondImageBackground() {
         self.secondArtImage.imageFromServerURL(urlString: Manager.getImage(beacon: UserDefaults.standard.integer(forKey: "SecondclosestArt"))) { (res, err) in
             if err == nil {
+                guard let res = res else {
+                    return
+                }
                 print(res)
             }
         }

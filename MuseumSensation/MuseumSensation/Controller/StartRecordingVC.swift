@@ -39,9 +39,17 @@ class StartRecordingVC: UIViewController {
         updateBackground()
 
     }
+    
+    /**
+     *Updates the background of the image from the server*
+     - returns: Nothing
+     */
     func updateBackground() {
         self.mainArt.imageFromServerURL(urlString: Manager.getImage(beacon: UserDefaults.standard.integer(forKey: "closestArt"))) { (res, err) in
             if err == nil {
+                guard let res = res else {
+                    return
+                }
                 print(res)
             }
         }
