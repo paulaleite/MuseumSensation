@@ -35,10 +35,39 @@ class StartRecordingVC: UIViewController {
         Manager.topLeftPosition(icon: back, title: artNameLabel)
         Manager.buttonOnView(button: backButtonOutlet, image: back)
         Manager.buttonOnView(button: startRecordingButton, image: startRecording)
+        // Acessibility
+        setAcessibility()
         //updates the backgroud with the main art
         updateBackground()
-
     }
+    
+    func setAcessibility() {
+        //Art name
+        artNameLabel.isAccessibilityElement = true
+        artNameLabel.accessibilityTraits = UIAccessibilityTraits.staticText
+        artNameLabel.accessibilityValue = "Nome da obra"
+        artNameLabel.accessibilityLanguage = "pt-BR"
+        
+        //Main art
+        mainArt.isAccessibilityElement = true
+        mainArt.accessibilityTraits = UIAccessibilityTraits.image
+        mainArt.accessibilityValue = "Foto da obra"
+        mainArt.accessibilityLanguage = "pt-BR"
+        
+        //Back button
+        backButtonOutlet.isAccessibilityElement = true
+        backButtonOutlet.accessibilityTraits = UIAccessibilityTraits.button
+        backButtonOutlet.accessibilityValue = "Voltar para a tela anterior"
+        backButtonOutlet.accessibilityLanguage = "pt-BR"
+        backButtonOutlet.accessibilityHint = "É recomendado caso você queira ir para uma outra obra ou gravar algum áudio"
+        
+        // startRecordingButton
+        startRecordingButton.isAccessibilityElement = true
+        startRecordingButton.accessibilityTraits = UIAccessibilityTraits.button
+        startRecordingButton.accessibilityValue = "Gravar um áudio"
+        startRecordingButton.accessibilityLanguage = "pt-BR"
+    }
+    
     func updateBackground() {
         self.mainArt.imageFromServerURL(urlString: Manager.getImage(beacon: UserDefaults.standard.integer(forKey: "closestArt"))) { (res, err) in
             if err == nil {
