@@ -12,18 +12,22 @@ import UIKit
 struct Manager {
     static let iphoneNotch: CGFloat = 30
     static let distanceToBorders: CGFloat = 28
+    
     static let colorsName = [46811: "roxo",
                              33895: "verde",
                              18337: "azul"]
+    
     static let colors = [46811: UIColor.purple,
                          33895: UIColor.green,
                          18337: UIColor.blue]
+    
     static let art = [46811: "retirantes",
                       33895: "retirantes2",
                       18337: "retirantes3"] as [Int: String]
-    static let artImages = ["retirantes": "https://br-museum-sensation.herokuapp.com/audio/retirantes-cke2.jpg",
-                            "retirantes2": "https://br-museum-sensation.herokuapp.com/audio/retirantes-cke2.jpg",
-                            "retirantes3": "https://br-museum-sensation.herokuapp.com/audio/retirantes-cke2.jpg"]
+    
+    static let artImages = ["retirantes": "https://br-museum-sensation.herokuapp.com/audio/",
+                            "retirantes2": "https://br-museum-sensation.herokuapp.com/audio/",
+                            "retirantes3": "https://br-museum-sensation.herokuapp.com/audio/"]
     
     /**
      *Center and scales bqckground image*
@@ -141,7 +145,8 @@ struct Manager {
     static func centerIcon(iconImage: UIImageView, view: UIView) {
         iconImage.center = view.center
     }
-    static func getImage(beacon: Int) -> (String) {
+    
+    static func getImage(beacon: Int) -> String {
         let artName: String? = Manager.art[beacon]
         guard let artNameSafe = artName else {
             return ""
@@ -151,7 +156,7 @@ struct Manager {
             return ""
         }
         
-        return url
+        return url + artNameSafe + ".jpg"
         
     }
 }
