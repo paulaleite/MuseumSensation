@@ -29,6 +29,7 @@
 		1E0FCA8B231084CA00993AD3 /* RecordingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E0FCA89231084CA00993AD3 /* RecordingVC.xib */; };
 		1E0FCA8E231084FA00993AD3 /* ReviewAudioVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0FCA8C231084FA00993AD3 /* ReviewAudioVC.swift */; };
 		1E0FCA8F231084FA00993AD3 /* ReviewAudioVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E0FCA8D231084FA00993AD3 /* ReviewAudioVC.xib */; };
+		1E1701DB232029F300ED7ECF /* ImageSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1701DA232029F300ED7ECF /* ImageSingleton.swift */; };
 		1E9C3A8D231ECE1F00C32E79 /* Codables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C3A8C231ECE1F00C32E79 /* Codables.swift */; };
 		1E9C3A8F231ECE3300C32E79 /* UploadAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C3A8E231ECE3300C32E79 /* UploadAudio.swift */; };
 		1E9C3A91231ECE4200C32E79 /* ImageServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C3A90231ECE4200C32E79 /* ImageServer.swift */; };
@@ -81,6 +82,7 @@
 		1E0FCA89231084CA00993AD3 /* RecordingVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordingVC.xib; sourceTree = "<group>"; };
 		1E0FCA8C231084FA00993AD3 /* ReviewAudioVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAudioVC.swift; sourceTree = "<group>"; };
 		1E0FCA8D231084FA00993AD3 /* ReviewAudioVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewAudioVC.xib; sourceTree = "<group>"; };
+		1E1701DA232029F300ED7ECF /* ImageSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSingleton.swift; sourceTree = "<group>"; };
 		1E9C3A8C231ECE1F00C32E79 /* Codables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codables.swift; sourceTree = "<group>"; };
 		1E9C3A8E231ECE3300C32E79 /* UploadAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAudio.swift; sourceTree = "<group>"; };
 		1E9C3A90231ECE4200C32E79 /* ImageServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServer.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				1E0FCA88231084CA00993AD3 /* RecordingVC.swift */,
 				1E0FCA8C231084FA00993AD3 /* ReviewAudioVC.swift */,
 				0C9E26EA23159EB8005355A8 /* Manager.swift */,
+				1E1701DA232029F300ED7ECF /* ImageSingleton.swift */,
 				0C9E27262316E73A005355A8 /* Extensions.swift */,
 			);
 			path = Controller;
@@ -386,6 +389,7 @@
 				1E0FCA8E231084FA00993AD3 /* ReviewAudioVC.swift in Sources */,
 				1E0FCA822310846400993AD3 /* AudioPlayerVC.swift in Sources */,
 				1E0FCA79231083C000993AD3 /* SearchingFirstArtVC.swift in Sources */,
+				1E1701DB232029F300ED7ECF /* ImageSingleton.swift in Sources */,
 				1E9C3A91231ECE4200C32E79 /* ImageServer.swift in Sources */,
 				1E0FCA8A231084CA00993AD3 /* RecordingVC.swift in Sources */,
 				1E0FCA46231082C400993AD3 /* ViewController.swift in Sources */,
