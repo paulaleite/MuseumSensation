@@ -14,6 +14,7 @@ final class ImageSingleton: NSObject {
     static let shared = ImageSingleton()
     private var currentImage: Int?
     private var secondClosestImage: Int?
+    private var artTitle: String?
     
     override init() {
         super.init()
