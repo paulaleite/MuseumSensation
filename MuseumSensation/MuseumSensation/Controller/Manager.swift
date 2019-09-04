@@ -21,13 +21,13 @@ struct Manager {
                          33895: UIColor.green,
                          18337: UIColor.blue]
     
-    static let art = [46811: "retirantes",
-                      33895: "retirantes2",
-                      18337: "retirantes3"] as [Int: String]
+    static let art = [46811: "art-CafeTerraceAtNight",
+                      33895: "art-StarryNight",
+                      18337: "art-VanGoghSelfPortrait"] as [Int: String]
     
-    static let artImages = ["retirantes": "https://br-museum-sensation.herokuapp.com/audio/",
-                            "retirantes2": "https://br-museum-sensation.herokuapp.com/audio/",
-                            "retirantes3": "https://br-museum-sensation.herokuapp.com/audio/"]
+    static let artImages = ["art-CafeTerraceAtNight": "https://br-museum-sensation.herokuapp.com/audio/",
+                            "art-StarryNight": "https://br-museum-sensation.herokuapp.com/audio/",
+                            "art-VanGoghSelfPortrait": "https://br-museum-sensation.herokuapp.com/audio/"]
     
     /**
      *Center and scales bqckground image*
