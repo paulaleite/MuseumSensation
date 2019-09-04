@@ -38,7 +38,8 @@ class StartRecordingVC: UIViewController {
         // Acessibility
         setAcessibility()
         //updates the backgroud with the main art
-        updateBackground()
+        ImageSingleton.shared.updateBackground(mainArt: mainArt)
+
     }
     
     func setAcessibility() {
@@ -66,13 +67,5 @@ class StartRecordingVC: UIViewController {
         startRecordingButton.accessibilityTraits = UIAccessibilityTraits.button
         startRecordingButton.accessibilityValue = "Gravar um áudio"
         startRecordingButton.accessibilityLanguage = "pt-BR"
-    }
-    
-    func updateBackground() {
-        self.mainArt.imageFromServerURL(urlString: Manager.getImage(beacon: UserDefaults.standard.integer(forKey: "closestArt"))) { (res, err) in
-            if err == nil {
-                print(res)
-            }
-        }
     }
 }

@@ -52,7 +52,7 @@ class ReviewAudioVC: UIViewController {
         AudioSingleton.shared.setupPlayer()
         audioDuration()
         //updates the backgroud with the main art
-        updateBackground()
+        ImageSingleton.shared.updateBackground(mainArt: mainArt)
     }
     
     func setAcessibility() {
@@ -136,12 +136,5 @@ class ReviewAudioVC: UIViewController {
     func audioIsPlaying() {
         
     }
-    func updateBackground() {
-        self.mainArt.imageFromServerURL(urlString: Manager.getImage(beacon: UserDefaults.standard.integer(forKey: "closestArt"))) { (res, err) in
-            if err == nil {
-                print(res)
-            }
-        }
-    }
-        
+     
 }
