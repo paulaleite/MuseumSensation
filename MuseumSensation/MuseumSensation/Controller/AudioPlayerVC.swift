@@ -65,7 +65,7 @@ class AudioPlayerVC: UIViewController {
         AudioSingleton.shared.setupPlayerStream(name: arr[0])
         AudioSingleton.shared.play()
         
-        updateBackground()
+        ImageSingleton.shared.updateBackground(mainArt: mainArt)
     }
     /**
      *Postion the next button*
@@ -130,11 +130,5 @@ class AudioPlayerVC: UIViewController {
         totalTime.center.x = view.frame.width - Manager.distanceToBorders - totalTime.frame.width/2
         totalTime.center.y = view.frame.height - icon.frame.height - progressBar.frame.height - Manager.distanceToBorders*2 - currentTime.frame.height/2
     }
-    func updateBackground() {
-        self.mainArt.imageFromServerURL(urlString: Manager.getImage(beacon: UserDefaults.standard.integer(forKey: "closestArt"))) { (res, err) in
-            if err == nil {
-                print(res)
-            }
-        }
-    }
+    
 }

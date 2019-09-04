@@ -22,8 +22,8 @@ struct Manager {
                       33895: "retirantes2",
                       18337: "retirantes3"] as [Int: String]
     static let artImages = ["retirantes": "https://br-museum-sensation.herokuapp.com/audio/retirantes-cke2.jpg",
-                            "retirantes2": "retirantes-dkg.jpeg",
-                            "retirantes3": "retirantes-dkg.jpeg"]
+                            "retirantes2": "https://br-museum-sensation.herokuapp.com/audio/retirantes-cke2.jpg",
+                            "retirantes3": "https://br-museum-sensation.herokuapp.com/audio/retirantes-cke2.jpg"]
     
     /**
      *Center and scales bqckground image*

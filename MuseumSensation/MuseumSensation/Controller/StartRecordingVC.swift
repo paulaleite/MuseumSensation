@@ -36,14 +36,8 @@ class StartRecordingVC: UIViewController {
         Manager.buttonOnView(button: backButtonOutlet, image: back)
         Manager.buttonOnView(button: startRecordingButton, image: startRecording)
         //updates the backgroud with the main art
-        updateBackground()
+        ImageSingleton.shared.updateBackground(mainArt: mainArt)
 
     }
-    func updateBackground() {
-        self.mainArt.imageFromServerURL(urlString: Manager.getImage(beacon: UserDefaults.standard.integer(forKey: "closestArt"))) { (res, err) in
-            if err == nil {
-                print(res)
-            }
-        }
-    }
+
 }

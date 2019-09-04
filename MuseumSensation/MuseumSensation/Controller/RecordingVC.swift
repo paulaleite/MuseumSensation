@@ -48,7 +48,7 @@ class RecordingVC: UIViewController {
         seconds = 0
         timer()
         //updates the backgroud with the main art
-        updateBackground()
+        ImageSingleton.shared.updateBackground(mainArt: mainArt)
 
     }
     /**
@@ -90,11 +90,5 @@ class RecordingVC: UIViewController {
         timeLabel.text = String(minutes) + points + String(seconds)
         UserDefaults.standard.set(String(minutes) + points + String(seconds), forKey: "recordTime")
     }
-    func updateBackground() {
-        self.mainArt.imageFromServerURL(urlString: Manager.getImage(beacon: UserDefaults.standard.integer(forKey: "closestArt"))) { (res, err) in
-            if err == nil {
-                print(res)
-            }
-        }
-    }
+    
 }

@@ -71,7 +71,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
     /**
      *Set any icon on bottom right*
      - Parameters:
-     - icon: The icon to be setted
+        - icon: The icon to be setted
      - returns: Nothing
      */
     func setIconBottomRight(icon: UIImageView) {
@@ -82,7 +82,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
     /**
      *Set any icon on bottom right*
      - Parameters:
-     - icon: The icon to be setted
+        - icon: The icon to be setted
      - returns: Nothing
      */
     func setIconBottomRight(icon: UIButton) {
@@ -93,7 +93,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
     /**
      *Edit the frame and set it a position*
      - Parameters:
-     - frame: The frame
+        - frame: The frame
      - returns: Nothing
      */
     func editFrame(frame: UIView) {
@@ -123,10 +123,9 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
             let closestBeacon = knownBeacons[0] as CLBeacon
             
             if let firstBeacon = closestBeacon.minor as? Int {
-                //                    self.mainArt.backgroundColor = Manager.colors[firstBeacon]
-                if firstBeacon != UserDefaults.standard.integer(forKey: "closestArt") {
-                    UserDefaults.standard.set(firstBeacon, forKey: "closestArt")
-                    updateBackground()
+                if firstBeacon != ImageSingleton.shared.getCurrentImage() {
+                    ImageSingleton.shared.setCurrentImage(beaconID: firstBeacon)
+                    ImageSingleton.shared.updateBackground(mainArt: mainArt)
                     
                 }
             }
@@ -138,32 +137,11 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
                 lastMessure2 = beaconOrder
                 let secondClosest = beaconOrder[1] as CLBeacon
                 if let secondClosestSafe = secondClosest.minor as? Int {
-                    if secondClosestSafe != UserDefaults.standard.integer(forKey: "SecondclosestArt") {
-                        print("foi2")
-                        updateSecondImageBackground()
-                        UserDefaults.standard.set(secondClosestSafe, forKey: "SecondclosestArt")
+                    if secondClosestSafe != ImageSingleton.shared.getsecondClosestImage() {
+                        ImageSingleton.shared.setsecondClosestImage(beaconID: secondClosestSafe)
+                        ImageSingleton.shared.updatesecondClosestImage(mainArt: secondArtImage)
                     }
                 }
-            }
-        }
-    }
-    
-    /**
-     *Updates the background with the image from the server*
-     - Parameters: None
-     - returns: Nothing
-     */
-    func updateBackground() {
-        self.mainArt.imageFromServerURL(urlString: Manager.getImage(beacon: UserDefaults.standard.integer(forKey: "closestArt"))) { (res, err) in
-            if err == nil {
-                print(res)
-            }
-        }
-    }
-    func updateSecondImageBackground() {
-        self.secondArtImage.imageFromServerURL(urlString: Manager.getImage(beacon: UserDefaults.standard.integer(forKey: "SecondclosestArt"))) { (res, err) in
-            if err == nil {
-                print(res)
             }
         }
     }
