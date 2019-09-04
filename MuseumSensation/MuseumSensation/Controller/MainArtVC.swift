@@ -11,6 +11,7 @@ import CoreLocation
 
 class MainArtVC: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var mainArt: UIImageView!
+    weak var mainArtCheck: UIImageView!
     @IBOutlet weak var playButton: UIImageView!
     @IBOutlet weak var secondArt: UIView!
     @IBOutlet weak var microphone: UIImageView!
@@ -20,6 +21,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var secondArtImage: UIImageView!
     @IBOutlet weak var goToAudioPlayerVC: UIButton!
     @IBOutlet weak var goToStartRecordingVC: UIButton!
+    var firstTime = true
     //Inicializa locatio manager
     let locationManager = CLLocationManager()
     //ultima vez que o becon foi atualizado e ouve mudança na arte principal
@@ -33,8 +35,10 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
         fadeNavigation(target: StartRecordingVC())
     }
     let roundedBorder: CGFloat = 6
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserDefaults.standard.set(0, forKey: "closestArt")
         Manager.backgroundImage(image: mainArt, view: view)
         Manager.centerIconBottom(icon: playButton, view: view)
         editFrame(frame: secondArt)
@@ -63,6 +67,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
         }
         
     }
+    
     /**
      *Set any icon on bottom right*
      - Parameters:
@@ -73,6 +78,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
         icon.center.x = view.frame.width -  microphone.frame.width/2 - Manager.distanceToBorders
         icon.center.y = playButton.center.y
     }
+    
     /**
      *Set any icon on bottom right*
      - Parameters:
@@ -83,6 +89,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
         icon.center.x = view.frame.width -  microphone.frame.width/2 - Manager.distanceToBorders
         icon.center.y = playButton.center.y
     }
+    
     /**
      *Edit the frame and set it a position*
      - Parameters:
@@ -93,6 +100,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
         frame.layer.cornerRadius = roundedBorder
         frame.center.x = frame.frame.width/2 + Manager.distanceToBorders
     }
+    
     //beacon tracking function
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         //get an array of beacon that are close
@@ -107,20 +115,21 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
         beaconOrder.sort { (beaconA, beaconB) -> Bool in
             beaconA.accuracy < beaconB.accuracy
         }
-        //see if the closest beacon changed
-        if knownBeacons != lastMessure {
-            //see if you have a close beacon
-            if knownBeacons.count > 0 {
-                //do the desired functions for the closest beacon
-                lastMessure = knownBeacons
-                let closestBeacon = knownBeacons[0] as CLBeacon
-                if let firstBeacon = closestBeacon.minor as? Int {
-                    self.mainArt.backgroundColor = Manager.colors[firstBeacon]
+        
+        //see if you have a close beacon
+        if knownBeacons.count > 0 {
+            //do the desired functions for the closest beacon
+            lastMessure = knownBeacons
+            let closestBeacon = knownBeacons[0] as CLBeacon
+            
+            if let firstBeacon = closestBeacon.minor as? Int {
+                //                    self.mainArt.backgroundColor = Manager.colors[firstBeacon]
+                if firstBeacon != UserDefaults.standard.integer(forKey: "closestArt") {
                     UserDefaults.standard.set(firstBeacon, forKey: "closestArt")
+                    updateBackground()
                     
                 }
             }
-            
         }
         
         //does the same function as before but for the seccondary art, as extra it dosent allow for the main and seccond art to be  the same
@@ -129,9 +138,32 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
                 lastMessure2 = beaconOrder
                 let secondClosest = beaconOrder[1] as CLBeacon
                 if let secondClosestSafe = secondClosest.minor as? Int {
-                    self.secondArtImage.backgroundColor = Manager.colors[secondClosestSafe]
-                    self.secondArt.backgroundColor = Manager.colors[secondClosestSafe]
+                    if secondClosestSafe != UserDefaults.standard.integer(forKey: "SecondclosestArt") {
+                        print("foi2")
+                        updateSecondImageBackground()
+                        UserDefaults.standard.set(secondClosestSafe, forKey: "SecondclosestArt")
+                    }
                 }
+            }
+        }
+    }
+    
+    /**
+     *Updates the background with the image from the server*
+     - Parameters: None
+     - returns: Nothing
+     */
+    func updateBackground() {
+        self.mainArt.imageFromServerURL(urlString: Manager.getImage(beacon: UserDefaults.standard.integer(forKey: "closestArt"))) { (res, err) in
+            if err == nil {
+                print(res)
+            }
+        }
+    }
+    func updateSecondImageBackground() {
+        self.secondArtImage.imageFromServerURL(urlString: Manager.getImage(beacon: UserDefaults.standard.integer(forKey: "SecondclosestArt"))) { (res, err) in
+            if err == nil {
+                print(res)
             }
         }
     }

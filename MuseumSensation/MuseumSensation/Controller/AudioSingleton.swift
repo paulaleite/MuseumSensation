@@ -35,7 +35,6 @@ final class AudioSingleton: NSObject {
         return path[0]
     }
     
-    
     /**
      *Setup a file name*
      - returns: Nothing
@@ -209,10 +208,10 @@ final class AudioSingleton: NSObject {
     }
     
     public func makeURL(name: String) -> URL {
-        if let url = URL(string: "https://br-museum-sensation.herokuapp.com/audioStream/\(name).mp3") {
+        if let url = URL(string: "https://br-museum-sensation.herokuapp.com/audioStream/\(name).m4a") {
             return url
         } else {
-            return URL.init(fileURLWithPath: "https://br-museum-sensation.herokuapp.com/audioStream/music.mp3")
+            return URL.init(fileURLWithPath: "https://br-museum-sensation.herokuapp.com/audioStream/music2.m4a")
         }
         
     }
@@ -225,11 +224,11 @@ final class AudioSingleton: NSObject {
         let audioUrl = makeURL(name: name)
 
         let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        
+
         // lets create your destination file url
         let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
         print(destinationUrl)
-        
+
         // to check if it exists before downloading it
         if FileManager.default.fileExists(atPath: destinationUrl.path) {
             print("The file already exists at path")
@@ -241,16 +240,17 @@ final class AudioSingleton: NSObject {
                 audioPlayer.prepareToPlay()
                 audioPlayer.volume = 1.0
                 audioPlayer.play()
-                
+
             } catch {
                 print(error)
             }
             // if the file doesn't exist
         } else {
-            
+
             // you can use NSURLSession.sharedSession to download the data asynchronously
             URLSession.shared.downloadTask(with: audioUrl, completionHandler: { (location, response, error) -> Void in
-                guard let location = location, error == nil else { return }
+                guard let location = location, error == nil else {
+                    return }
                 do {
                     // after downloading your file you need to move it to your destination url
                     try FileManager.default.moveItem(at: location, to: destinationUrl)
@@ -263,19 +263,17 @@ final class AudioSingleton: NSObject {
                         audioPlayer.prepareToPlay()
                         audioPlayer.volume = 1.0
                         audioPlayer.play()
-                        
+
                     } catch {
                         print(error)
                     }
-                    
+
                 } catch let error as NSError {
                     print(error.localizedDescription)
                 }
             }).resume()
         }
-        //        }
 
-        
     }
 }
 
