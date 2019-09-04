@@ -30,10 +30,18 @@ class AudioPlayerVC: UIViewController {
             pause.image = UIImage.init(named: "play")
             AudioSingleton.shared.stopPlaying()
             isPlaying = false
+            pauseButtonOutlet.isAccessibilityElement = true
+            pauseButtonOutlet.accessibilityTraits = UIAccessibilityTraits.button
+            pauseButtonOutlet.accessibilityLanguage = "pt-BR"
+            pauseButtonOutlet.accessibilityLabel = "Escutar áudio"
         case false:
             pause.image = UIImage.init(named: "pause")
             AudioSingleton.shared.play()
             isPlaying = true
+            pauseButtonOutlet.isAccessibilityElement = true
+            pauseButtonOutlet.accessibilityTraits = UIAccessibilityTraits.button
+            pauseButtonOutlet.accessibilityLanguage = "pt-BR"
+            pauseButtonOutlet.accessibilityLabel = "Pausar áudio"
         }
     }
     @IBAction func backButton(_ sender: Any) {
@@ -60,13 +68,79 @@ class AudioPlayerVC: UIViewController {
         progressBarEdited(progressBar: progressBar, icon: pause, view: view)
         audioTime(currentTime: currentTime, totalTime: totalTime, progressBar: progressBar, icon: pause, view: view)
         Manager.buttonOnView(button: pauseButtonOutlet, image: pause)
-        
+        // Acessibility
+        setAcessibility()
         let arr = ["music2",""]
         AudioSingleton.shared.setupPlayerStream(name: arr[0])
         AudioSingleton.shared.play()
-        
         ImageSingleton.shared.updateBackground(mainArt: mainArt)
     }
+    
+    func setAcessibility() {
+        //Art name
+        artNameLabel.isAccessibilityElement = true
+        artNameLabel.accessibilityTraits = UIAccessibilityTraits.none
+        artNameLabel.accessibilityValue = "Nome da obra"
+        artNameLabel.accessibilityLanguage = "pt-BR"
+        
+        //Main art
+        mainArt.isAccessibilityElement = true
+        mainArt.accessibilityTraits = UIAccessibilityTraits.image
+        mainArt.accessibilityValue = "Foto da obra"
+        mainArt.accessibilityLanguage = "pt-BR"
+        
+        //Back button
+        backButtonOutlet.isAccessibilityElement = true
+        backButtonOutlet.accessibilityTraits = UIAccessibilityTraits.button
+        backButtonOutlet.accessibilityValue = "Voltar para a tela anterior"
+        backButtonOutlet.accessibilityLanguage = "pt-BR"
+        backButtonOutlet.accessibilityHint = "É recomendado caso você queira ir para uma outra obra ou gravar algum áudio"
+        
+        //Current time
+        currentTime.isAccessibilityElement = true
+        currentTime.accessibilityTraits = UIAccessibilityTraits.none
+        currentTime.accessibilityValue = "Tempo atual do áudio"
+        currentTime.accessibilityLanguage = "pt-BR"
+        
+        //Total time
+        totalTime.isAccessibilityElement = true
+        totalTime.accessibilityTraits = UIAccessibilityTraits.none
+        totalTime.accessibilityValue = "Tempo total do áudio"
+        totalTime.accessibilityLanguage = "pt-BR"
+        
+        //Audio counter
+        audioCounter.isAccessibilityElement = true
+        audioCounter.accessibilityTraits = UIAccessibilityTraits.staticText
+        audioCounter.accessibilityValue = "Áudios disponíveis"
+        audioCounter.accessibilityLanguage = "pt-BR"
+        
+        //Next button
+        nextOutlet.isAccessibilityElement = true
+        nextOutlet.accessibilityTraits = UIAccessibilityTraits.button
+        nextOutlet.accessibilityLabel = "Escutar o próximo áudio"
+        nextOutlet.accessibilityLanguage = "pt-BR"
+        
+        //Pause button
+        switch isPlaying {
+        case true:
+            pause.image = UIImage.init(named: "play")
+            AudioSingleton.shared.stopPlaying()
+            isPlaying = false
+            pauseButtonOutlet.isAccessibilityElement = true
+            pauseButtonOutlet.accessibilityTraits = UIAccessibilityTraits.button
+            pauseButtonOutlet.accessibilityLanguage = "pt-BR"
+            pauseButtonOutlet.accessibilityLabel = "Escutar áudio"
+        case false:
+            pause.image = UIImage.init(named: "pause")
+            AudioSingleton.shared.play()
+            isPlaying = true
+            pauseButtonOutlet.isAccessibilityElement = true
+            pauseButtonOutlet.accessibilityTraits = UIAccessibilityTraits.button
+            pauseButtonOutlet.accessibilityLanguage = "pt-BR"
+            pauseButtonOutlet.accessibilityLabel = "Pausar áudio"
+        }
+    }
+    
     /**
      *Postion the next button*
      - Parameters:
