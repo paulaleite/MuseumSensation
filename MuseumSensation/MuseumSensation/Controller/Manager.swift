@@ -13,21 +13,21 @@ struct Manager {
     static let iphoneNotch: CGFloat = 30
     static let distanceToBorders: CGFloat = 28
     
-    static let colorsName = [46811: "roxo",
-                             33895: "verde",
-                             18337: "azul"]
-    
-    static let colors = [46811: UIColor.purple,
-                         33895: UIColor.green,
-                         18337: UIColor.blue]
-    
-    static let art = [46811: "art-CafeTerraceAtNight",
-                      33895: "art-StarryNight",
-                      18337: "art-VanGoghSelfPortrait"] as [Int: String]
-    
-    static let artImages = ["art-CafeTerraceAtNight": "https://br-museum-sensation.herokuapp.com/audio/",
-                            "art-StarryNight": "https://br-museum-sensation.herokuapp.com/audio/",
-                            "art-VanGoghSelfPortrait": "https://br-museum-sensation.herokuapp.com/audio/"]
+//    static let colorsName = [46811: "roxo",
+//                             33895: "verde",
+//                             18337: "azul"]
+//
+//    static let colors = [46811: UIColor.purple,
+//                         33895: UIColor.green,
+//                         18337: UIColor.blue]
+//
+//    static let art = [46811: "art-CafeTerraceAtNight",
+//                      33895: "art-StarryNight",
+//                      18337: "art-VanGoghSelfPortrait"] as [Int: String]
+//    
+//    static let artImages = ["art-CafeTerraceAtNight": "https://br-museum-sensation.herokuapp.com/audio/",
+//                            "art-StarryNight": "https://br-museum-sensation.herokuapp.com/audio/",
+//                            "art-VanGoghSelfPortrait": "https://br-museum-sensation.herokuapp.com/audio/"]
     
     /**
      *Center and scales bqckground image*
@@ -147,16 +147,14 @@ struct Manager {
     }
     
     static func getImage(beacon: Int) -> String {
-        let artName: String? = Manager.art[beacon]
+        print(InternObra.getNomeObra(obraID: beacon))
+        let artName: String? = InternObra.getNomeObra(obraID: beacon).imagem
         guard let artNameSafe = artName else {
             return ""
         }
+        let url = "https://br-museum-sensation.herokuapp.com/audio/"
         
-        guard let url = Manager.artImages[artNameSafe] else {
-            return ""
-        }
-        
-        return url + artNameSafe + ".jpg"
+        return url + artNameSafe
         
     }
 }
