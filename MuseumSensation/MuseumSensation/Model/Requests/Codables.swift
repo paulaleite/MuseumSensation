@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 struct ObraCodable: Codable {
+    var beacons: Int?
     var titulo: String?
     var autor: String?
     var descricao: String?

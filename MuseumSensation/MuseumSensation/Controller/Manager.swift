@@ -37,7 +37,7 @@ struct Manager {
      - returns: Nothing
      */
     static func backgroundImage(image: UIImageView, view: UIView) {
-        image.frame = view.frame
+        image.frame.size = view.frame.size
         image.center = view.center
     }
     

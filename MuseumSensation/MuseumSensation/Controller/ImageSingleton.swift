@@ -92,6 +92,7 @@ final class ImageSingleton: NSObject {
         secondClosestImage = beaconID
         //variavel pra deixar a paula feliz
     }
+    
     /**
      *get the image as the background*
      - returns: int
@@ -101,5 +102,21 @@ final class ImageSingleton: NSObject {
             return 0
         }
         return curentImage
+    }
+    
+    /**
+     *Place the title of the art in each of the screens*
+     - returns: int
+     */
+    public func setTitle(beaconID: Int) {
+        guard let idObra  = Manager.art[beaconID] else {
+            return
+        }
+        artTitle = InternObra.getNomeObra(obraID: idObra).titulo
+        print(artTitle)
+    }
+    
+    public func updateTitle(label: UILabel) {
+        label.text = artTitle
     }
 }
