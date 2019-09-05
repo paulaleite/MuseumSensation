@@ -27,7 +27,7 @@ struct AudioCodable: Codable {
 }
 
 class InternObra: NSObject {
-    static func getNomeObra(obraID: String) -> ObraCodable {
+    static func getNomeObra(obraID: Int) -> ObraCodable {
         var obra: ObraCodable?
         
         do {

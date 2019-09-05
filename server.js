@@ -155,9 +155,9 @@ app.post('/createObra', async (req, res) => {
 })
 
 // Retorna uma Obra -> Funcionando
-app.get('/obra/:id', async (req, res)  => {
+app.get('/obra/:beacon', async (req, res)  => {
     try {
-        let obra = await Obra.findById(req.params.id)
+        let obra = await Obra.find({beacon: req.params.beacon})
         res.json(obra)
 
     } catch (err) {

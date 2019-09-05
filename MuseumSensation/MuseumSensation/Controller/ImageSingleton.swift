@@ -109,10 +109,7 @@ final class ImageSingleton: NSObject {
      - returns: int
      */
     public func setTitle(beaconID: Int) {
-        guard let idObra  = Manager.art[beaconID] else {
-            return
-        }
-        artTitle = InternObra.getNomeObra(obraID: idObra).titulo
+        artTitle = InternObra.getNomeObra(obraID: beaconID).titulo
         print(artTitle)
     }
     
