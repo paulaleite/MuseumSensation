@@ -57,7 +57,7 @@ func generateBoundaryString() -> String {
     return "Boundary-\(NSUUID().uuidString)"
 }
 
-func createBodyWithParameters(_ parameters: [String: String]?, _ filePathKey: String?, _ imageDataKey: Data,_ boundary: String, _ nameOfImageForToSave:String) -> Data {
+func createBodyWithParameters(_ parameters: [String: String]?, _ filePathKey: String?, _ imageDataKey: Data, _ boundary: String, _ nameOfImageForToSave: String) -> Data {
     var body = Data()
     
     if parameters != nil {

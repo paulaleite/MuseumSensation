@@ -18,7 +18,7 @@ class SearchingFirstArtVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Manager.centerIcon(iconImage: appleLogo, view: view)
+        Manager.centerIcon(iconImage: appleLogo)
         Manager.buttonOnView(button: nextPageButtonOutlet, image: appleLogo)
     }
 }
