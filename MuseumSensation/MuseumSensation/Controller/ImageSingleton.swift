@@ -111,6 +111,7 @@ final class ImageSingleton: NSObject {
     public func setTitle(beaconID: Int) {
         artTitle = InternObra.getNomeObra(obraID: beaconID).titulo
         print(artTitle)
+
     }
     
     public func updateTitle(label: UILabel) {
