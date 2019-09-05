@@ -34,16 +34,16 @@ class ReviewAudioVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        Manager.backgroundImage(image: mainArt, view: view)
+        Manager.backgroundImage(image: mainArt)
         Manager.centerTitleTop(title: artNameLabel, view: view)
         Manager.gradientTopToBottom(viewToGradient: gradientLayerTop, topToBottom: true)
         Manager.gradientTopToBottom(viewToGradient: gradientLayerBottom, topToBottom: false)
         Manager.topViewGradiented(viewGradiented: gradientLayerTop, view: view)
         Manager.botViewGradiented(viewGradiented: gradientLayerBottom, view: view)
-        Manager.centerIcon(iconImage: bigPlay, view: view)
-        garbagePosition(garbage: garbage, view: view)
-        sendPosition(send: send, view: view)
-        totalTimePosition(totalTime: totalTime, view: view)
+        Manager.centerIcon(iconImage: bigPlay)
+        garbagePosition(garbage: garbage)
+        sendPosition(send: send)
+        totalTimePosition(totalTime: totalTime)
         Manager.buttonOnView(button: garbageButtonOutlet, image: garbage)
         Manager.buttonOnView(button: sendButtonOutlet, image: send)
         Manager.buttonOnView(button: playButtonOutlet, image: bigPlay)
@@ -100,9 +100,9 @@ class ReviewAudioVC: UIViewController {
          - view: The main view
      - returns: Nothing
      */
-    func garbagePosition(garbage: UIImageView, view: UIView) {
-        garbage.center.x = view.frame.width*(1/3)
-        garbage.center.y = view.frame.height - Manager.distanceToBorders - garbage.frame.height/2
+    func garbagePosition(garbage: UIImageView) {
+        garbage.center.x = Manager.screenSize.width*(1/3)
+        garbage.center.y = Manager.screenSize.height - Manager.distanceToBorders - garbage.frame.height/2
     }
     /**
      *Set the send icon on view*
@@ -111,9 +111,9 @@ class ReviewAudioVC: UIViewController {
         - view: The main view
      - returns: Nothing
      */
-    func sendPosition(send: UIImageView, view: UIView) {
-        send.center.x = view.frame.width*(2/3)
-        send.center.y = view.frame.height - Manager.distanceToBorders - send.frame.height/2
+    func sendPosition(send: UIImageView) {
+        send.center.x = Manager.screenSize.width*(2/3)
+        send.center.y = Manager.screenSize.height - Manager.distanceToBorders - send.frame.height/2
     }
     /**
      *Set the total time label on view*
@@ -122,9 +122,9 @@ class ReviewAudioVC: UIViewController {
         - view: The main view
      - returns: Nothing
      */
-    func totalTimePosition(totalTime: UILabel, view: UIView) {
-        totalTime.center.x = view.center.x
-        totalTime.center.y = view.frame.height - Manager.distanceToBorders - send.frame.height - totalTime.frame.height/2
+    func totalTimePosition(totalTime: UILabel) {
+        totalTime.center.x = Manager.screenSize.width/2
+        totalTime.center.y = Manager.screenSize.height - Manager.distanceToBorders - send.frame.height - totalTime.frame.height/2
     }
     /**
      *Setup the audio duration*

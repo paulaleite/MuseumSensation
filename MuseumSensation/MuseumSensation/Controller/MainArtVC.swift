@@ -39,7 +39,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         UserDefaults.standard.set(0, forKey: "closestArt")
-        Manager.backgroundImage(image: mainArt, view: view)
+        Manager.backgroundImage(image: mainArt)
         Manager.centerIconBottom(icon: playButton, view: view)
         editFrame(frame: secondArt)
         setIconBottomRight(icon: microphone)
@@ -110,7 +110,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
      - returns: Nothing
      */
     func setIconBottomRight(icon: UIImageView) {
-        icon.center.x = view.frame.width -  microphone.frame.width/2 - Manager.distanceToBorders
+        icon.center.x = Manager.screenSize.width - microphone.frame.width/2 - Manager.distanceToBorders
         icon.center.y = playButton.center.y
     }
     
@@ -121,7 +121,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
      - returns: Nothing
      */
     func setIconBottomRight(icon: UIButton) {
-        icon.center.x = view.frame.width -  microphone.frame.width/2 - Manager.distanceToBorders
+        icon.center.x = Manager.screenSize.width - microphone.frame.width/2 - Manager.distanceToBorders
         icon.center.y = playButton.center.y
     }
     
@@ -134,6 +134,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
     func editFrame(frame: UIView) {
         frame.layer.cornerRadius = roundedBorder
         frame.center.x = frame.frame.width/2 + Manager.distanceToBorders
+        frame.center.y = Manager.screenSize.height - frame.frame.height/2 - Manager.distanceToBorders
     }
     
     //beacon tracking function

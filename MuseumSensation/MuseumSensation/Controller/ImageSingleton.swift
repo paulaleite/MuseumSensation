@@ -113,7 +113,7 @@ final class ImageSingleton: NSObject {
             return
         }
         artTitle = InternObra.getNomeObra(obraID: idObra).titulo
-        print(artTitle)
+        print(artTitle ?? "Obra")
     }
     
     public func updateTitle(label: UILabel) {

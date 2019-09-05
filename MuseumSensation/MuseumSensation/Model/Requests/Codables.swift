@@ -115,7 +115,7 @@ class InterAudio: NSObject {
         request.addValue("application/json", forHTTPHeaderField: "Acadresst")
         
         //create dataTask using the session object to send data to the server
-        let task = session.dataTask(with: request, completionHandler: { data, response, error in
+        let task = session.dataTask(with: request, completionHandler: { data, _, error in
             group.leave()
             
             group.notify(queue: .main, execute: {

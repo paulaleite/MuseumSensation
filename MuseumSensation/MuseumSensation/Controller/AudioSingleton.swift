@@ -248,7 +248,7 @@ final class AudioSingleton: NSObject {
         } else {
 
             // you can use NSURLSession.sharedSession to download the data asynchronously
-            URLSession.shared.downloadTask(with: audioUrl, completionHandler: { (location, response, error) -> Void in
+            URLSession.shared.downloadTask(with: audioUrl, completionHandler: { (location, _, error) -> Void in
                 guard let location = location, error == nil else {
                     return }
                 do {

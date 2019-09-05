@@ -25,7 +25,7 @@ class StartRecordingVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        Manager.backgroundImage(image: mainArt, view: view)
+        Manager.backgroundImage(image: mainArt)
         Manager.centerTitleTop(title: artNameLabel, view: view)
         Manager.gradientTopToBottom(viewToGradient: gradientLayerTop, topToBottom: true)
         Manager.gradientTopToBottom(viewToGradient: gradientLayerBottom, topToBottom: false)

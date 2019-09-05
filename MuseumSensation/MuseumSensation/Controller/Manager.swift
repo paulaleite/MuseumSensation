@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 struct Manager {
+    static let screenSize: CGRect = UIScreen.main.bounds
     static let iphoneNotch: CGFloat = 30
     static let distanceToBorders: CGFloat = 28
     
@@ -36,9 +37,11 @@ struct Manager {
      - view: The backgroundview
      - returns: Nothing
      */
-    static func backgroundImage(image: UIImageView, view: UIView) {
-        image.frame.size = view.frame.size
-        image.center = view.center
+    static func backgroundImage(image: UIImageView) {
+        image.frame.size.width = screenSize.width
+        image.frame.size.height = screenSize.height
+        image.center.x = screenSize.width/2
+        image.center.y = screenSize.height/2
     }
     
     /**
@@ -50,7 +53,7 @@ struct Manager {
      */
     static func topViewGradiented(viewGradiented: UIView, view: UIView) {
         viewGradiented.center.y = viewGradiented.frame.height/2
-        viewGradiented.frame.size.width = view.frame.width
+        viewGradiented.frame.size.width = screenSize.width
     }
     
     /**
@@ -61,8 +64,8 @@ struct Manager {
      - returns: Nothing
      */
     static func botViewGradiented(viewGradiented: UIView, view: UIView) {
-        viewGradiented.center.y = view.frame.height - viewGradiented.frame.height/2
-        viewGradiented.frame.size.width = view.frame.width
+        viewGradiented.center.y = screenSize.height - viewGradiented.frame.height/2
+        viewGradiented.frame.size.width = screenSize.width
     }
     
     /**
@@ -96,8 +99,8 @@ struct Manager {
      - returns: Nothing
      */
     static func centerIconBottom(icon: UIImageView, view: UIView) {
-        icon.center.x = view.center.x
-        icon.center.y = view.frame.height - icon.frame.height/2 - distanceToBorders
+        icon.center.x = screenSize.width/2 
+        icon.center.y = screenSize.height - icon.frame.height/2 - distanceToBorders
     }
     
     /**
@@ -108,8 +111,9 @@ struct Manager {
      - returns: Nothing
      */
     static func centerTitleTop(title: UILabel, view: UIView) {
-        title.center.x = view.center.x
+        title.center.x = screenSize.width/2
         title.center.y =  title.frame.height/2 + distanceToBorders + iphoneNotch
+        title.frame.size.width = screenSize.width
     }
     
     /**
@@ -142,8 +146,9 @@ struct Manager {
      - view: The main view
      - returns: Nothing
      */
-    static func centerIcon(iconImage: UIImageView, view: UIView) {
-        iconImage.center = view.center
+    static func centerIcon(iconImage: UIImageView) {
+        iconImage.center.x = screenSize.width/2
+        iconImage.center.y = screenSize.height/2
     }
     
     static func getImage(beacon: Int) -> String {
