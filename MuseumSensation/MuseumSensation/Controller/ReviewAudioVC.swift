@@ -105,6 +105,7 @@ class ReviewAudioVC: UIViewController {
         garbage.center.x = Manager.screenSize.width*(1/3)
         garbage.center.y = Manager.screenSize.height - Manager.distanceToBorders - garbage.frame.height/2
     }
+    
     /**
      *Set the send icon on view*
      - Parameters:
@@ -116,6 +117,7 @@ class ReviewAudioVC: UIViewController {
         send.center.x = Manager.screenSize.width*(2/3)
         send.center.y = Manager.screenSize.height - Manager.distanceToBorders - send.frame.height/2
     }
+    
     /**
      *Set the total time label on view*
      - Parameters:
@@ -127,6 +129,7 @@ class ReviewAudioVC: UIViewController {
         totalTime.center.x = Manager.screenSize.width/2
         totalTime.center.y = Manager.screenSize.height - Manager.distanceToBorders - send.frame.height - totalTime.frame.height/2
     }
+    
     /**
      *Setup the audio duration*
      - returns: Nothing

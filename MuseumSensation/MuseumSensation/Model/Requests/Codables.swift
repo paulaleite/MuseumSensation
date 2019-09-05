@@ -32,7 +32,6 @@ class InternObra: NSObject {
         
         do {
             let path = "https://br-museum-sensation.herokuapp.com/obra/" + obraID
-            print(path)
             guard let url = URL(string: path) else {
                 return ObraCodable()
                 
