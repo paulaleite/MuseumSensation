@@ -14,27 +14,11 @@ struct Manager {
     static let iphoneNotch: CGFloat = 30
     static let distanceToBorders: CGFloat = 28
     
-//    static let colorsName = [46811: "roxo",
-//                             33895: "verde",
-//                             18337: "azul"]
-//
-//    static let colors = [46811: UIColor.purple,
-//                         33895: UIColor.green,
-//                         18337: UIColor.blue]
-//
-//    static let art = [46811: "art-CafeTerraceAtNight",
-//                      33895: "art-StarryNight",
-//                      18337: "art-VanGoghSelfPortrait"] as [Int: String]
-//    
-//    static let artImages = ["art-CafeTerraceAtNight": "https://br-museum-sensation.herokuapp.com/audio/",
-//                            "art-StarryNight": "https://br-museum-sensation.herokuapp.com/audio/",
-//                            "art-VanGoghSelfPortrait": "https://br-museum-sensation.herokuapp.com/audio/"]
-    
     /**
      *Center and scales bqckground image*
      - Parameters:
-     - image: A background image to scale and center
-     - view: The backgroundview
+        - image: A background image to scale and center
+        - view: The backgroundview
      - returns: Nothing
      */
     static func backgroundImage(image: UIImageView) {
@@ -47,8 +31,8 @@ struct Manager {
     /**
      *To position view in the top*
      - Parameters:
-     - viewGradiented: The view to position
-     - view: The main view
+        - viewGradiented: The view to position
+        - view: The main view
      - returns: Nothing
      */
     static func topViewGradiented(viewGradiented: UIView, view: UIView) {
@@ -59,8 +43,8 @@ struct Manager {
     /**
      *To position view in the bot*
      - Parameters:
-     - viewGradiented: The view to position
-     - view: The main view
+        - viewGradiented: The view to position
+        - view: The main view
      - returns: Nothing
      */
     static func botViewGradiented(viewGradiented: UIView, view: UIView) {
@@ -71,8 +55,8 @@ struct Manager {
     /**
      *Turn some view gradient with an invisible bottom*
      - Parameters:
-     - viewGradiented: Any view to turn gradient
-     - topToBottom: If true, the gradient starts on top
+        - viewGradiented: Any view to turn gradient
+        - topToBottom: If true, the gradient starts on top
      - returns: Nothing
      */
     static func gradientTopToBottom(viewToGradient: UIView, topToBottom: Bool) {
@@ -94,8 +78,8 @@ struct Manager {
     /** 
      *Set some icon in the bottom center*
      - Parameters:
-     - icon: The icon to position
-     - view: The main view
+        - icon: The icon to position
+        - view: The main view
      - returns: Nothing
      */
     static func centerIconBottom(icon: UIImageView, view: UIView) {
@@ -106,8 +90,8 @@ struct Manager {
     /**
      *Set the title on the top center*
      - Parameters:
-     - title: A ttitle to position on top
-     - view: The main view
+        - title: A ttitle to position on top
+        - view: The main view
      - returns: Nothing
      */
     static func centerTitleTop(title: UILabel, view: UIView) {
@@ -119,8 +103,8 @@ struct Manager {
     /**
      *Set the title on the top center*
      - Parameters:
-     - icon: A ttitle to position on top
-     - title: The main view
+        - icon: A ttitle to position on top
+        - title: The main view
      - returns: Nothing
      */
     static func topLeftPosition(icon: UIImageView, title: UILabel) {
@@ -131,8 +115,8 @@ struct Manager {
     /**
      *Center button on view*
      - Parameters:
-     - button: Button to put on view
-     - view: The base view
+        - button: Button to put on view
+        - view: The base view
      - returns: Nothing
      */
     static func buttonOnView(button: UIButton, image: UIImageView) {
@@ -142,8 +126,8 @@ struct Manager {
     /**
      *Center the play button on view*
      - Parameters:
-     - iconImage: An image to center
-     - view: The main view
+        - iconImage: An image to center
+        - view: The main view
      - returns: Nothing
      */
     static func centerIcon(iconImage: UIImageView) {
@@ -151,14 +135,18 @@ struct Manager {
         iconImage.center.y = screenSize.height/2
     }
     
+    /**
+     *Center the play button on view*
+     - Parameters:
+        - beacon: The number of the beacon that is closest to the beacon
+     - returns: Image url path
+     */
     static func getImage(beacon: Int) -> String {
-        print(InternObra.getNomeObra(obraID: beacon))
-        let artName: String? = InternObra.getNomeObra(obraID: beacon).imagem
+        let artName: String? = InternObra.getNomeObra(obraID: "\(beacon)").imagem
         guard let artNameSafe = artName else {
             return ""
         }
         let url = "https://br-museum-sensation.herokuapp.com/audio/"
-        
         return url + artNameSafe
         
     }

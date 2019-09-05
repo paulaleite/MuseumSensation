@@ -39,6 +39,7 @@ class StartRecordingVC: UIViewController {
         setAcessibility()
         //updates the backgroud with the main art
         ImageSingleton.shared.updateBackground(mainArt: mainArt)
+        ImageSingleton.shared.updateTitle(label: artNameLabel)
 
     }
     

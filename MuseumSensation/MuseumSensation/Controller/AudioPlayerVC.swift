@@ -74,6 +74,7 @@ class AudioPlayerVC: UIViewController {
         AudioSingleton.shared.setupPlayerStream(name: arr[0])
         AudioSingleton.shared.play()
         ImageSingleton.shared.updateBackground(mainArt: mainArt)
+         ImageSingleton.shared.updateTitle(label: artNameLabel)
     }
     
     func setAcessibility() {

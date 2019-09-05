@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 struct ObraCodable: Codable {
-    var beacons: Int?
+    var beacon: String?
     var titulo: String?
     var autor: String?
     var descricao: String?
@@ -27,11 +27,12 @@ struct AudioCodable: Codable {
 }
 
 class InternObra: NSObject {
-    static func getNomeObra(obraID: Int) -> ObraCodable {
+    static func getNomeObra(obraID: String) -> ObraCodable {
         var obra: ObraCodable?
         
         do {
-            let path = "https://br-museum-sensation.herokuapp.com/obra/\(obraID)"
+            let path = "https://br-museum-sensation.herokuapp.com/obra/" + obraID
+            print(path)
             guard let url = URL(string: path) else {
                 return ObraCodable()
                 
@@ -54,6 +55,7 @@ class InternObra: NSObject {
             
         }
         return safeObra
+        
     }
     
 }
