@@ -82,13 +82,13 @@ struct Manager {
             gradient.endPoint = CGPoint(x: 0.5, y: 1)
         }
         let whiteColor = UIColor.white
-        gradient.colors = [whiteColor.withAlphaComponent(0.0).cgColor, whiteColor.withAlphaComponent(1.0).cgColor]
-        gradient.locations = [NSNumber(value: 0.0), NSNumber(value: 1), NSNumber(value: 1.0)]
+        gradient.colors = [whiteColor.withAlphaComponent(0).cgColor, whiteColor.withAlphaComponent(1).cgColor]
+        gradient.locations = [NSNumber(value: 0), NSNumber(value: 1), NSNumber(value: 1)]
         gradient.frame = viewToGradient.bounds
         viewToGradient.layer.mask = gradient
     }
     
-    /**
+    /** 
      *Set some icon in the bottom center*
      - Parameters:
      - icon: The icon to position
