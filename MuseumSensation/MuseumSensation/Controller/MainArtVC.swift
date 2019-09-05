@@ -42,7 +42,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
         Manager.backgroundImage(image: mainArt, view: view)
         Manager.centerIconBottom(icon: playButton, view: view)
         editFrame(frame: secondArt)
-        Manager.backgroundImage(image: secondArtImage, view: secondArt)
+//        Manager.backgroundImage(image: secondArtImage, view: secondArt)
         setIconBottomRight(icon: microphone)
         Manager.centerTitleTop(title: artNameLabel, view: view)
         Manager.gradientTopToBottom(viewToGradient: gradientLayerTop, topToBottom: true)
