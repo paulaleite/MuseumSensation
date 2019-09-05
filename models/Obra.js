@@ -4,7 +4,7 @@ const autopopulate = require('mongoose-autopopulate');
 
 const Obra = new Schema({
     beacon: {
-        type: Int
+        type: Number
     },
     titulo: {
         type: String,
