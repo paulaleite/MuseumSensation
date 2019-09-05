@@ -160,7 +160,9 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
             if let firstBeacon = closestBeacon.minor as? Int {
                 if firstBeacon != ImageSingleton.shared.getCurrentImage() {
                     ImageSingleton.shared.setCurrentImage(beaconID: firstBeacon)
+                    ImageSingleton.shared.setTitle(beaconID: firstBeacon)
                     ImageSingleton.shared.updateBackground(mainArt: mainArt)
+                    ImageSingleton.shared.updateTitle(label: artNameLabel)
                     
                 }
             }
