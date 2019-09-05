@@ -43,7 +43,10 @@ class RecordingVC: UIViewController {
         if AudioSingleton.shared.haveFileName() {
             AudioSingleton.shared.deleteAudioFile(name: AudioSingleton.shared.getFileName())
         }
-        AudioSingleton.shared.setFile(name: "test")
+        let nome = DateFormatter()
+        nome.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let nomeString = nome.string(from: Date())
+        AudioSingleton.shared.setFile(name: nomeString)
         AudioSingleton.shared.setupRecorder()
         AudioSingleton.shared.record()
         minutes = 0
@@ -51,6 +54,7 @@ class RecordingVC: UIViewController {
         timer()
         //updates the backgroud with the main art
         ImageSingleton.shared.updateBackground(mainArt: mainArt)
+        ImageSingleton.shared.updateTitle(label: artNameLabel)
 
     }
     

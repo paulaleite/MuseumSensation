@@ -53,6 +53,7 @@ class ReviewAudioVC: UIViewController {
         audioDuration()
         //updates the backgroud with the main art
         ImageSingleton.shared.updateBackground(mainArt: mainArt)
+        ImageSingleton.shared.updateTitle(label: artNameLabel)
     }
     
     func setAcessibility() {

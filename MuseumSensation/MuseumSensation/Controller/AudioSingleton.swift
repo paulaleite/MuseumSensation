@@ -22,10 +22,12 @@ final class AudioSingleton: NSObject {
                                   AVEncoderBitRateKey: 320000,
                                   AVNumberOfChannelsKey: 2 ,
                                   AVSampleRateKey: 44100.2] as [String: Any]
+    private var lasFIleName: String?
     
     override init() {
         super.init()
     }
+    
     /**
      *Get the directiory where the audio is saved*
      - returns: URL
@@ -40,8 +42,10 @@ final class AudioSingleton: NSObject {
      - returns: Nothing
      */
     public func setFile(name: String) {
+        self.lasFIleName = fileName
         self.fileName = name + ".m4a"
     }
+    
     /**
      *Get a file name*
      - returns: file name
@@ -51,6 +55,12 @@ final class AudioSingleton: NSObject {
             return String() }
         return fileName
     }
+    public func getLastFileName() -> String {
+        guard let fileName = lasFIleName else {
+            return String() }
+        return fileName
+    }
+    
     /**
      *Check if you have a file*
      - returns: If you have a file
@@ -61,6 +71,7 @@ final class AudioSingleton: NSObject {
         }
         return false
     }
+    
     /**
      *Delet a audio*
      - Parameters:
@@ -68,7 +79,7 @@ final class AudioSingleton: NSObject {
      - returns: Nothing
      */
     public func deleteAudioFile(name: String) {
-        let audio = name + ".m4a"
+        let audio = name
         let documentsPath: URL = getDocumentDirectory()
         let audioPath = documentsPath.appendingPathComponent(audio)
         do {
@@ -77,6 +88,7 @@ final class AudioSingleton: NSObject {
             print(error)
         }
     }
+    
     /**
      *Sets up the recorder*
      - returns: Nothing
@@ -98,6 +110,7 @@ final class AudioSingleton: NSObject {
             print(error)
         }
     }
+    
     /**
      *Setup player*
      - returns: Nothing
@@ -120,6 +133,7 @@ final class AudioSingleton: NSObject {
         }
         
     }
+    
     /**
      *Start Recording*
      - returns: Nothing
@@ -130,6 +144,7 @@ final class AudioSingleton: NSObject {
         audioRecorder.record(forDuration: 3600)
         
     }
+    
     /**
      *Stop recording*
      - Parameters:
@@ -141,6 +156,7 @@ final class AudioSingleton: NSObject {
         audioRecorder.stop()
         
     }
+    
     /**
      *Star Playing*
      - returns: Nothing
@@ -150,6 +166,7 @@ final class AudioSingleton: NSObject {
             return}
         audioPlayer.play()
     }
+    
     /**
      *Stop Playing*
      - returns: Nothing
@@ -159,6 +176,7 @@ final class AudioSingleton: NSObject {
             return}
         audioPlayer.stop()
     }
+    
     /**
      *Discover the audio duration*
      - returns: a string that contain the duration in seconds
@@ -168,6 +186,7 @@ final class AudioSingleton: NSObject {
             return nil }
         return audioPlayer.duration.description
     }
+    
     /**
      *Check if the app has permission to use the mic and if not, it will ask the user for it*
      - returns: If you have permission
