@@ -95,7 +95,6 @@ struct Manager {
      - returns: Nothing
      */
     static func centerTitleTop(title: UILabel, view: UIView) {
-        title.center.x = screenSize.width/2
         title.center.y =  title.frame.height/2 + distanceToBorders + iphoneNotch
         title.frame.size.width = screenSize.width
     }
