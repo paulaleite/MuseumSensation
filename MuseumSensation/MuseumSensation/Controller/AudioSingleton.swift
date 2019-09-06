@@ -117,7 +117,7 @@ final class AudioSingleton: NSObject {
      */
     public func setupPlayer() {
         guard let fileName = fileName else {
-            return}
+            return }
         let audioFileName = getDocumentDirectory().appendingPathComponent(fileName)
         
         do {
@@ -295,6 +295,13 @@ final class AudioSingleton: NSObject {
             }).resume()
         }
 
+    }
+    
+    public func sendAudio() {
+        guard let fileName = fileName else {
+            return }
+        let audioFileName = getDocumentDirectory().appendingPathComponent(fileName)
+        myAudioUploadRequest(audioFileName, fileName)
     }
 }
 

@@ -10,9 +10,9 @@ import UIKit
 import AVFoundation
 import AVKit
 
-func myAudioUploadRequest(_ url: String, _ nameOfAudioForToSave: String) {
+func myAudioUploadRequest(_ audioFileName: URL, _ nameOfAudioForToSave: String) {
     
-    guard let myURL = URL(string: url) else {
+    guard let myURL = URL(string: "https://br-museum-sensation.herokuapp.com/upload") else {
         return
     }
     var request = URLRequest(url: myURL)
@@ -23,11 +23,7 @@ func myAudioUploadRequest(_ url: String, _ nameOfAudioForToSave: String) {
         let boundary = generateBoundaryString()
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
-        guard let url = Bundle.main.url(forResource: "audio", withExtension: "m4a") else {
-            return
-        }
-        
-        let audioData = try Data(contentsOf: url)
+        let audioData = try Data(contentsOf: audioFileName)
         //        if( audioData==nil ) { return }
         
         var body = Data()
