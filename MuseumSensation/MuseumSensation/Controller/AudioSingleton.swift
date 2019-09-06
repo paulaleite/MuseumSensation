@@ -242,7 +242,9 @@ final class AudioSingleton: NSObject {
     public func setupPlayerStream(name: String) {
         let audioUrl = makeURL(name: name)
 
-        let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        guard let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return
+        }
 
         // lets create your destination file url
         let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)

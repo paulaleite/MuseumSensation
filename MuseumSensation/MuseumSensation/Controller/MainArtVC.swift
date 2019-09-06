@@ -52,7 +52,12 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
         Manager.buttonOnView(button: goToStartRecordingVC, image: microphone)
         setIconBottomRight(icon: goToStartRecordingVC)
         // Acessibility
-        setAcessibility()
+        SetAccessibility.mainArtAccessibility(mainArt: mainArt)
+        SetAccessibility.playButtonAccessibility(playButton: goToAudioPlayerVC)
+        SetAccessibility.secondArtAccessibility(secondArt: secondArtImage)
+        SetAccessibility.startRecordingAccessibility(microphone: goToStartRecordingVC)
+        SetAccessibility.titleAccessibility(title: artNameLabel)
+        
         //set the locationManager delegate to self
         locationManager.delegate = self
         //ask for permission to use the beacons
@@ -67,39 +72,6 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
             locationManager.startRangingBeacons(in: region)
             
         }
-        
-    }
-    func setAcessibility() {
-        //Art name
-        artNameLabel.isAccessibilityElement = true
-        artNameLabel.accessibilityTraits = UIAccessibilityTraits.staticText
-        artNameLabel.accessibilityValue = "Nome da obra"
-        artNameLabel.accessibilityLanguage = "pt-BR"
-        
-        //Main art
-        mainArt.isAccessibilityElement = true
-        mainArt.accessibilityTraits = UIAccessibilityTraits.staticText
-        mainArt.accessibilityValue = "Foto da obra"
-        mainArt.accessibilityLanguage = "pt-BR"
-       
-        //Second art image
-        secondArt.isAccessibilityElement = true
-        secondArt.accessibilityTraits = UIAccessibilityTraits.image
-        secondArt.accessibilityValue = "Foto de uma outra obra mais próxima de você"
-        secondArt.accessibilityHint = "Se você tiver interesse de se direcionar para uma próxima outra obra"
-        secondArt.accessibilityLanguage = "pt-BR"
-        
-        //Play button
-        goToAudioPlayerVC.isAccessibilityElement = true
-        goToAudioPlayerVC.accessibilityTraits = UIAccessibilityTraits.button
-        goToAudioPlayerVC.accessibilityValue = "Escutar um áudio"
-        goToAudioPlayerVC.accessibilityLanguage = "pt-BR"
-        
-        //Microphone button
-        goToStartRecordingVC.isAccessibilityElement = true
-        goToStartRecordingVC.accessibilityTraits = UIAccessibilityTraits.button
-        goToStartRecordingVC.accessibilityValue = "Gravar um áudio"
-        goToStartRecordingVC.accessibilityLanguage = "pt-BR"
         
     }
     

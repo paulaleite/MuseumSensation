@@ -37,7 +37,9 @@ class RecordingVC: UIViewController {
         Manager.buttonOnView(button: stopRecordingButtonOutlet, image: stopRecording)
         timeLabelPosition(timeLabel: timeLabel, icon: stopRecording)
         // Acessibility
-        setAcessibility()
+        SetAccessibility.titleAccessibility(title: artNameLabel)
+        SetAccessibility.mainArtAccessibility(mainArt: mainArt)
+        SetAccessibility.stopRecording(stopRecording: stopRecordingButtonOutlet)
         // Audio
         AudioSingleton.shared.stopPlaying()
         if AudioSingleton.shared.haveFileName() {
@@ -56,32 +58,6 @@ class RecordingVC: UIViewController {
         ImageSingleton.shared.updateBackground(mainArt: mainArt)
         ImageSingleton.shared.updateTitle(label: artNameLabel)
 
-    }
-    
-    func setAcessibility() {
-        //Art name
-        artNameLabel.isAccessibilityElement = true
-        artNameLabel.accessibilityTraits = UIAccessibilityTraits.none
-        artNameLabel.accessibilityValue = "Nome da obra"
-        artNameLabel.accessibilityLanguage = "pt-BR"
-        
-        //Main art
-        mainArt.isAccessibilityElement = true
-        mainArt.accessibilityTraits = UIAccessibilityTraits.image
-        mainArt.accessibilityValue = "Foto da obra"
-        mainArt.accessibilityLanguage = "pt-BR"
-        
-        //Stop button
-        stopRecordingButtonOutlet.isAccessibilityElement = true
-        stopRecordingButtonOutlet.accessibilityTraits = UIAccessibilityTraits.button
-        stopRecordingButtonOutlet.accessibilityValue = "Parar de gravar"
-        stopRecordingButtonOutlet.accessibilityLanguage = "pt-BR"
-        
-        //Time label
-        timeLabel.isAccessibilityElement = true
-        timeLabel.accessibilityTraits = UIAccessibilityTraits.none
-        timeLabel.accessibilityValue = "Tempo de áudio atual"
-        timeLabel.accessibilityLanguage = "pt-BR"
     }
 
     /**

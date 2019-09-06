@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 struct ObraCodable: Codable {
-    var beacon: String?
     var titulo: String?
     var autor: String?
     var descricao: String?
@@ -31,7 +30,7 @@ class InternObra: NSObject {
         var obra: ObraCodable?
         
         do {
-            let path = "https://br-museum-sensation.herokuapp.com/obra/" + obraID
+            let path = "https://br-museum-sensation.herokuapp.com/obra/\(obraID)"
             guard let url = URL(string: path) else {
                 return ObraCodable()
                 
@@ -54,7 +53,6 @@ class InternObra: NSObject {
             
         }
         return safeObra
-        
     }
     
 }
@@ -114,7 +112,7 @@ class InterAudio: NSObject {
         //HTTP Headers
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Acadresst")
-        
+
         //create dataTask using the session object to send data to the server
         let task = session.dataTask(with: request, completionHandler: { data, _, error in
             group.leave()
