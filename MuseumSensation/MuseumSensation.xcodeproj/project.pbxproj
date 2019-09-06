@@ -33,6 +33,7 @@
 		1E9C3A8D231ECE1F00C32E79 /* Codables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C3A8C231ECE1F00C32E79 /* Codables.swift */; };
 		1E9C3A8F231ECE3300C32E79 /* UploadAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C3A8E231ECE3300C32E79 /* UploadAudio.swift */; };
 		1E9C3A91231ECE4200C32E79 /* ImageServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C3A90231ECE4200C32E79 /* ImageServer.swift */; };
+		1EC85CB32322C58E00245FFA /* SetAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC85CB22322C58E00245FFA /* SetAccessibility.swift */; };
 		7D04005E231596DD00D05726 /* AudioSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04005D231596DD00D05726 /* AudioSingleton.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +87,7 @@
 		1E9C3A8C231ECE1F00C32E79 /* Codables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codables.swift; sourceTree = "<group>"; };
 		1E9C3A8E231ECE3300C32E79 /* UploadAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAudio.swift; sourceTree = "<group>"; };
 		1E9C3A90231ECE4200C32E79 /* ImageServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServer.swift; sourceTree = "<group>"; };
+		1EC85CB22322C58E00245FFA /* SetAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAccessibility.swift; sourceTree = "<group>"; };
 		7D04005D231596DD00D05726 /* AudioSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSingleton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,6 +192,7 @@
 				0C9E26EA23159EB8005355A8 /* Manager.swift */,
 				1E1701DA232029F300ED7ECF /* ImageSingleton.swift */,
 				0C9E27262316E73A005355A8 /* Extensions.swift */,
+				1EC85CB22322C58E00245FFA /* SetAccessibility.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D04005E231596DD00D05726 /* AudioSingleton.swift in Sources */,
+				1EC85CB32322C58E00245FFA /* SetAccessibility.swift in Sources */,
 				1E9C3A8D231ECE1F00C32E79 /* Codables.swift in Sources */,
 				1E0FCA8E231084FA00993AD3 /* ReviewAudioVC.swift in Sources */,
 				1E0FCA822310846400993AD3 /* AudioPlayerVC.swift in Sources */,
@@ -575,7 +579,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8LWWH6K4TJ;
+				DEVELOPMENT_TEAM = X54K5PJVGU;
 				INFOPLIST_FILE = MuseumSensation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -594,7 +598,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8LWWH6K4TJ;
+				DEVELOPMENT_TEAM = X54K5PJVGU;
 				INFOPLIST_FILE = MuseumSensation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -61,7 +61,10 @@ func createBodyWithParameters(_ parameters: [String: String]?, _ filePathKey: St
     var body = Data()
     
     if parameters != nil {
-        for (key, value) in parameters! {
+        guard let parameters = parameters else {
+            return Data()
+        }
+        for (key, value) in parameters {
             body.appendString("--\(boundary)\r\n")
             body.appendString("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
             body.appendString("\(value)\r\n")
@@ -72,7 +75,10 @@ func createBodyWithParameters(_ parameters: [String: String]?, _ filePathKey: St
     let mimetype = "image/jpeg"
     
     body.appendString("--\(boundary)\r\n")
-    body.appendString("Content-Disposition: form-data; name=\"\(filePathKey!)\"; filename=\"\(filename)\"\r\n")
+    guard let filePathKey = filePathKey else {
+        return Data()
+    }
+    body.appendString("Content-Disposition: form-data; name=\"\(filePathKey)\"; filename=\"\(filename)\"\r\n")
     
     body.appendString("Content-Type: \(mimetype)\r\n\r\n")
     body.append(imageDataKey)
@@ -86,6 +92,11 @@ extension Data {
         let data = string.data(
             using: String.Encoding.utf8,
             allowLossyConversion: true)
-        append(data!)
+        
+        guard let safeData = data else {
+            return
+        }
+        
+        append(safeData)
     }
 }

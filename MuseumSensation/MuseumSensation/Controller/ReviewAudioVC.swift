@@ -48,50 +48,18 @@ class ReviewAudioVC: UIViewController {
         Manager.buttonOnView(button: sendButtonOutlet, image: send)
         Manager.buttonOnView(button: playButtonOutlet, image: bigPlay)
         // Acessibility
-        setAcessibility()
+        SetAccessibility.titleAccessibility(title: artNameLabel)
+        SetAccessibility.mainArtAccessibility(mainArt: mainArt)
+        SetAccessibility.toHearAudio(bigPlay: playButtonOutlet)
+        SetAccessibility.sendButton(sendButton: sendButtonOutlet)
+        SetAccessibility.garbageButton(garbageButton: garbageButtonOutlet)
+        SetAccessibility.totalTime(totalTime: totalTime)
+        //
         AudioSingleton.shared.setupPlayer()
         audioDuration()
         //updates the backgroud with the main art
         ImageSingleton.shared.updateBackground(mainArt: mainArt)
         ImageSingleton.shared.updateTitle(label: artNameLabel)
-    }
-    
-    func setAcessibility() {
-        //Art name
-        artNameLabel.isAccessibilityElement = true
-        artNameLabel.accessibilityTraits = UIAccessibilityTraits.none
-        artNameLabel.accessibilityValue = "Nome da obra"
-        artNameLabel.accessibilityLanguage = "pt-BR"
-        
-        //Main art
-        mainArt.isAccessibilityElement = true
-        mainArt.accessibilityTraits = UIAccessibilityTraits.image
-        mainArt.accessibilityValue = "Foto da obra"
-        mainArt.accessibilityLanguage = "pt-BR"
-        
-        //Play button
-        playButtonOutlet.isAccessibilityElement = true
-        playButtonOutlet.accessibilityTraits = UIAccessibilityTraits.button
-        playButtonOutlet.accessibilityValue = "Escutar áudio gravado"
-        playButtonOutlet.accessibilityLanguage = "pt-BR"
-        
-        //Send audio
-        sendButtonOutlet.isAccessibilityElement = true
-        sendButtonOutlet.accessibilityTraits = UIAccessibilityTraits.button
-        sendButtonOutlet.accessibilityValue = "Enviar áudio gravado para a base de dados"
-        sendButtonOutlet.accessibilityLanguage = "pt-BR"
-        
-        //Delete audio
-        garbageButtonOutlet.isAccessibilityElement = true
-        garbageButtonOutlet.accessibilityTraits = UIAccessibilityTraits.button
-        garbageButtonOutlet.accessibilityValue = "Deletar áudio gravado"
-        garbageButtonOutlet.accessibilityLanguage = "pt-BR"
-        
-        //Total time
-        totalTime.isAccessibilityElement = true
-        totalTime.accessibilityTraits = UIAccessibilityTraits.none
-        totalTime.accessibilityValue = "Tempo total de áudio gravado"
-        totalTime.accessibilityLanguage = "pt-BR"
     }
     
     /**

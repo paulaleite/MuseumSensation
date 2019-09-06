@@ -15,7 +15,7 @@ extension UIImageView {
         let urlStringNew = urlString.replacingOccurrences(of: " ", with: "%20")
         guard let urlStringNewSafe = NSURL(string: urlStringNew) else {
             return }
-        URLSession.shared.dataTask(with: urlStringNewSafe as URL, completionHandler: { (data, response, error) -> Void in
+        URLSession.shared.dataTask(with: urlStringNewSafe as URL, completionHandler: { (data, _, error) -> Void in
             
             if error != nil {
                 print(error as Any)
