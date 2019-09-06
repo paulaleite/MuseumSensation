@@ -27,6 +27,10 @@ class ReviewAudioVC: UIViewController {
         fadeNavigation(target: StartRecordingVC())
     }
     @IBAction func sendButton(_ sender: Any) {
+        AudioSingleton.shared.sendAudio()
+        if AudioSingleton.shared.haveFileName() {
+            AudioSingleton.shared.deleteAudioFile(name: AudioSingleton.shared.getFileName())
+        }
         fadeNavigation(target: MainArtVC())
     }
     @IBAction func playButton(_ sender: Any) {
