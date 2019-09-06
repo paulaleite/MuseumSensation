@@ -36,37 +36,12 @@ class StartRecordingVC: UIViewController {
         Manager.buttonOnView(button: backButtonOutlet, image: back)
         Manager.buttonOnView(button: startRecordingButton, image: startRecording)
         // Acessibility
-        setAcessibility()
+        SetAccessibility.titleAccessibility(title: artNameLabel)
+        SetAccessibility.mainArtAccessibility(mainArt: mainArt)
+        SetAccessibility.backButton(backButton: backButtonOutlet)
+        SetAccessibility.startRecording(startRecording: startRecordingButton)
         //updates the backgroud with the main art
         ImageSingleton.shared.updateBackground(mainArt: mainArt)
         ImageSingleton.shared.updateTitle(label: artNameLabel)
-
-    }
-    
-    func setAcessibility() {
-        //Art name
-        artNameLabel.isAccessibilityElement = true
-        artNameLabel.accessibilityTraits = UIAccessibilityTraits.staticText
-        artNameLabel.accessibilityValue = "Nome da obra"
-        artNameLabel.accessibilityLanguage = "pt-BR"
-        
-        //Main art
-        mainArt.isAccessibilityElement = true
-        mainArt.accessibilityTraits = UIAccessibilityTraits.image
-        mainArt.accessibilityValue = "Foto da obra"
-        mainArt.accessibilityLanguage = "pt-BR"
-        
-        //Back button
-        backButtonOutlet.isAccessibilityElement = true
-        backButtonOutlet.accessibilityTraits = UIAccessibilityTraits.button
-        backButtonOutlet.accessibilityValue = "Voltar para a tela anterior"
-        backButtonOutlet.accessibilityLanguage = "pt-BR"
-        backButtonOutlet.accessibilityHint = "É recomendado caso você queira ir para uma outra obra ou gravar algum áudio"
-        
-        // startRecordingButton
-        startRecordingButton.isAccessibilityElement = true
-        startRecordingButton.accessibilityTraits = UIAccessibilityTraits.button
-        startRecordingButton.accessibilityValue = "Gravar um áudio"
-        startRecordingButton.accessibilityLanguage = "pt-BR"
     }
 }
