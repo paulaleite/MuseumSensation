@@ -23,8 +23,12 @@ func myAudioUploadRequest(_ audioFileName: URL, _ nameOfAudioForToSave: String) 
         let boundary = generateBoundaryString()
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
-        let audioData = try Data(contentsOf: audioFileName)
-        //        if( audioData==nil ) { return }
+
+        guard let url = Bundle.main.url(forResource: "audio", withExtension: "m4a") else {
+            return
+        }
+        
+        let audioData = try Data(contentsOf: url)
         
         var body = Data()
         body = createBodyWithParameters(nil, "imgUploader", audioData, boundary, nameOfAudioForToSave)
