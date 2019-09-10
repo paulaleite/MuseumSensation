@@ -12,7 +12,7 @@ import UIKit
 struct Manager {
     static let screenSize: CGRect = UIScreen.main.bounds
     static let iphoneNotch: CGFloat = 30
-    static let distanceToBorders: CGFloat = 28
+    static let distanceToBorders: CGFloat = 56
     
     /**
      *Center and scales bqckground image*
@@ -94,7 +94,7 @@ struct Manager {
         - view: The main view
      - returns: Nothing
      */
-    static func centerTitleTop(title: UILabel, view: UIView) {
+    static func centerTitleTop(title: UILabel) {
         title.center.y =  title.frame.height/2 + distanceToBorders + iphoneNotch
         title.frame.size.width = screenSize.width
     }

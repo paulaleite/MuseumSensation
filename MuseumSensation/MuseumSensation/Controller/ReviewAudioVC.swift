@@ -24,7 +24,8 @@ class ReviewAudioVC: UIViewController {
         if AudioSingleton.shared.haveFileName() {
             AudioSingleton.shared.deleteAudioFile(name: AudioSingleton.shared.getFileName())
         }
-        fadeNavigation(target: StartRecordingVC())
+//        fadeNavigation(target: StartRecordingVC())
+        self.dismiss(animated: true, completion: nil)
     }
     @IBAction func sendButton(_ sender: Any) {
         AudioSingleton.shared.sendAudio()
@@ -39,7 +40,7 @@ class ReviewAudioVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         Manager.backgroundImage(image: mainArt)
-        Manager.centerTitleTop(title: artNameLabel, view: view)
+        Manager.centerTitleTop(title: artNameLabel)
         Manager.gradientTopToBottom(viewToGradient: gradientLayerTop, topToBottom: true)
         Manager.gradientTopToBottom(viewToGradient: gradientLayerBottom, topToBottom: false)
         Manager.topViewGradiented(viewGradiented: gradientLayerTop, view: view)
@@ -109,8 +110,4 @@ class ReviewAudioVC: UIViewController {
     func audioDuration() {
         totalTime.text = UserDefaults.standard.string(forKey: "recordTime")
     }
-    func audioIsPlaying() {
-        
-    }
-     
 }

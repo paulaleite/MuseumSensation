@@ -32,7 +32,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
         fadeNavigation(target: AudioPlayerVC())
     }
     @IBAction func goToStartRecordingVCButton(_ sender: Any) {
-        fadeNavigation(target: StartRecordingVC())
+        fadeNavigation(target: RecordAudioVC())
     }
     let roundedBorder: CGFloat = 6
     
@@ -43,7 +43,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
         Manager.centerIconBottom(icon: playButton, view: view)
         editFrame(frame: secondArt)
         setIconBottomRight(icon: microphone)
-        Manager.centerTitleTop(title: artNameLabel, view: view)
+        Manager.centerTitleTop(title: artNameLabel)
         Manager.gradientTopToBottom(viewToGradient: gradientLayerTop, topToBottom: true)
         Manager.gradientTopToBottom(viewToGradient: gradientLayerBottom, topToBottom: false)
         Manager.topViewGradiented(viewGradiented: gradientLayerTop, view: view)
