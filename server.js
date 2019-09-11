@@ -80,8 +80,8 @@ app.post("/upload", function (req, res) {
 });
 
 // Retorna os audios de uma obra -> Funcionando
-app.get('/audios/:id', async (req, res) => {
-    let obra = await Obra.findById(req.params.id)
+app.get('/audios/:beacon', async (req, res) => {
+    let obra = await Obra.findOne({ beacon: req.params.beacon })
 
     if (obra) {
         res.json(obra.audios)
@@ -94,7 +94,7 @@ app.get('/audios/:id', async (req, res) => {
 // Cria um audio dentro de uma obra -> Funcionando
 app.post('/createAudio', async (req, res) => {
     let obra = await Obra.findOne({ beacon: req.body.beacon })
-    
+
     try {
         if(obra) {
             let newAudio = await Audio.create(req.body.audio)
