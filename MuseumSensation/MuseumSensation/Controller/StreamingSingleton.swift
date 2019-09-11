@@ -210,14 +210,6 @@ final class StreamingSingleton: NSObject {
     }
     }
 
-    public func sendAudio() {
-        guard let fileName = fileName else {
-            return
-        }
-        let audioFileName = getDocumentDirectory().appendingPathComponent(fileName)
-        myAudioUploadRequest(audioFileName, fileName)
-    }
-
 extension StreamingSingleton: AVAudioPlayerDelegate {
     
 }
