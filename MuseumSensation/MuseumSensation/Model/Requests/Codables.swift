@@ -87,6 +87,33 @@ class InterAudio: NSObject {
         return safeAudio
     }
     
+    static func getAudios(obraID: String) -> [AudioCodable] {
+        var audios: [AudioCodable]?
+        
+        do {
+            let path = "https://br-museum-sensation.herokuapp.com/audios/\(obraID)"
+            guard let url = URL(string: path) else {
+                return [AudioCodable()]
+            }
+            
+            let audioData = try Data(contentsOf: url)
+            audios = try JSONDecoder().decode([AudioCodable].self, from: audioData)
+            guard let audios = audios else {
+                return [AudioCodable()]
+                
+            }
+            return audios
+            
+        } catch {
+            print("\(error.localizedDescription)")
+        }
+        guard let safeAudios = audios else {
+            return [AudioCodable()]
+            
+        }
+        return safeAudios
+    }
+    
     func postAudio(audio: AudioCodable, completion: @escaping ([String: Any]?, Error?) -> Void) {
         
         let group = DispatchGroup() // initialize the async
