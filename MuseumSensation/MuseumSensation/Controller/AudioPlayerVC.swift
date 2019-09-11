@@ -57,11 +57,17 @@ class AudioPlayerVC: UIViewController {
         SetAccessibility.audioCounterAccessibility(audioCounter: audioCounter)
         SetAccessibility.nextButtonAccessibility(nextOutlet: nextOutlet)
         //
-        let arr = ["music2", ""]
-        StreamingSingleton.shared.setupPlayerStream(name: arr[0])
+        //let arr = ["music2", ""]]
+        let currentAudio = 0
+        let audioList = InterAudio.getAudios(obraID: "\(ImageSingleton.shared.getCurrentImage())")
+        guard let audioNow = audioList[currentAudio].nome else {
+            return
+        }
+        StreamingSingleton.shared.setupPlayerStream(name: audioNow)
         StreamingSingleton.shared.play()
+        
         ImageSingleton.shared.updateBackground(mainArt: mainArt)
-         ImageSingleton.shared.updateTitle(label: artNameLabel)
+        ImageSingleton.shared.updateTitle(label: artNameLabel)
     }
     
     func setAcessibility() {

@@ -55,9 +55,10 @@ final class StreamingSingleton: NSObject {
      */
     public func deleteAudioFile() {
         if haveFileName() {
-            guard let name = self.fileName else {
+        guard let name = self.fileName else {
                 return
             }
+        print("foi aqui")
         let audio = name
         let documentsPath: URL = getDocumentDirectory()
         let audioPath = documentsPath.appendingPathComponent(audio)
@@ -139,7 +140,7 @@ final class StreamingSingleton: NSObject {
     }
     
     public func makeURL(name: String) -> URL {
-        if let url = URL(string: "https://br-museum-sensation.herokuapp.com/audioStream/\(name).m4a") {
+        if let url = URL(string: "https://br-museum-sensation.herokuapp.com/audioStream/\(name)") {
             return url
         } else {
             return URL.init(fileURLWithPath: "https://br-museum-sensation.herokuapp.com/audioStream/music2.m4a")
