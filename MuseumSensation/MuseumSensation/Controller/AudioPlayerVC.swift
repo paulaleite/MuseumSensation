@@ -82,6 +82,7 @@ class AudioPlayerVC: UIViewController {
         
         ImageSingleton.shared.updateBackground(mainArt: mainArt)
         ImageSingleton.shared.updateTitle(label: artNameLabel)
+        audioCounter.text = "\(audioList.count)"
     }
     
     func setAcessibility() {
