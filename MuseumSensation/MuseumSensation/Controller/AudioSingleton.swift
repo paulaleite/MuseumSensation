@@ -55,11 +55,6 @@ final class AudioSingleton: NSObject {
             return String() }
         return fileName
     }
-    public func getLastFileName() -> String {
-        guard let fileName = lasFIleName else {
-            return String() }
-        return fileName
-    }
     
     /**
      *Check if you have a file*

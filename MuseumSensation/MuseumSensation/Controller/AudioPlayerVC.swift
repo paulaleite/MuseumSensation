@@ -28,9 +28,6 @@ class AudioPlayerVC: UIViewController {
     }
     @IBAction func backButton(_ sender: Any) {
         AudioSingleton.shared.stopPlaying()
-        if AudioSingleton.shared.haveFileName() {
-            AudioSingleton.shared.deleteAudioFile(name: AudioSingleton.shared.getFileName())
-        }
         self.dismiss(animated: true, completion: nil)
     }
     override func viewDidLoad() {
@@ -61,8 +58,8 @@ class AudioPlayerVC: UIViewController {
         SetAccessibility.nextButtonAccessibility(nextOutlet: nextOutlet)
         //
         let arr = ["music2", ""]
-        AudioSingleton.shared.setupPlayerStream(name: arr[0])
-        AudioSingleton.shared.play()
+        StreamingSingleton.shared.setupPlayerStream(name: arr[0])
+        StreamingSingleton.shared.play()
         ImageSingleton.shared.updateBackground(mainArt: mainArt)
          ImageSingleton.shared.updateTitle(label: artNameLabel)
     }
