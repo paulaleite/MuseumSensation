@@ -93,8 +93,8 @@ app.get('/audios/:id', async (req, res) => {
 
 // Cria um audio dentro de uma obra -> Funcionando
 app.post('/createAudio', async (req, res) => {
-    let obra = await Obra.findOne({ beacon: req.params.beacon })
-
+    let obra = await Obra.findOne({ beacon: req.body.beacon })
+    
     try {
         if(obra) {
             let newAudio = await Audio.create(req.body.audio)
