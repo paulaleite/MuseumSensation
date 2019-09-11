@@ -58,7 +58,6 @@ final class StreamingSingleton: NSObject {
         guard let name = self.fileName else {
                 return
             }
-        print("foi aqui")
         let audio = name
         let documentsPath: URL = getDocumentDirectory()
         let audioPath = documentsPath.appendingPathComponent(audio)

@@ -20,6 +20,7 @@
                 <outlet property="gradientLayerBottom" destination="NyH-3n-qWW" id="YQZ-q3-RSO"/>
                 <outlet property="gradientLayerTop" destination="f6F-iw-76t" id="m1W-P9-JSC"/>
                 <outlet property="mainArt" destination="I7b-zb-k3X" id="9zg-PF-vXU"/>
+                <outlet property="nextButtonOutlet" destination="NZ5-6l-Ltg" id="IqR-nV-3Ld"/>
                 <outlet property="nextOutlet" destination="sFc-0Q-s9z" id="fgv-yb-IaO"/>
                 <outlet property="pause" destination="SBn-km-TB5" id="Xch-VU-m22"/>
                 <outlet property="pauseButtonOutlet" destination="Pim-Yf-lmC" id="bVW-ZM-1Ae"/>
@@ -110,6 +111,13 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <connections>
                         <action selector="pauseButton:" destination="-1" eventType="touchUpInside" id="4FL-Fm-FHZ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZ5-6l-Ltg">
+                    <rect key="frame" x="244" y="647" width="42" height="41"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="nextAudioButton:" destination="-1" eventType="touchUpInside" id="s4e-5f-nYq"/>
                     </connections>
                 </button>
             </subviews>

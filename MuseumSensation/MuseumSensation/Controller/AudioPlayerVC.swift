@@ -17,19 +17,33 @@ class AudioPlayerVC: UIViewController {
     @IBOutlet weak var backButtonOutlet: UIButton!
     @IBOutlet weak var pause: UIImageView!
     @IBOutlet weak var nextOutlet: UIImageView!
+    @IBOutlet weak var nextButtonOutlet: UIButton!
     @IBOutlet weak var audioCounter: UILabel!
     @IBOutlet weak var speaker: UIImageView!
     @IBOutlet weak var progressBar: UIView!
     @IBOutlet weak var currentTime: UILabel!
     @IBOutlet weak var totalTime: UILabel!
     @IBOutlet weak var pauseButtonOutlet: UIButton!
+    var currentAudio = 0
+    var audioList: [AudioCodable] = []
     @IBAction func pauseButton(_ sender: Any) {
         SetAccessibility.playPauseButtonAccessibility(pauseButtonOutlet: pauseButtonOutlet, pause: pause)
     }
     @IBAction func backButton(_ sender: Any) {
-        AudioSingleton.shared.stopPlaying()
+        StreamingSingleton.shared.stopPlaying()
         self.dismiss(animated: true, completion: nil)
     }
+    @IBAction func nextAudioButton(_ sender: Any) {
+        self.currentAudio += 1
+        if currentAudio <  audioList.count {
+        let audioList = InterAudio.getAudios(obraID: "\(ImageSingleton.shared.getCurrentImage())")
+        guard let audioNow = audioList[currentAudio].nome else {
+            return
+        }
+        StreamingSingleton.shared.setupPlayerStream(name: audioNow)
+        StreamingSingleton.shared.play()
+        }
+        }
     override func viewDidLoad() {
         super.viewDidLoad()
         Manager.backgroundImage(image: mainArt)
@@ -42,6 +56,7 @@ class AudioPlayerVC: UIViewController {
         Manager.buttonOnView(button: backButtonOutlet, image: back)
         Manager.centerIconBottom(icon: pause, view: view)
         nextButtonPosition(button: nextOutlet, center: pause)
+        nextButtonPosition2(button: nextButtonOutlet, center: pause)
         counterPosition(counter: audioCounter, center: pause)
         speakerPosition(speaker: speaker, counter: audioCounter)
         progressBarEdited(progressBar: progressBar, icon: pause, view: view)
@@ -57,9 +72,8 @@ class AudioPlayerVC: UIViewController {
         SetAccessibility.audioCounterAccessibility(audioCounter: audioCounter)
         SetAccessibility.nextButtonAccessibility(nextOutlet: nextOutlet)
         //
-        //let arr = ["music2", ""]]
-        let currentAudio = 0
-        let audioList = InterAudio.getAudios(obraID: "\(ImageSingleton.shared.getCurrentImage())")
+        self.currentAudio = 0
+        audioList = InterAudio.getAudios(obraID: "\(ImageSingleton.shared.getCurrentImage())")
         guard let audioNow = audioList[currentAudio].nome else {
             return
         }
@@ -83,6 +97,11 @@ class AudioPlayerVC: UIViewController {
      - returns: Nothing
      */
     func nextButtonPosition(button: UIImageView, center: UIImageView) {
+        button.center.y = center.center.y
+        button.center.x = center.center.x + center.frame.width/2 + button.frame.width/2 + Manager.distanceToBorders
+    }
+    
+    func nextButtonPosition2(button: UIButton, center: UIImageView) {
         button.center.y = center.center.y
         button.center.x = center.center.x + center.frame.width/2 + button.frame.width/2 + Manager.distanceToBorders
     }

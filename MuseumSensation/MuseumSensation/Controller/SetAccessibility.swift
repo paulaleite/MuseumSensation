@@ -220,7 +220,7 @@ struct SetAccessibility {
         switch isPlaying {
         case true:
             pause.image = UIImage.init(named: "play")
-            AudioSingleton.shared.stopPlaying()
+            StreamingSingleton.shared.stopPlaying()
             isPlaying = false
             pauseButtonOutlet.isAccessibilityElement = true
             pauseButtonOutlet.accessibilityTraits = UIAccessibilityTraits.button
@@ -228,7 +228,7 @@ struct SetAccessibility {
             pauseButtonOutlet.accessibilityLabel = "Escutar áudio"
         case false:
             pause.image = UIImage.init(named: "pause")
-            AudioSingleton.shared.play()
+            StreamingSingleton.shared.play()
             isPlaying = true
             pauseButtonOutlet.isAccessibilityElement = true
             pauseButtonOutlet.accessibilityTraits = UIAccessibilityTraits.button
