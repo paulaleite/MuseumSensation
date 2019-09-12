@@ -11,7 +11,7 @@ import AVFoundation
 import AVKit
 
 func myAudioUploadRequest(_ audioFileName: URL, _ nameOfAudioForToSave: String) {
-    
+    print(nameOfAudioForToSave)
     guard let myURL = URL(string: "https://br-museum-sensation.herokuapp.com/upload") else {
         return
     }
@@ -23,11 +23,11 @@ func myAudioUploadRequest(_ audioFileName: URL, _ nameOfAudioForToSave: String) 
         let boundary = generateBoundaryString()
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
-        let audioData = try Data(contentsOf: audioFileName)
+        let audioData = try Data(contentsOf: audioFileName.absoluteURL)
         //        if( audioData==nil ) { return }
         
         var body = Data()
-        body = createBodyWithParameters(nil, "imgUploader", audioData, "\(ImageSingleton.shared.getCurrentImage())", nameOfAudioForToSave)
+        body = createBodyWithParameters(nil, "imgUploader", audioData, boundary, nameOfAudioForToSave)
         request.httpBody = body
         
     } catch let error {
@@ -40,7 +40,7 @@ func myAudioUploadRequest(_ audioFileName: URL, _ nameOfAudioForToSave: String) 
                 let response = try JSONSerialization.jsonObject(with: data, options: [])
                 print(response)
             } else {
-                // Data is nil.
+                print("Data is nil")
             }
         } catch let error as NSError {
             print("json error: \(error.localizedDescription)")

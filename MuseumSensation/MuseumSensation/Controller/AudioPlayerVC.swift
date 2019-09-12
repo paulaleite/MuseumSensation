@@ -36,14 +36,15 @@ class AudioPlayerVC: UIViewController {
     @IBAction func nextAudioButton(_ sender: Any) {
         self.currentAudio += 1
         if currentAudio <  audioList.count {
-        let audioList = InterAudio.getAudios(obraID: "\(ImageSingleton.shared.getCurrentImage())")
-        guard let audioNow = audioList[currentAudio].nome else {
-            return
+            let audioList = InterAudio.getAudios(obraID: "\(ImageSingleton.shared.getCurrentImage())")
+            guard let audioNow = audioList[currentAudio].nome else {
+                return
+            }
+            StreamingSingleton.shared.setupPlayerStream(name: audioNow)
+            audioProgressBarAnimation(duration: StreamingSingleton.shared.getAudioDuration())
+            StreamingSingleton.shared.play()
         }
-        StreamingSingleton.shared.setupPlayerStream(name: audioNow)
-        StreamingSingleton.shared.play()
-        }
-        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         Manager.backgroundImage(image: mainArt)
@@ -63,7 +64,6 @@ class AudioPlayerVC: UIViewController {
         audioTime(currentTime: currentTime, totalTime: totalTime, progressBar: progressBar, icon: pause, view: view)
         Manager.buttonOnView(button: pauseButtonOutlet, image: pause)
         // Acessibility
-        setAcessibility()
         SetAccessibility.titleAccessibility(title: artNameLabel)
         SetAccessibility.mainArtAccessibility(mainArt: mainArt)
         SetAccessibility.backButton(backButton: backButtonOutlet)
@@ -78,16 +78,12 @@ class AudioPlayerVC: UIViewController {
             return
         }
         StreamingSingleton.shared.setupPlayerStream(name: audioNow)
+        audioProgressBarAnimation(duration: StreamingSingleton.shared.getAudioDuration())
         StreamingSingleton.shared.play()
         
         ImageSingleton.shared.updateBackground(mainArt: mainArt)
         ImageSingleton.shared.updateTitle(label: artNameLabel)
         audioCounter.text = "\(audioList.count)"
-    }
-    
-    func setAcessibility() {
-        //Pause button
-        
     }
     
     /**
@@ -102,10 +98,18 @@ class AudioPlayerVC: UIViewController {
         button.center.x = center.center.x + center.frame.width/2 + button.frame.width/2 + Manager.distanceToBorders
     }
     
+    /**
+     *Postion the next button*
+     - Parameters:
+     - button: Button to position on the right side of the center icon
+     - center: The central icon
+     - returns: Nothing
+     */
     func nextButtonPosition2(button: UIButton, center: UIImageView) {
         button.center.y = center.center.y
         button.center.x = center.center.x + center.frame.width/2 + button.frame.width/2 + Manager.distanceToBorders
     }
+    
     /**
      *Postion the audio counter*
      - Parameters:
@@ -142,6 +146,7 @@ class AudioPlayerVC: UIViewController {
         progressBar.center.y = view.frame.height - icon.frame.height - progressBar.frame.height/2 - Manager.distanceToBorders*2
         progressBar.layer.cornerRadius = 10
     }
+    
     /**
      *Edit and position the audio label progress*
      - Parameters:
@@ -157,6 +162,19 @@ class AudioPlayerVC: UIViewController {
         currentTime.center.y = view.frame.height - icon.frame.height - progressBar.frame.height - Manager.distanceToBorders*2 - currentTime.frame.height/2
         totalTime.center.x = view.frame.width - Manager.distanceToBorders - totalTime.frame.width/2
         totalTime.center.y = view.frame.height - icon.frame.height - progressBar.frame.height - Manager.distanceToBorders*2 - currentTime.frame.height/2
+    }
+    
+    /**
+     *Edits the way the progress bar works*
+     - Parameters:
+        - duration: The duration of the audio
+     - returns: Nothing
+     */
+    func audioProgressBarAnimation(duration: TimeInterval) {
+        UIView.transition(with: progressBar, duration: duration, options: .curveLinear,
+                           animations: {
+            self.progressBar.frame.size.width = self.view.frame.width - (Manager.distanceToBorders * 2)
+        }, completion: nil)
     }
     
 }

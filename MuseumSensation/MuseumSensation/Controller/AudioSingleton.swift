@@ -22,7 +22,7 @@ final class AudioSingleton: NSObject {
                                   AVEncoderBitRateKey: 320000,
                                   AVNumberOfChannelsKey: 2 ,
                                   AVSampleRateKey: 44100.2] as [String: Any]
-    private var lasFIleName: String?
+    private var lasFileName: String?
     
     override init() {
         super.init()
@@ -42,7 +42,7 @@ final class AudioSingleton: NSObject {
      - returns: Nothing
      */
     public func setFile(name: String) {
-        self.lasFIleName = fileName
+        self.lasFileName = fileName
         self.fileName = name + ".m4a"
     }
     
@@ -293,6 +293,7 @@ final class AudioSingleton: NSObject {
     }
     
     public func sendAudio() {
+        // precisamos que o  nome seja passado, ele esta sem fileName
         guard let fileName = fileName else {
             return }
         let audioFileName = getDocumentDirectory().appendingPathComponent(fileName)
