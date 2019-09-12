@@ -24,10 +24,18 @@ class AudioPlayerVC: UIViewController {
     @IBOutlet weak var currentTime: UILabel!
     @IBOutlet weak var totalTime: UILabel!
     @IBOutlet weak var pauseButtonOutlet: UIButton!
+    @IBOutlet var animatedBar: UIView!
+    var isPlaying = false
     var currentAudio = 0
     var audioList: [AudioCodable] = []
     @IBAction func pauseButton(_ sender: Any) {
         SetAccessibility.playPauseButtonAccessibility(pauseButtonOutlet: pauseButtonOutlet, pause: pause)
+        let layer = animatedBar.layer
+        if isPlaying {
+            pauseLayer(layer: layer)
+        } else {
+            resumeLayer(layer: layer)
+        }
     }
     @IBAction func backButton(_ sender: Any) {
         StreamingSingleton.shared.stopPlaying()
@@ -41,7 +49,7 @@ class AudioPlayerVC: UIViewController {
                 return
             }
             StreamingSingleton.shared.setupPlayerStream(name: audioNow)
-            audioProgressBarAnimation(duration: StreamingSingleton.shared.getAudioDuration())
+//            audioProgressBarAnimation(duration: StreamingSingleton.shared.getAudioDuration())
             StreamingSingleton.shared.play()
         }
     }
@@ -72,13 +80,11 @@ class AudioPlayerVC: UIViewController {
         SetAccessibility.audioCounterAccessibility(audioCounter: audioCounter)
         SetAccessibility.nextButtonAccessibility(nextOutlet: nextOutlet)
         //
-        self.currentAudio = 0
         audioList = InterAudio.getAudios(obraID: "\(ImageSingleton.shared.getCurrentImage())")
         guard let audioNow = audioList[currentAudio].nome else {
             return
         }
         StreamingSingleton.shared.setupPlayerStream(name: audioNow)
-        audioProgressBarAnimation(duration: StreamingSingleton.shared.getAudioDuration())
         StreamingSingleton.shared.play()
         
         ImageSingleton.shared.updateBackground(mainArt: mainArt)
@@ -86,6 +92,12 @@ class AudioPlayerVC: UIViewController {
         audioCounter.text = "\(audioList.count)"
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        audioProgressBarAnimation(duration: StreamingSingleton.shared.getAudioDuration())
+        isPlaying = true
+        
+    }
     /**
      *Postion the next button*
      - Parameters:
@@ -132,6 +144,7 @@ class AudioPlayerVC: UIViewController {
         speaker.center.y = counter.center.y + counter.frame.height/2
         speaker.center.x = counter.center.x + counter.frame.width/2
     }
+    
     /**
      *Edit and format the progress bar*
      - Parameters:
@@ -141,7 +154,7 @@ class AudioPlayerVC: UIViewController {
      - returns: Nothing
      */
     func progressBarEdited(progressBar: UIView, icon: UIImageView, view: UIView) {
-        progressBar.frame.size.width = view.frame.width - Manager.distanceToBorders*2
+        progressBar.frame.size.width = Manager.screenSize.width - (Manager.distanceToBorders*2)
         progressBar.center.x = view.center.x
         progressBar.center.y = view.frame.height - icon.frame.height - progressBar.frame.height/2 - Manager.distanceToBorders*2
         progressBar.layer.cornerRadius = 10
@@ -171,10 +184,24 @@ class AudioPlayerVC: UIViewController {
      - returns: Nothing
      */
     func audioProgressBarAnimation(duration: TimeInterval) {
-        UIView.transition(with: progressBar, duration: duration, options: .curveLinear,
-                           animations: {
-            self.progressBar.frame.size.width = self.view.frame.width - (Manager.distanceToBorders * 2)
-        }, completion: nil)
+        UIView.animate(withDuration: duration) {
+            self.animatedBar.frame.size.width = self.progressBar.frame.width
+        }
+    }
+    func pauseLayer(layer: CALayer) {
+        let pausedTime: CFTimeInterval = layer.convertTime(CACurrentMediaTime(), from: nil)
+        layer.speed = 0.0
+        layer.timeOffset = pausedTime
+        isPlaying = false
     }
     
+    func resumeLayer(layer: CALayer) {
+        let pausedTime: CFTimeInterval = layer.timeOffset
+        layer.speed = 1.0
+        layer.timeOffset = 0.0
+        layer.beginTime = 0.0
+        let timeSincePause: CFTimeInterval = layer.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
+        layer.beginTime = timeSincePause
+        isPlaying = true
+    }
 }
