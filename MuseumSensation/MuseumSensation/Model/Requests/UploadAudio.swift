@@ -24,7 +24,6 @@ func myAudioUploadRequest(_ audioFileName: URL, _ nameOfAudioForToSave: String) 
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
         let audioData = try Data(contentsOf: audioFileName.absoluteURL)
-        //        if( audioData==nil ) { return }
         
         var body = Data()
         body = createBodyWithParameters(nil, "imgUploader", audioData, boundary, nameOfAudioForToSave)
@@ -39,6 +38,13 @@ func myAudioUploadRequest(_ audioFileName: URL, _ nameOfAudioForToSave: String) 
             if let data = data {
                 let response = try JSONSerialization.jsonObject(with: data, options: [])
                 print(response)
+                InterAudio.postAudio(audioNome: nameOfAudioForToSave, completion: { (response, erro) in
+                    if erro != nil {
+                        print(response)
+                    } else {
+                        print(erro)
+                    }
+                })
             } else {
                 print("Data is nil")
             }

@@ -114,12 +114,14 @@ class InterAudio: NSObject {
         return safeAudios
     }
     
-    func postAudio(audio: AudioCodable, completion: @escaping ([String: Any]?, Error?) -> Void) {
+    static func postAudio(audioNome: String, completion: @escaping ([String: Any]?, Error?) -> Void) {
         
         let group = DispatchGroup() // initialize the async
         group.enter()
+        let audio = ["nome": audioNome] as [String: Any]
+        let audioParams = ["beacon": "\(ImageSingleton.shared.getCurrentImage())",
+                        "audio": audio] as [String: Any]
         
-        let audioParams = ["nome": audio.nome ?? "Obra", "isAproved": audio.isAproved ?? false, "isCurador": audio.isCurador ?? false] as [String: Any]
         guard let url = URL(string: "https://br-museum-sensation.herokuapp.com/createAudio/") else {
             return
         }
