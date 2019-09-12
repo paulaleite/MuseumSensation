@@ -184,8 +184,10 @@ class AudioPlayerVC: UIViewController {
      - returns: Nothing
      */
     func audioProgressBarAnimation(duration: TimeInterval) {
-        UIView.animate(withDuration: duration) {
+        UIView.animate(withDuration: duration,animations: {
             self.animatedBar.frame.size.width = self.progressBar.frame.width
+        }) { (_) in
+            self.resetPlayer()
         }
     }
     func pauseLayer(layer: CALayer) {
@@ -203,5 +205,17 @@ class AudioPlayerVC: UIViewController {
         let timeSincePause: CFTimeInterval = layer.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
         layer.beginTime = timeSincePause
         isPlaying = true
+    }
+    
+    func  resetPlayer(){
+        self.currentAudio += 1
+        guard let audioNow = self.audioList[self.currentAudio].nome else {
+            return
+        }
+        StreamingSingleton.shared.stopPlaying()
+        StreamingSingleton.shared.setupPlayerStream(name: audioNow)
+        StreamingSingleton.shared.play()
+        self.animatedBar.frame.size.width = 0
+        self.audioProgressBarAnimation(duration: StreamingSingleton.shared.getAudioDuration())
     }
 }
