@@ -27,7 +27,7 @@ func myAudioUploadRequest(_ audioFileName: URL, _ nameOfAudioForToSave: String) 
         //        if( audioData==nil ) { return }
         
         var body = Data()
-        body = createBodyWithParameters(nil, "imgUploader", audioData, boundary, nameOfAudioForToSave)
+        body = createBodyWithParameters(nil, "imgUploader", audioData, "\(ImageSingleton.shared.getCurrentImage())", nameOfAudioForToSave)
         request.httpBody = body
         
     } catch let error {
@@ -53,7 +53,7 @@ func generateBoundaryString() -> String {
     return "Boundary-\(NSUUID().uuidString)"
 }
 
-func createBodyWithParameters(_ parameters: [String: String]?, _ filePathKey: String?, _ imageDataKey: Data, _ boundary: String, _ nameOfImageForToSave: String) -> Data {
+func createBodyWithParameters(_ parameters: [String: String]?, _ filePathKey: String?, _ beacon: Data, _ boundary: String, _ nameOfImageForToSave: String) -> Data {
     var body = Data()
     
     if parameters != nil {
@@ -68,7 +68,6 @@ func createBodyWithParameters(_ parameters: [String: String]?, _ filePathKey: St
     }
     
     let filename = nameOfImageForToSave
-    let mimetype = "image/jpeg"
     
     body.appendString("--\(boundary)\r\n")
     guard let filePathKey = filePathKey else {
@@ -76,8 +75,8 @@ func createBodyWithParameters(_ parameters: [String: String]?, _ filePathKey: St
     }
     body.appendString("Content-Disposition: form-data; name=\"\(filePathKey)\"; filename=\"\(filename)\"\r\n")
     
-    body.appendString("Content-Type: \(mimetype)\r\n\r\n")
-    body.append(imageDataKey)
+    body.appendString("Content-Type: \(filename)\r\n\r\n")
+    body.append(beacon)
     body.appendString("\r\n")
     body.appendString("--\(boundary)--\r\n")
     return body
