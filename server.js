@@ -94,7 +94,7 @@ app.get('/audios/:beacon', async (req, res) => {
 // Retorna todos os audios
 app.get('/audios', async (req, res) => {
     let audios = await Audio.find({})
-    res.json(obra.audios)
+    res.json(audios)
 })
 
 // Cria um audio dentro de uma obra -> Funcionando
