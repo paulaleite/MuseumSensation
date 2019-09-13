@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AudioPlayerVC" customModule="MuseumSensation" customModuleProvider="target">
             <connections>
+                <outlet property="animatedBar" destination="Hdh-gq-K4u" id="1Us-ZN-Mph"/>
                 <outlet property="artNameLabel" destination="fwx-hA-6Xs" id="C1w-lp-hYg"/>
                 <outlet property="audioCounter" destination="kZx-9u-qdx" id="JNR-44-VkH"/>
                 <outlet property="back" destination="3bb-yE-QKd" id="OsD-iS-XBA"/>
@@ -87,9 +88,16 @@
                     <rect key="frame" x="60" y="671" width="17" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yUt-JG-TEI">
-                    <rect key="frame" x="87" y="595" width="240" height="20"/>
+                <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yUt-JG-TEI">
+                    <rect key="frame" x="20" y="595" width="374" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hdh-gq-K4u">
+                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.74160748720000003" green="0.38012334660000002" blue="0.40570245960000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36N-8S-xDV">
