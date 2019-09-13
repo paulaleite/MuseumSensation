@@ -205,6 +205,7 @@ final class StreamingSingleton: NSObject {
                 } catch let error as NSError {
                     print(error.localizedDescription)
                 }
+               
             }).resume()
         }
     }
