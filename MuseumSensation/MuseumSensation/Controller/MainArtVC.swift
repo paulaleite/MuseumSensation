@@ -38,7 +38,6 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         Manager.backgroundImage(image: mainArt)
         Manager.centerIconBottom(icon: playButton, view: view)
         editFrame(frame: secondArt)

@@ -7,6 +7,10 @@
 //
 
 import UIKit
+protocol ReviewAudioVCDelegate {
+    func doubleDismiss()
+    func resetRecord()
+}
 
 class ReviewAudioVC: UIViewController {
     @IBOutlet weak var artNameLabel: UILabel!
@@ -20,22 +24,28 @@ class ReviewAudioVC: UIViewController {
     @IBOutlet weak var garbageButtonOutlet: UIButton!
     @IBOutlet weak var sendButtonOutlet: UIButton!
     @IBOutlet weak var playButtonOutlet: UIButton!
+    var delegate: ReviewAudioVCDelegate?
     @IBAction func garbageButton(_ sender: Any) {
         if AudioSingleton.shared.haveFileName() {
             AudioSingleton.shared.deleteAudioFile(name: AudioSingleton.shared.getFileName())
         }
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true){
+            self.delegate?.resetRecord()
+        }
     }
     @IBAction func sendButton(_ sender: Any) {
         AudioSingleton.shared.sendAudio()
         if AudioSingleton.shared.haveFileName() {
             AudioSingleton.shared.deleteAudioFile(name: AudioSingleton.shared.getFileName())
         }
-        fadeNavigation(target: MainArtVC())
+//        fadeNavigation(target: MainArtVC())
+        self.dismiss(animated: true) {
+            self.delegate?.doubleDismiss()
+
+        }
     }
     @IBAction func playButton(_ sender: Any) {
         AudioSingleton.shared.play()
-        print("foi o play")
     }
     override func viewDidLoad() {
         super.viewDidLoad()
