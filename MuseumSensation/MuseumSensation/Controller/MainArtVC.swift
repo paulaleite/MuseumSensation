@@ -147,7 +147,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
                 lastMessure2 = beaconOrder
                 let secondClosest = beaconOrder[1] as CLBeacon
                 if let secondClosestSafe = secondClosest.minor as? Int {
-                    if secondClosestSafe != ImageSingleton.shared.getsecondClosestImage() {
+                    if secondClosestSafe != ImageSingleton.shared.getsecondClosestImage() && secondClosestSafe != ImageSingleton.shared.getCurrentImage() {
                         ImageSingleton.shared.setsecondClosestImage(beaconID: secondClosestSafe)
                         ImageSingleton.shared.updatesecondClosestImage(mainArt: secondArtImage)
                     }
