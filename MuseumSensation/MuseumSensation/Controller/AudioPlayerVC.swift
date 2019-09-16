@@ -24,7 +24,10 @@ class AudioPlayerVC: UIViewController {
     @IBOutlet weak var currentTime: UILabel!
     @IBOutlet weak var totalTime: UILabel!
     @IBOutlet weak var pauseButtonOutlet: UIButton!
-    @IBOutlet var animatedBar: UIView!
+    @IBOutlet weak var animatedBar: UIView!
+    var timer: Timer?
+    var minutes = 0
+    var seconds = 0
     var isPlaying = false
     var currentAudio = 0
     var audioList: [AudioCodable] = []
@@ -36,22 +39,18 @@ class AudioPlayerVC: UIViewController {
         } else {
             resumeLayer(layer: layer)
         }
+        guard timer != nil else {
+            return
+        }
+        pauseTimer()
     }
     @IBAction func backButton(_ sender: Any) {
         StreamingSingleton.shared.stopPlaying()
+        StreamingSingleton.shared.deleteAudioFile()
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func nextAudioButton(_ sender: Any) {
-        self.currentAudio += 1
-        if currentAudio <  audioList.count {
-            let audioList = InterAudio.getAudios(obraID: "\(ImageSingleton.shared.getCurrentImage())")
-            guard let audioNow = audioList[currentAudio].nome else {
-                return
-            }
-            StreamingSingleton.shared.setupPlayerStream(name: audioNow)
-//            audioProgressBarAnimation(duration: StreamingSingleton.shared.getAudioDuration())
-            StreamingSingleton.shared.play()
-        }
+        self.resetPlayer()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,30 +78,36 @@ class AudioPlayerVC: UIViewController {
         SetAccessibility.currentTimeAccessibility(currentTime: currentTime)
         SetAccessibility.audioCounterAccessibility(audioCounter: audioCounter)
         SetAccessibility.nextButtonAccessibility(nextOutlet: nextOutlet)
+        StreamingSingleton.shared.stopPlaying()
         //
+        
+        self.animatedBar.frame.size.width = 0
+        ImageSingleton.shared.updateBackground(mainArt: mainArt)
+        ImageSingleton.shared.updateTitle(label: artNameLabel)
+        
         audioList = InterAudio.getAudios(obraID: "\(ImageSingleton.shared.getCurrentImage())")
+        print(audioList)
+        audioCounter.text = "\(audioList.count)"
         guard let audioNow = audioList[currentAudio].nome else {
             return
         }
         StreamingSingleton.shared.setupPlayerStream(name: audioNow)
-        StreamingSingleton.shared.play()
         
-        ImageSingleton.shared.updateBackground(mainArt: mainArt)
-        ImageSingleton.shared.updateTitle(label: artNameLabel)
-        audioCounter.text = "\(audioList.count)"
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+    override func viewDidAppear(_ animated: Bool) {
+        StreamingSingleton.shared.play()
         audioProgressBarAnimation(duration: StreamingSingleton.shared.getAudioDuration())
         isPlaying = true
-        
+        timerStart()
+        setMaxTime(duration: StreamingSingleton.shared.getAudioDuration())
     }
+    
     /**
      *Postion the next button*
      - Parameters:
-        - button: Button to position on the right side of the center icon
-        - center: The central icon
+     - button: Button to position on the right side of the center icon
+     - center: The central icon
      - returns: Nothing
      */
     func nextButtonPosition(button: UIImageView, center: UIImageView) {
@@ -125,8 +130,8 @@ class AudioPlayerVC: UIViewController {
     /**
      *Postion the audio counter*
      - Parameters:
-        - counter: Counter to position on the left side of the center icon
-        - center: The central icon
+     - counter: Counter to position on the left side of the center icon
+     - center: The central icon
      - returns: Nothing
      */
     func counterPosition(counter: UILabel, center: UIImageView) {
@@ -136,8 +141,8 @@ class AudioPlayerVC: UIViewController {
     /**
      *Postion the speaker*
      - Parameters:
-        - speaker: The speaker to position in the right bottom of the counter
-        - center: The central icon
+     - speaker: The speaker to position in the right bottom of the counter
+     - center: The central icon
      - returns: Nothing
      */
     func speakerPosition(speaker: UIImageView, counter: UILabel) {
@@ -148,9 +153,9 @@ class AudioPlayerVC: UIViewController {
     /**
      *Edit and format the progress bar*
      - Parameters:
-        - progressBar: The speaker to be edited
-        - icon: The central icon
-        - view: The main view
+     - progressBar: The speaker to be edited
+     - icon: The central icon
+     - view: The main view
      - returns: Nothing
      */
     func progressBarEdited(progressBar: UIView, icon: UIImageView, view: UIView) {
@@ -163,11 +168,11 @@ class AudioPlayerVC: UIViewController {
     /**
      *Edit and position the audio label progress*
      - Parameters:
-        - currentTime: The audio current time
-        - totalTime: The audio total time
-        - progressBar: The speaker to be edited
-        - icon: The central icon
-        - view: The main view
+     - currentTime: The audio current time
+     - totalTime: The audio total time
+     - progressBar: The speaker to be edited
+     - icon: The central icon
+     - view: The main view
      - returns: Nothing
      */
     func audioTime(currentTime: UILabel, totalTime: UILabel, progressBar: UIView, icon: UIImageView, view: UIView) {
@@ -180,14 +185,18 @@ class AudioPlayerVC: UIViewController {
     /**
      *Edits the way the progress bar works*
      - Parameters:
-        - duration: The duration of the audio
+     - duration: The duration of the audio
      - returns: Nothing
      */
     func audioProgressBarAnimation(duration: TimeInterval) {
-        UIView.animate(withDuration: duration,animations: {
+        self.animatedBar.frame.size.width = 0
+        UIView.animate(withDuration: duration, delay: 0.0, options: .curveLinear, animations: {
             self.animatedBar.frame.size.width = self.progressBar.frame.width
-        }) { (_) in
-            self.resetPlayer()
+            self.view.layoutIfNeeded()
+        }) { (completed) in
+            if completed{
+                self.resetPlayer()
+            }
         }
     }
     func pauseLayer(layer: CALayer) {
@@ -207,15 +216,76 @@ class AudioPlayerVC: UIViewController {
         isPlaying = true
     }
     
-    func  resetPlayer(){
-        self.currentAudio += 1
-        guard let audioNow = self.audioList[self.currentAudio].nome else {
-            return
+    func  resetPlayer() {
+        if currentAudio < audioList.count - 1 {
+            self.currentAudio += 1
+            guard let audioNow = self.audioList[self.currentAudio].nome else {
+                return
+            }
+            StreamingSingleton.shared.stopPlaying()
+            StreamingSingleton.shared.setupPlayerStream(name: audioNow)
+            self.animatedBar.frame.size.width = 0
+            sleep(1)
+            StreamingSingleton.shared.play()
+            animatedBar.layer.removeAllAnimations()
+            self.audioProgressBarAnimation(duration: StreamingSingleton.shared.getAudioDuration())
+            minutes = 0
+            seconds = 0
+            currentTime.text = "0:00"
+            setMaxTime(duration: StreamingSingleton.shared.getAudioDuration())
         }
-        StreamingSingleton.shared.stopPlaying()
-        StreamingSingleton.shared.setupPlayerStream(name: audioNow)
-        StreamingSingleton.shared.play()
-        self.animatedBar.frame.size.width = 0
-        self.audioProgressBarAnimation(duration: StreamingSingleton.shared.getAudioDuration())
+        
+    }
+    
+    /**
+     *Start a timer*
+     - returns: Nothing
+     */
+    func timerStart() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            self.timeIncrement()
+        }
+    }
+    /**
+     *Increment the time label in the view*
+     - returns: Nothing
+     */
+    @objc func timeIncrement() {
+        seconds += 1
+        if seconds == 60 {
+            seconds =  0
+            minutes += 1
+        }
+        var points: String = ""
+        if seconds < 10 {
+            points = ":0"
+        } else {
+            points = ":"
+        }
+        currentTime.text = String(minutes) + points + String(seconds)
+    }
+    func setMaxTime(duration: TimeInterval) {
+        var minutoTotal = Int(duration / 60)
+        var segundoTotal = Int(duration.truncatingRemainder(dividingBy: 60))
+        var ponto = ""
+        if segundoTotal < 10 {
+            ponto = ":0"
+        } else {
+            ponto = ":"
+        }
+        totalTime.text = String(minutoTotal) + ponto + String(segundoTotal)
+    }
+    
+    func pauseTimer() {
+        if isPlaying {
+            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+                self.timeIncrement()
+            }
+        } else {
+            guard let timer = timer else {
+                return
+            }
+            timer.invalidate()
+        }
     }
 }
