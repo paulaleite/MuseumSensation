@@ -32,10 +32,7 @@ final class ImageSingleton: NSObject {
         }
         mainArt.imageFromServerURL(urlString: Manager.getImage(beacon: currentImage)) { (res, err) in
             if err == nil {
-                guard let res = res else {
-                    return
-                }
-                print(res)
+                //erro
             }
         }
     }
@@ -69,15 +66,12 @@ final class ImageSingleton: NSObject {
      - returns: Nothing
      */
     public func updatesecondClosestImage(mainArt: UIImageView) {
-        guard let currentImage = currentImage else {
+        guard let currentImage = secondClosestImage else {
             return
         }
         mainArt.imageFromServerURL(urlString: Manager.getImage(beacon: currentImage)) { (res, err) in
             if err == nil {
-                guard let res = res else {
-                    return
-                }
-                print(res)
+                //erro
             }
         }
     }

@@ -109,7 +109,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
         frame.center.y = Manager.screenSize.height - frame.frame.height/2 - Manager.distanceToBorders
     }
     
-    //beacon tracking function
+    // Beacon tracking function
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         //get an array of beacon that are close
         var knownBeacons = beacons.filter { ($0.proximity == CLProximity.immediate) && ($0.accuracy > 0) }
@@ -147,7 +147,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
                 lastMessure2 = beaconOrder
                 let secondClosest = beaconOrder[1] as CLBeacon
                 if let secondClosestSafe = secondClosest.minor as? Int {
-                    if secondClosestSafe != ImageSingleton.shared.getsecondClosestImage() {
+                    if secondClosestSafe != ImageSingleton.shared.getsecondClosestImage() && secondClosestSafe != ImageSingleton.shared.getCurrentImage() {
                         ImageSingleton.shared.setsecondClosestImage(beaconID: secondClosestSafe)
                         ImageSingleton.shared.updatesecondClosestImage(mainArt: secondArtImage)
                     }
