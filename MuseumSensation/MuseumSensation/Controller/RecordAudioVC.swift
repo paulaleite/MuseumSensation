@@ -18,6 +18,7 @@ class RecordAudioVC: UIViewController {
     @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var backButtonOutlet: UIButton!
     @IBOutlet weak var timeLabel: UILabel!
+    var timer: Timer?
     
     var minutes: Int = 0
     var seconds: Int = 0
@@ -49,11 +50,13 @@ class RecordAudioVC: UIViewController {
             AudioSingleton.shared.record()
             minutes = 0
             seconds = 0
-            timer()
+            startTimer()
         case false:
             AudioSingleton.shared.stopRecord()
             AudioSingleton.shared.setupPlayer()
-            fadeNavigation(target: ReviewAudioVC())
+            let viewController = ReviewAudioVC()
+            viewController.delegate = self
+            fadeNavigation(target: viewController)
         }
     }
     
@@ -78,6 +81,7 @@ class RecordAudioVC: UIViewController {
         //updates the backgroud with the main art
         ImageSingleton.shared.updateBackground(mainArt: mainArt)
         ImageSingleton.shared.updateTitle(label: artNameLabel)
+
     }
     
     /**
@@ -95,8 +99,8 @@ class RecordAudioVC: UIViewController {
      *Start a timer*
      - returns: Nothing
      */
-    func timer() {
-        _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+    func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             self.timeIncrement()
         }
     }
@@ -119,4 +123,17 @@ class RecordAudioVC: UIViewController {
         timeLabel.text = String(minutes) + points + String(seconds)
         UserDefaults.standard.set(String(minutes) + points + String(seconds), forKey: "recordTime")
     }
+}
+
+extension RecordAudioVC: ReviewAudioVCDelegate {
+    func doubleDismiss() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    func resetRecord() {
+        recording = false
+        self.timer?.invalidate()
+        startRecordingImage.image = UIImage(named: "record")
+        timeLabel.text = "0:00"
+    }
+    
 }
