@@ -35,6 +35,7 @@ class ReviewAudioVC: UIViewController {
     }
     @IBAction func playButton(_ sender: Any) {
         AudioSingleton.shared.play()
+        print("foi o play")
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,8 +59,7 @@ class ReviewAudioVC: UIViewController {
         SetAccessibility.sendButton(sendButton: sendButtonOutlet)
         SetAccessibility.garbageButton(garbageButton: garbageButtonOutlet)
         SetAccessibility.totalTime(totalTime: totalTime)
-        //
-        AudioSingleton.shared.setupPlayer()
+
         audioDuration()
         //updates the backgroud with the main art
         ImageSingleton.shared.updateBackground(mainArt: mainArt)

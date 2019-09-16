@@ -38,7 +38,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UserDefaults.standard.set(0, forKey: "closestArt")
+    
         Manager.backgroundImage(image: mainArt)
         Manager.centerIconBottom(icon: playButton, view: view)
         editFrame(frame: secondArt)
@@ -57,6 +57,9 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
         SetAccessibility.secondArtAccessibility(secondArt: secondArtImage)
         SetAccessibility.startRecordingAccessibility(microphone: goToStartRecordingVC)
         SetAccessibility.titleAccessibility(title: artNameLabel)
+        ImageSingleton.shared.updateBackground(mainArt: mainArt)
+        ImageSingleton.shared.updateTitle(label: artNameLabel)
+        ImageSingleton.shared.updatesecondClosestImage(mainArt: secondArtImage)
         
         //set the locationManager delegate to self
         locationManager.delegate = self
@@ -136,7 +139,6 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
                     ImageSingleton.shared.setTitle(beaconID: firstBeacon)
                     ImageSingleton.shared.updateBackground(mainArt: mainArt)
                     ImageSingleton.shared.updateTitle(label: artNameLabel)
-                    
                 }
             }
         }
