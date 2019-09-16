@@ -163,7 +163,6 @@ final class StreamingSingleton: NSObject {
         }
         // lets create your destination file url
         let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
-        print(destinationUrl)
         
         // to check if it exists before downloading it
         if FileManager.default.fileExists(atPath: destinationUrl.path) {

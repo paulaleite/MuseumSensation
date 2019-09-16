@@ -11,7 +11,6 @@ import AVFoundation
 import AVKit
 
 func myAudioUploadRequest(_ audioFileName: URL, _ nameOfAudioForToSave: String) {
-    print(nameOfAudioForToSave)
     guard let myURL = URL(string: "https://br-museum-sensation.herokuapp.com/upload") else {
         return
     }

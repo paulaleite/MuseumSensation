@@ -32,10 +32,7 @@ final class ImageSingleton: NSObject {
         }
         mainArt.imageFromServerURL(urlString: Manager.getImage(beacon: currentImage)) { (res, err) in
             if err == nil {
-                guard let res = res else {
-                    return
-                }
-                print(res)
+                //erro
             }
         }
     }
@@ -74,10 +71,7 @@ final class ImageSingleton: NSObject {
         }
         mainArt.imageFromServerURL(urlString: Manager.getImage(beacon: currentImage)) { (res, err) in
             if err == nil {
-                guard let res = res else {
-                    return
-                }
-                print(res)
+                //erro
             }
         }
     }

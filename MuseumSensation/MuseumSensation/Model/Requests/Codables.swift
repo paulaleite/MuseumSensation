@@ -162,7 +162,6 @@ class InterAudio: NSObject {
                 do {
                     if let file = data {
                         let json = try JSONSerialization.jsonObject(with: file, options: []) as? [String: Any] ?? [String: Any] ()
-                        print(json)
                         for (key, value) in json {
                             if key == "result" {
                                 if value as? Int == 0 {
