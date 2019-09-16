@@ -11,6 +11,7 @@
 		0C5020122326DD8C00D4431E /* RecordAudioVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C5020102326DD8C00D4431E /* RecordAudioVC.xib */; };
 		0C9E26EB23159EB8005355A8 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9E26EA23159EB8005355A8 /* Manager.swift */; };
 		0C9E27272316E73A005355A8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9E27262316E73A005355A8 /* Extensions.swift */; };
+		1E0CEF1123300E9D003CE7CE /* ImageServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0CEF1023300E9C003CE7CE /* ImageServer.swift */; };
 		1E0FCA44231082C400993AD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0FCA43231082C400993AD3 /* AppDelegate.swift */; };
 		1E0FCA46231082C400993AD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0FCA45231082C400993AD3 /* ViewController.swift */; };
 		1E0FCA49231082C400993AD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E0FCA47231082C400993AD3 /* Main.storyboard */; };
@@ -34,7 +35,6 @@
 		1E1701DB232029F300ED7ECF /* ImageSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1701DA232029F300ED7ECF /* ImageSingleton.swift */; };
 		1E9C3A8D231ECE1F00C32E79 /* Codables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C3A8C231ECE1F00C32E79 /* Codables.swift */; };
 		1E9C3A8F231ECE3300C32E79 /* UploadAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C3A8E231ECE3300C32E79 /* UploadAudio.swift */; };
-		1E9C3A91231ECE4200C32E79 /* ImageServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C3A90231ECE4200C32E79 /* ImageServer.swift */; };
 		1EC85CB32322C58E00245FFA /* SetAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC85CB22322C58E00245FFA /* SetAccessibility.swift */; };
 		7D04005E231596DD00D05726 /* AudioSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04005D231596DD00D05726 /* AudioSingleton.swift */; };
 		7D0B363123282FFB004E93A6 /* StreamingSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0B363023282FFB004E93A6 /* StreamingSingleton.swift */; };
@@ -62,6 +62,7 @@
 		0C5020102326DD8C00D4431E /* RecordAudioVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordAudioVC.xib; sourceTree = "<group>"; };
 		0C9E26EA23159EB8005355A8 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		0C9E27262316E73A005355A8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1E0CEF1023300E9C003CE7CE /* ImageServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageServer.swift; sourceTree = "<group>"; };
 		1E0FCA40231082C400993AD3 /* MuseumSensation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuseumSensation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E0FCA43231082C400993AD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E0FCA45231082C400993AD3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,7 +92,6 @@
 		1E1701DA232029F300ED7ECF /* ImageSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSingleton.swift; sourceTree = "<group>"; };
 		1E9C3A8C231ECE1F00C32E79 /* Codables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codables.swift; sourceTree = "<group>"; };
 		1E9C3A8E231ECE3300C32E79 /* UploadAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAudio.swift; sourceTree = "<group>"; };
-		1E9C3A90231ECE4200C32E79 /* ImageServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServer.swift; sourceTree = "<group>"; };
 		1EC85CB22322C58E00245FFA /* SetAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAccessibility.swift; sourceTree = "<group>"; };
 		7D04005D231596DD00D05726 /* AudioSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSingleton.swift; sourceTree = "<group>"; };
 		7D0B363023282FFB004E93A6 /* StreamingSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingSingleton.swift; sourceTree = "<group>"; };
@@ -232,7 +232,7 @@
 			children = (
 				1E9C3A8C231ECE1F00C32E79 /* Codables.swift */,
 				1E9C3A8E231ECE3300C32E79 /* UploadAudio.swift */,
-				1E9C3A90231ECE4200C32E79 /* ImageServer.swift */,
+				1E0CEF1023300E9C003CE7CE /* ImageServer.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -404,7 +404,6 @@
 				1E0FCA822310846400993AD3 /* AudioPlayerVC.swift in Sources */,
 				1E0FCA79231083C000993AD3 /* SearchingFirstArtVC.swift in Sources */,
 				1E1701DB232029F300ED7ECF /* ImageSingleton.swift in Sources */,
-				1E9C3A91231ECE4200C32E79 /* ImageServer.swift in Sources */,
 				1E0FCA8A231084CA00993AD3 /* RecordingVC.swift in Sources */,
 				1E0FCA46231082C400993AD3 /* ViewController.swift in Sources */,
 				1E9C3A8F231ECE3300C32E79 /* UploadAudio.swift in Sources */,
@@ -415,6 +414,7 @@
 				1E0FCA4C231082C400993AD3 /* MuseumSensation.xcdatamodeld in Sources */,
 				1E0FCA44231082C400993AD3 /* AppDelegate.swift in Sources */,
 				0C9E27272316E73A005355A8 /* Extensions.swift in Sources */,
+				1E0CEF1123300E9D003CE7CE /* ImageServer.swift in Sources */,
 				0C9E26EB23159EB8005355A8 /* Manager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

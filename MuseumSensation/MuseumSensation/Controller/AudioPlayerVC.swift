@@ -61,7 +61,7 @@ class AudioPlayerVC: UIViewController {
         super.viewDidLoad()
         
         Manager.backgroundImage(image: mainArt)
-        Manager.centerTitleTop(title: artNameLabel)
+        Manager.centerTitleTop(title: artNameLabel, icon: back)
         Manager.gradientTopToBottom(viewToGradient: gradientLayerTop, topToBottom: true)
         Manager.gradientTopToBottom(viewToGradient: gradientLayerBottom, topToBottom: false)
         Manager.topViewGradiented(viewGradiented: gradientLayerTop, view: view)

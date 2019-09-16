@@ -94,9 +94,11 @@ struct Manager {
         - view: The main view
      - returns: Nothing
      */
-    static func centerTitleTop(title: UILabel) {
-        title.center.y =  title.frame.height/2 + distanceToBorders + iphoneNotch
-        title.frame.size.width = screenSize.width
+    static func centerTitleTop(title: UILabel, icon: UIImageView? = nil) {
+        title.frame.size.width = (icon == nil ? screenSize.width : screenSize.width - 2 * (icon.frame.width + distanceToBorders))
+        title.frame.size.height *= 2
+        title.center.y = title.frame.height/2 + distanceToBorders + iphoneNotch
+        title.center.x = screenSize.width/2
     }
     
     /**
