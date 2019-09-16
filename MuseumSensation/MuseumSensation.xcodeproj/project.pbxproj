@@ -20,8 +20,6 @@
 		1E0FCA51231082C500993AD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E0FCA4F231082C500993AD3 /* LaunchScreen.storyboard */; };
 		1E0FCA5C231082C500993AD3 /* MuseumSensationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0FCA5B231082C500993AD3 /* MuseumSensationTests.swift */; };
 		1E0FCA67231082C500993AD3 /* MuseumSensationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0FCA66231082C500993AD3 /* MuseumSensationUITests.swift */; };
-		1E0FCA79231083C000993AD3 /* SearchingFirstArtVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0FCA77231083C000993AD3 /* SearchingFirstArtVC.swift */; };
-		1E0FCA7A231083C000993AD3 /* SearchingFirstArtVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E0FCA78231083C000993AD3 /* SearchingFirstArtVC.xib */; };
 		1E0FCA7E2310840700993AD3 /* MainArtVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0FCA7C2310840700993AD3 /* MainArtVC.swift */; };
 		1E0FCA7F2310840700993AD3 /* MainArtVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E0FCA7D2310840700993AD3 /* MainArtVC.xib */; };
 		1E0FCA822310846400993AD3 /* AudioPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0FCA802310846400993AD3 /* AudioPlayerVC.swift */; };
@@ -77,8 +75,6 @@
 		1E0FCA62231082C500993AD3 /* MuseumSensationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MuseumSensationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E0FCA66231082C500993AD3 /* MuseumSensationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuseumSensationUITests.swift; sourceTree = "<group>"; };
 		1E0FCA68231082C500993AD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1E0FCA77231083C000993AD3 /* SearchingFirstArtVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingFirstArtVC.swift; sourceTree = "<group>"; };
-		1E0FCA78231083C000993AD3 /* SearchingFirstArtVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchingFirstArtVC.xib; sourceTree = "<group>"; };
 		1E0FCA7C2310840700993AD3 /* MainArtVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainArtVC.swift; sourceTree = "<group>"; };
 		1E0FCA7D2310840700993AD3 /* MainArtVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainArtVC.xib; sourceTree = "<group>"; };
 		1E0FCA802310846400993AD3 /* AudioPlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerVC.swift; sourceTree = "<group>"; };
@@ -189,7 +185,6 @@
 			isa = PBXGroup;
 			children = (
 				7D04005D231596DD00D05726 /* AudioSingleton.swift */,
-				1E0FCA77231083C000993AD3 /* SearchingFirstArtVC.swift */,
 				1E0FCA7C2310840700993AD3 /* MainArtVC.swift */,
 				1E0FCA802310846400993AD3 /* AudioPlayerVC.swift */,
 				0C50200F2326DD8C00D4431E /* RecordAudioVC.swift */,
@@ -208,7 +203,6 @@
 		1E0FCA7B231083DB00993AD3 /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
-				1E0FCA78231083C000993AD3 /* SearchingFirstArtVC.xib */,
 				1E0FCA7D2310840700993AD3 /* MainArtVC.xib */,
 				1E0FCA812310846400993AD3 /* AudioPlayerVC.xib */,
 				1E0FCA852310849700993AD3 /* StartRecordingVC.xib */,
@@ -342,7 +336,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E0FCA7A231083C000993AD3 /* SearchingFirstArtVC.xib in Resources */,
 				1E0FCA51231082C500993AD3 /* LaunchScreen.storyboard in Resources */,
 				1E0FCA832310846400993AD3 /* AudioPlayerVC.xib in Resources */,
 				1E0FCA4E231082C500993AD3 /* Assets.xcassets in Resources */,
@@ -402,7 +395,6 @@
 				1E9C3A8D231ECE1F00C32E79 /* Codables.swift in Sources */,
 				1E0FCA8E231084FA00993AD3 /* ReviewAudioVC.swift in Sources */,
 				1E0FCA822310846400993AD3 /* AudioPlayerVC.swift in Sources */,
-				1E0FCA79231083C000993AD3 /* SearchingFirstArtVC.swift in Sources */,
 				1E1701DB232029F300ED7ECF /* ImageSingleton.swift in Sources */,
 				1E0FCA8A231084CA00993AD3 /* RecordingVC.swift in Sources */,
 				1E0FCA46231082C400993AD3 /* ViewController.swift in Sources */,

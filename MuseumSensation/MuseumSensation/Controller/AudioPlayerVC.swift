@@ -199,12 +199,12 @@ class AudioPlayerVC: UIViewController {
         self.animatedBar.frame.size.width = 0
         UIView.animate(withDuration: duration, delay: 0.0, options: .curveLinear, animations: {
             self.animatedBar.frame.size.width = self.progressBar.frame.width
-            self.view.layoutIfNeeded() }
-        ) { (completed) in
+            self.view.layoutIfNeeded() },
+        completion: { (completed) in
             if completed {
                 self.resetPlayer()
             }
-        }
+        })
     }
     
     func pauseLayer(layer: CALayer) {
