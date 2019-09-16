@@ -40,8 +40,14 @@ func myAudioUploadRequest(_ audioFileName: URL, _ nameOfAudioForToSave: String) 
                 print(response)
                 InterAudio.postAudio(audioNome: nameOfAudioForToSave, completion: { (response, erro) in
                     if erro != nil {
+                        guard let response = response else {
+                            return
+                        }
                         print(response)
                     } else {
+                        guard let erro = erro else {
+                            return
+                        }
                         print(erro)
                     }
                 })

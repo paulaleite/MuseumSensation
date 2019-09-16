@@ -55,17 +55,17 @@ final class StreamingSingleton: NSObject {
      */
     public func deleteAudioFile() {
         if haveFileName() {
-        guard let name = self.fileName else {
+            guard let name = self.fileName else {
                 return
             }
-        let audio = name
-        let documentsPath: URL = getDocumentDirectory()
-        let audioPath = documentsPath.appendingPathComponent(audio)
-        do {
-            try FileManager.default.removeItem(at: audioPath)
-        } catch {
-            print(error)
-        }
+            let audio = name
+            let documentsPath: URL = getDocumentDirectory()
+            let audioPath = documentsPath.appendingPathComponent(audio)
+            do {
+                try FileManager.default.removeItem(at: audioPath)
+            } catch {
+                print(error)
+            }
         }
     }
     
@@ -75,7 +75,8 @@ final class StreamingSingleton: NSObject {
      */
     public func play() {
         guard let audioPlayer = audioPlayer else {
-            return}
+            return
+        }
         audioPlayer.play()
     }
     
@@ -85,7 +86,8 @@ final class StreamingSingleton: NSObject {
      */
     public func stopPlaying() {
         guard let audioPlayer = audioPlayer else {
-            return}
+            return
+        }
         audioPlayer.stop()
     }
     
@@ -168,13 +170,6 @@ final class StreamingSingleton: NSObject {
             print("The file already exists at path")
             do {
                 self.audioPlayer = try AVAudioPlayer(contentsOf: destinationUrl)
-                guard let audioPlayer = self.audioPlayer else {
-                    return }
-                self.fileName = name
-                audioPlayer.delegate = self
-                audioPlayer.prepareToPlay()
-                audioPlayer.volume = 1.0
-                audioPlayer.play()
                 
             } catch {
                 print(error)
@@ -205,11 +200,11 @@ final class StreamingSingleton: NSObject {
                 } catch let error as NSError {
                     print(error.localizedDescription)
                 }
-               
+                
             }).resume()
         }
     }
-    }
+}
 
 extension StreamingSingleton: AVAudioPlayerDelegate {
     

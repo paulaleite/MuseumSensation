@@ -12,7 +12,7 @@ import UIKit
 struct Manager {
     static let screenSize: CGRect = UIScreen.main.bounds
     static let iphoneNotch: CGFloat = 30
-    static let distanceToBorders: CGFloat = 56
+    static let distanceToBorders: CGFloat = 30
     
     /**
      *Center and scales bqckground image*
