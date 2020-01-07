@@ -216,11 +216,11 @@ struct SetAccessibility {
         - pause: The pause image
      - returns: Nothing
      */
-    static func playPauseButtonAccessibility (pauseButtonOutlet: UIButton, pause: UIImageView) {
+    static func playPauseButtonAccessibility (pauseButtonOutlet: UIButton, pause: UIImageView, streamAudio: StreamingHandler) {
         switch isPlaying {
         case true:
             pause.image = UIImage.init(named: "play")
-            StreamingSingleton.shared.stopPlaying()
+            streamAudio.stopPlaying()
             isPlaying = false
             pauseButtonOutlet.isAccessibilityElement = true
             pauseButtonOutlet.accessibilityTraits = UIAccessibilityTraits.button
@@ -228,7 +228,8 @@ struct SetAccessibility {
             pauseButtonOutlet.accessibilityLabel = "Escutar áudio"
         case false:
             pause.image = UIImage.init(named: "pause")
-            StreamingSingleton.shared.play()
+            streamAudio.play()
+//            audioplayer.play()
             isPlaying = true
             pauseButtonOutlet.isAccessibilityElement = true
             pauseButtonOutlet.accessibilityTraits = UIAccessibilityTraits.button

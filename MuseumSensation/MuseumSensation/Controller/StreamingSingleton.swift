@@ -10,9 +10,8 @@ import Foundation
 import  AVFoundation
 import UIKit
 
-final class StreamingSingleton: NSObject {
+final class StreamingHandler: NSObject {
     
-    static let shared = StreamingSingleton()
     private var isMicAccessGranted = false
     private var audioRecorder: AVAudioRecorder?
     private var audioPlayer: AVAudioPlayer?
@@ -205,10 +204,10 @@ final class StreamingSingleton: NSObject {
     }
 }
 
-extension StreamingSingleton: AVAudioPlayerDelegate {
+extension StreamingHandler: AVAudioPlayerDelegate {
     
 }
 
-extension StreamingSingleton: AVAudioRecorderDelegate {
+extension StreamingHandler: AVAudioRecorderDelegate {
     
 }

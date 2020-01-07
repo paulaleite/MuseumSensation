@@ -19,9 +19,10 @@ class RecordingVC: UIViewController {
     
     var minutes: Int = 0
     var seconds: Int = 0
+    var audioPlayer = AudioHandler()
     @IBAction func stopRecordingButton(_ sender: Any) {
-        AudioSingleton.shared.stopRecord()
-        AudioSingleton.shared.setupPlayer()
+        audioPlayer.stopRecord()
+        audioPlayer.setupPlayer()
         fadeNavigation(target: ReviewAudioVC())
     }
     override func viewDidLoad() {
@@ -41,16 +42,16 @@ class RecordingVC: UIViewController {
         SetAccessibility.mainArtAccessibility(mainArt: mainArt)
         SetAccessibility.stopRecording(stopRecording: stopRecordingButtonOutlet)
         // Audio
-        AudioSingleton.shared.stopPlaying()
-        if AudioSingleton.shared.haveFileName() {
-            AudioSingleton.shared.deleteAudioFile(name: AudioSingleton.shared.getFileName())
+        audioPlayer.stopPlaying()
+        if audioPlayer.haveFileName() {
+            audioPlayer.deleteAudioFile(name: audioPlayer.getFileName())
         }
         let nome = DateFormatter()
         nome.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         let nomeString = nome.string(from: Date())
-        AudioSingleton.shared.setFile(name: nomeString)
-        AudioSingleton.shared.setupRecorder()
-        AudioSingleton.shared.record()
+        audioPlayer.setFile(name: nomeString)
+        audioPlayer.setupRecorder()
+        audioPlayer.record()
         minutes = 0
         seconds = 0
         timer()

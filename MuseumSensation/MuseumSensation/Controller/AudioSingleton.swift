@@ -7,12 +7,11 @@
 //
 
 import Foundation
-import  AVFoundation
+import AVFoundation
 import UIKit
 
-final class AudioSingleton: NSObject {
+final class AudioHandler: NSObject {
     
-    static let shared = AudioSingleton()
     private var isMicAccessGranted = false
     private var audioRecorder: AVAudioRecorder?
     private var audioPlayer: AVAudioPlayer?
@@ -290,10 +289,10 @@ final class AudioSingleton: NSObject {
     }
 }
 
-extension AudioSingleton: AVAudioPlayerDelegate {
+extension AudioHandler: AVAudioPlayerDelegate {
     
 }
 
-extension AudioSingleton: AVAudioRecorderDelegate {
+extension AudioHandler: AVAudioRecorderDelegate {
     
 }

@@ -23,6 +23,7 @@ class RecordAudioVC: UIViewController {
     var minutes: Int = 0
     var seconds: Int = 0
     var recording: Bool = false
+    var audioPlayer = AudioHandler()
     
     @IBAction func backButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -38,22 +39,22 @@ class RecordAudioVC: UIViewController {
         case true:
             startRecordingImage.image = UIImage(named: "stoprecording")
             // Audio
-            AudioSingleton.shared.stopPlaying()
-            if AudioSingleton.shared.haveFileName() {
-                AudioSingleton.shared.deleteAudioFile(name: AudioSingleton.shared.getFileName())
+            audioPlayer.stopPlaying()
+            if audioPlayer.haveFileName() {
+                audioPlayer.deleteAudioFile(name: audioPlayer.getFileName())
             }
             let nome = DateFormatter()
             nome.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
             let nomeString = nome.string(from: Date())
-            AudioSingleton.shared.setFile(name: nomeString)
-            AudioSingleton.shared.setupRecorder()
-            AudioSingleton.shared.record()
+            audioPlayer.setFile(name: nomeString)
+            audioPlayer.setupRecorder()
+            audioPlayer.record()
             minutes = 0
             seconds = 0
             startTimer()
         case false:
-            AudioSingleton.shared.stopRecord()
-            AudioSingleton.shared.setupPlayer()
+            audioPlayer.stopRecord()
+            audioPlayer.setupPlayer()
             let viewController = ReviewAudioVC()
             viewController.delegate = self
             fadeNavigation(target: viewController)

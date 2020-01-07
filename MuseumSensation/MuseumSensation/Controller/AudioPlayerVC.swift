@@ -31,10 +31,11 @@ class AudioPlayerVC: UIViewController {
     var seconds = 0
     var isPlaying = false
     var currentAudio = 0
+    var streamAudio = StreamingHandler()
     var audioList: [AudioCodable] = []
     
     @IBAction func pauseButton(_ sender: Any) {
-        SetAccessibility.playPauseButtonAccessibility(pauseButtonOutlet: pauseButtonOutlet, pause: pause)
+        SetAccessibility.playPauseButtonAccessibility(pauseButtonOutlet: pauseButtonOutlet, pause: pause,streamAudio: streamAudio)
         let layer = animatedBar.layer
         if isPlaying {
             pauseLayer(layer: layer)
@@ -48,8 +49,8 @@ class AudioPlayerVC: UIViewController {
     }
     
     @IBAction func backButton(_ sender: Any) {
-        StreamingSingleton.shared.stopPlaying()
-        StreamingSingleton.shared.deleteAudioFile()
+        streamAudio.stopPlaying()
+        streamAudio.deleteAudioFile()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -87,7 +88,7 @@ class AudioPlayerVC: UIViewController {
         SetAccessibility.currentTimeAccessibility(currentTime: currentTime)
         SetAccessibility.audioCounterAccessibility(audioCounter: audioCounter)
         SetAccessibility.nextButtonAccessibility(nextOutlet: nextOutlet)
-        StreamingSingleton.shared.stopPlaying()
+        streamAudio.stopPlaying()
         
         self.animatedBar.frame.size.width = 0
         ImageSingleton.shared.updateBackground(mainArt: mainArt)
@@ -98,16 +99,16 @@ class AudioPlayerVC: UIViewController {
         guard let audioNow = audioList[currentAudio].nome else {
             return
         }
-        StreamingSingleton.shared.setupPlayerStream(name: audioNow)
+        streamAudio.setupPlayerStream(name: audioNow)
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        StreamingSingleton.shared.play()
-        audioProgressBarAnimation(duration: StreamingSingleton.shared.getAudioDuration())
+        streamAudio.play()
+        audioProgressBarAnimation(duration: streamAudio.getAudioDuration())
         isPlaying = true
         timerStart()
-        setMaxTime(duration: StreamingSingleton.shared.getAudioDuration())
+        setMaxTime(duration: streamAudio.getAudioDuration())
     }
     
     /**
@@ -230,17 +231,17 @@ class AudioPlayerVC: UIViewController {
             guard let audioNow = self.audioList[self.currentAudio].nome else {
                 return
             }
-            StreamingSingleton.shared.stopPlaying()
-            StreamingSingleton.shared.setupPlayerStream(name: audioNow)
+            streamAudio.stopPlaying()
+            streamAudio.setupPlayerStream(name: audioNow)
             self.animatedBar.frame.size.width = 0
             sleep(1)
-            StreamingSingleton.shared.play()
+            streamAudio.play()
             animatedBar.layer.removeAllAnimations()
-            self.audioProgressBarAnimation(duration: StreamingSingleton.shared.getAudioDuration())
+            self.audioProgressBarAnimation(duration: streamAudio.getAudioDuration())
             minutes = 0
             seconds = 0
             currentTime.text = "0:00"
-            setMaxTime(duration: StreamingSingleton.shared.getAudioDuration())
+            setMaxTime(duration: streamAudio.getAudioDuration())
         }
         
     }
