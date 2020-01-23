@@ -36,6 +36,7 @@
 		1EC85CB32322C58E00245FFA /* SetAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC85CB22322C58E00245FFA /* SetAccessibility.swift */; };
 		7D04005E231596DD00D05726 /* AudioSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04005D231596DD00D05726 /* AudioSingleton.swift */; };
 		7D0B363123282FFB004E93A6 /* StreamingSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0B363023282FFB004E93A6 /* StreamingSingleton.swift */; };
+		7D5B5ABB23D961DF006E7DFC /* Beacons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5B5ABA23D961DF006E7DFC /* Beacons.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		1EC85CB22322C58E00245FFA /* SetAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAccessibility.swift; sourceTree = "<group>"; };
 		7D04005D231596DD00D05726 /* AudioSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSingleton.swift; sourceTree = "<group>"; };
 		7D0B363023282FFB004E93A6 /* StreamingSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingSingleton.swift; sourceTree = "<group>"; };
+		7D5B5ABA23D961DF006E7DFC /* Beacons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beacons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 				7D04005D231596DD00D05726 /* AudioSingleton.swift */,
 				1E0FCA7C2310840700993AD3 /* MainArtVC.swift */,
 				1E0FCA802310846400993AD3 /* AudioPlayerVC.swift */,
+				7D5B5ABA23D961DF006E7DFC /* Beacons.swift */,
 				1E0FCA842310849700993AD3 /* StartRecordingVC.swift */,
 				0C50200F2326DD8C00D4431E /* RecordAudioVC.swift */,
 				1E0FCA88231084CA00993AD3 /* RecordingVC.swift */,
@@ -396,6 +399,7 @@
 				1E0FCA8E231084FA00993AD3 /* ReviewAudioVC.swift in Sources */,
 				1E0FCA822310846400993AD3 /* AudioPlayerVC.swift in Sources */,
 				1E1701DB232029F300ED7ECF /* ImageSingleton.swift in Sources */,
+				7D5B5ABB23D961DF006E7DFC /* Beacons.swift in Sources */,
 				1E0FCA8A231084CA00993AD3 /* RecordingVC.swift in Sources */,
 				1E0FCA46231082C400993AD3 /* ViewController.swift in Sources */,
 				1E9C3A8F231ECE3300C32E79 /* UploadAudio.swift in Sources */,

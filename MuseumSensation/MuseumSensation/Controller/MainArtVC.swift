@@ -60,20 +60,7 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
         ImageSingleton.shared.updateTitle(label: artNameLabel)
         ImageSingleton.shared.updatesecondClosestImage(mainArt: secondArtImage)
         
-        //set the locationManager delegate to self
-        locationManager.delegate = self
-        //ask for permission to use the beacons
-        if CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedWhenInUse {
-            locationManager.requestWhenInUseAuthorization()
-        }
-        //star the beacon serch
-        //inicializa a procura pelos becons da marca estimote
-        let nsuuid = NSUUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")
-        if let clregion = nsuuid as UUID? {
-            let region = CLBeaconRegion(proximityUUID: clregion, identifier: "Estimotes")
-            locationManager.startRangingBeacons(in: region)
-            
-        }
+        let beacons = Beacons(mainArt: mainArt, artNameLabel: artNameLabel, secondArtImage: secondArtImage)
         
     }
     
@@ -110,51 +97,4 @@ class MainArtVC: UIViewController, CLLocationManagerDelegate {
         frame.center.x = frame.frame.width/2 + Manager.distanceToBorders
         frame.center.y = Manager.screenSize.height - frame.frame.height/2 - Manager.distanceToBorders
     }
-    
-    // Beacon tracking function
-    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        //get an array of beacon that are close
-        var knownBeacons = beacons.filter { ($0.proximity == CLProximity.immediate) && ($0.accuracy > 0) }
-        //order them by proxymity
-        knownBeacons.sort { (beaconA, beaconB) -> Bool in
-            beaconA.accuracy < beaconB.accuracy
-        }
-        //get an array for all beacon that are far
-        var beaconOrder = beacons
-        //order them by range
-        beaconOrder.sort { (beaconA, beaconB) -> Bool in
-            beaconA.accuracy < beaconB.accuracy
-        }
-        
-        //see if you have a close beacon
-        if knownBeacons.count > 0 {
-            //do the desired functions for the closest beacon
-            lastMessure = knownBeacons
-            let closestBeacon = knownBeacons[0] as CLBeacon
-            
-            if let firstBeacon = closestBeacon.minor as? Int {
-                if firstBeacon != ImageSingleton.shared.getCurrentImage() {
-                    ImageSingleton.shared.setCurrentImage(beaconID: firstBeacon)
-                    ImageSingleton.shared.setTitle(beaconID: firstBeacon)
-                    ImageSingleton.shared.updateBackground(mainArt: mainArt)
-                    ImageSingleton.shared.updateTitle(label: artNameLabel)
-                }
-            }
-        }
-        
-        //does the same function as before but for the seccondary art, as extra it dosent allow for the main and seccond art to be  the same
-        if beaconOrder.count >= 2 && knownBeacons.count > 0 {
-            if beaconOrder[1] != lastMessure[0] && beaconOrder != lastMessure2 {
-                lastMessure2 = beaconOrder
-                let secondClosest = beaconOrder[1] as CLBeacon
-                if let secondClosestSafe = secondClosest.minor as? Int {
-                    if secondClosestSafe != ImageSingleton.shared.getsecondClosestImage() && secondClosestSafe != ImageSingleton.shared.getCurrentImage() {
-                        ImageSingleton.shared.setsecondClosestImage(beaconID: secondClosestSafe)
-                        ImageSingleton.shared.updatesecondClosestImage(mainArt: secondArtImage)
-                    }
-                }
-            }
-        }
-    }
-    
 }
