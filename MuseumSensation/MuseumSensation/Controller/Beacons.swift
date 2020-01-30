@@ -45,7 +45,9 @@ final class Beacons: NSObject, CLLocationManagerDelegate {
     }
     
 // Beacon tracking function
-    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+    func locationManager(_ manager: CLLocationManager,
+      didRange beacons: [CLBeacon],
+    satisfying beaconConstraint: CLBeaconIdentityConstraint){
         //get an array of beacon that are close
         var knownBeacons = beacons.filter { ($0.proximity == CLProximity.immediate) && ($0.accuracy > 0) }
         //order them by proxymity
